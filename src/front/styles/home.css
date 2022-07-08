@@ -5,3 +5,72 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/* nav {
+    border: 1px solid black;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.items-navbar {
+    border: 1px solid green;
+    padding: 10px;
+
+}
+
+.nav-bar {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.image-navbar {
+    text-align: center;
+    width: 100px;
+}
+
+nav ol li {
+    border: 1px solid red;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+} */
+
+
+.container {
+    max-width: 1140px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.img-center {
+    height: 520px;
+
+}
+
+.link {
+    list-style: none;
+
+}
+
+
+.nav-item {
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: #1EAE98;
+}
+
+#title,
+h1,
+h2 {
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+.mini-container {
+    max-width: 1140px;
+    box-sizing: border-box;
+    margin: auto;
+
+}
