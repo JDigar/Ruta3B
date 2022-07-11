@@ -53,8 +53,22 @@ export const Usuario = () => {
             </div>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-6 d-flex flex-column align-items-center">
           <h2>Tus sitios visitados</h2>
+          <div className="card" style={{ width: 18 + "em" }}>
+            <img
+              src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
+              className="card-img-top"
+              alt="casa-paco-image"
+            />
+            <div className="card-body">
+              <h5 className="card-title">CASA PACO</h5>
+              <p className="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
