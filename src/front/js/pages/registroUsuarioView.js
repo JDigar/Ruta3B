@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import CargaDeFoto from "../component/cargaDeFoto";
 import RegistroUsuario from "../component/registroUsuario";
 
 import { Context } from "../store/appContext";
