@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+
 export const Footer = () => (
 	<>
 	<hr/>
 	<footer className="d-flex w-100 justify-content-between container footer mt-auto py-3 text-center">
 		<div>
 		<ol className="d-flex list-unstyled">
-			<li><Link className="p-2 nav-item" to="#">Contacto</Link></li>
+			<li><Link className="p-2 nav-item" to="/demo">Contacto</Link></li>
 			<li><Link className="p-2 nav-item" to="#">Sobre nosotros</Link></li>
 		</ol>
 		</div>

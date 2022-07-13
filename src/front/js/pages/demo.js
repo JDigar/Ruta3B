@@ -1,41 +1,70 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
 
 export const Demo = () => {
-	const { store, actions } = useContext(Context);
+
+	// const { store, actions } = useContext(Context);
+
+	// const formId = 'vXF5Fe9t';
+	// const formSparkUrl = 'https://submit-form.com/'+{formId}
+
+	// const [submit, submitting] = useFormspark({
+	// 	formId: 'vXF5Fe9t',
+	//   });
+	
+	//   const [message, setMessage] = useState("");
+	
+	//   const onSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	await submit({ message });
+	// 	alert("Form submitted");
+	//   };
+
+
+	// const submitForm = () => {
+
+	// }
+
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
+			<div className="container">
+							{/* <!-- Wrapper container --> */}
+				<div className="mt-5 w-50 border border-dark container py-4">
+
+				{/* <!-- Bootstrap 5 starter form --> */}
+				<form onClick={submitForm} className="" id="contactForm">
+
+					{/* <!-- Name input --> */}
+					<div className="mb-3">
+					<label className="form-label" htmlFor="name">Name</label>
+					<input className="form-control" id="name" type="text" placeholder="Name" />
+					</div>
+
+					{/* <!-- Email address input --> */}
+					<div className="mb-3">
+					<label className="form-label" htmlFor="emailAddress">Email Address</label>
+					<input className="form-control" id="emailAddress" type="email" placeholder="Email Address" />
+					</div>
+
+					{/* <!-- Message input --> */}
+					<div className="mb-3">
+					<label className="form-label" htmlFor="message">Message</label>
+					<textarea className="form-control" id="message" type="text" placeholder="Message"></textarea>
+					</div>
+
+					{/* <!-- Form submit button --> */}
+					<div className="d-grid">
+					<button className="btn btn-primary btn-lg" type="submit">Submit</button>
+					</div>
+
+				</form>
+
+				</div>
 			<br />
-			<Link to="/">
+			{/* <Link to="/">
 				<button className="btn btn-primary">Back home</button>
-			</Link>
+			</Link> */}
 		</div>
 		
 	);

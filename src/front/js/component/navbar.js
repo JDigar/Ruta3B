@@ -14,7 +14,7 @@ export const Navbar = () => {
 			<div className=" d-flex w-100 m-0 p-0">
 				<div style={{width:"33%"}} className="">
 					<ol className="mt-4 d-flex justify-content-around">
-						<li className="link"><Link to="#"  className="mt-2 nav-item">Inicio</Link></li>
+						<li className="link"><Link to="/"  className="mt-2 nav-item">Inicio</Link></li>
 						<li className="link"><Link to="#"  className="mt-2 nav-item" >Imagenes</Link></li>
 						<li className="link"><Link to="#"  className="mt-2 nav-item">Recomendaciones</Link></li>
 					</ol>

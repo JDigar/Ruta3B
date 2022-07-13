@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { CardHome } from "./cardHome.jsx";
 import { CardHome2 } from "./cardHome2.jsx";
 
+
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
