@@ -70,3 +70,16 @@ def create_new_user():
     }
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
+
+# # #NUEVO USUARIO LOCAL
+# @api.route('/locales', methods=['POST'])   
+# def create_new_user_locales():
+#     body = json.loads(request.data)
+#     new_user_local = Locales(nombre=body["nombre"],email=body["email"], password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"], is_active=True)
+#     db.session.add(new_user_local)
+#     db.session.commit()
+#     response_body={
+#         "msg": ("usuario creado", new_user_local)
+#     }
+#     access_token = create_access_token(identity=body["email"])
+#     return jsonify(access_token=access_token) 
