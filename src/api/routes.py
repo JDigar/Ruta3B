@@ -25,3 +25,18 @@ def handle_user():
     }
 
     return jsonify(response_body), 200
+
+
+
+#NUEVO USUARIO
+# @api.route('/user', methods=['POST'])   
+# def create_new_user():
+#     body = json.loads(request.data)
+#     new_user = User(nombre=body["nombre"],apellido=body["apellido"],email=body["email"], password=body["password"], is_active=True)
+#     db.session.add(new_user)
+#     db.session.commit()
+#     response_body={
+#         "msg": ("usuario creado", new_user)
+#     }
+#     access_token = create_access_token(identity=body["email"])
+#     return jsonify(access_token=access_token) 
