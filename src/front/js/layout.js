@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { RegistroUsuarioView } from "./pages/registroUsuarioView";
+import { RegistroParaLocales } from "./pages/registroLocalesView";
 import { Single } from "./pages/single";
 import { LoginView } from "./pages/loginView";
 
@@ -27,8 +28,9 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Usuario />} path="/usuario" />
-            <Route element={<LoginView />} path="/loginView" />
+            <Route element={<LoginView />} path="/login" />
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
+            <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<Single />} path="/single/:theid" />
 
             <Route element={<h1>Not found!</h1>} />
