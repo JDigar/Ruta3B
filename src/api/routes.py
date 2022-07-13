@@ -70,8 +70,6 @@ def create_new_user():
     }
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
-<<<<<<< HEAD
-=======
 
 # # #NUEVO USUARIO LOCAL
 # @api.route('/locales', methods=['POST'])   
@@ -85,4 +83,3 @@ def create_new_user():
 #     }
 #     access_token = create_access_token(identity=body["email"])
 #     return jsonify(access_token=access_token) 
->>>>>>> d7fe1ae4a04a10cbb9b3602b61179608c5efc28a
