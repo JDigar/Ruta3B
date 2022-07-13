@@ -37,15 +37,26 @@ def handle_user():
 # # create_access_token() function is used to actually generate the JWT.
 @api.route("/login", methods=["POST"])
 def login():
-    username = request.json.get("username", None)
+    email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if username != "test" or password != "test":
+    user = User.query.filter_by(email=email).first()
+    print(user)
+    if email != user.email or password != user.password:
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-
+# Protect a route with jwt_required, which will kick out requests
+# without a valid JWT present.
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    
+    return jsonify(user.serialize()), 200
 
 # #NUEVO USUARIO
 @api.route('/user', methods=['POST'])   
@@ -59,3 +70,16 @@ def create_new_user():
     }
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
+
+# # #NUEVO USUARIO LOCAL
+# @api.route('/locales', methods=['POST'])   
+# def create_new_user_locales():
+#     body = json.loads(request.data)
+#     new_user_local = Locales(nombre=body["nombre"],email=body["email"], password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"], is_active=True)
+#     db.session.add(new_user_local)
+#     db.session.commit()
+#     response_body={
+#         "msg": ("usuario creado", new_user_local)
+#     }
+#     access_token = create_access_token(identity=body["email"])
+#     return jsonify(access_token=access_token) 

@@ -80,7 +80,7 @@ const getState = ({
             },
 
             // REGISTRO DE USUARIO
-            registration: (nombre, apellido, email, password) => {
+            registroUsuario: (nombre, apellido, email, password) => {
                 fetch(process.env.BACKEND_URL + '/api/user', {
                         method: "POST",
                         body: JSON.stringify({
@@ -103,6 +103,29 @@ const getState = ({
 
                     })
             },
+
+            // RegistroLocales : (nombre, apellido, email, password) => {
+            //     fetch(process.env.BACKEND_URL + '/api/user', {
+            //             method: "POST",
+            //             body: JSON.stringify({
+            //                 "nombre": nombre,
+            //                 "apellido": apellido,
+            //                 "email": email,
+            //                 "password": password
+            //             }),
+            //             headers: {
+            //                 "Content-Type": "application/json"
+            //             }
+            //         })
+            //         .then((response) => {
+            //             return response.json()
+
+            //         })
+            //         .then((data) => {
+            //             console.log(data)
+
+
+            //         })
         },
     };
 };
