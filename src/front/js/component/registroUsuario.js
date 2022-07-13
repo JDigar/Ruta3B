@@ -12,7 +12,7 @@ const RegistroUsuario = () => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
     // if (email)
-    actions.registration(newName, newApellido, newEmail, newPassword);
+    actions.RegistroUsuario(newName, newApellido, newEmail, newPassword);
   };
   return (
     <div className="container text-center">
