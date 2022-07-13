@@ -7,6 +7,7 @@ import { RegistroUsuarioView } from "./pages/registroUsuarioView";
 import { Single } from "./pages/single";
 import { LoginView } from "./pages/loginView";
 
+import { Usuario } from "./pages/usuario";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -25,9 +26,11 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<RegistroUsuarioView />} path="/registroUsuario" />
+            <Route element={<Usuario />} path="/usuario" />
             <Route element={<LoginView />} path="/loginView" />
+            <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<Single />} path="/single/:theid" />
+
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
