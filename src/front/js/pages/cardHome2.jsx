@@ -6,14 +6,15 @@ export const CardHome2 = ({nombre,descripcion,id}) => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="mt-3 p-1 d-flex flex-row-reverse border border-danger mini-container">
+		<div className="mt-3 p-1 d-flex flex-row-reverse mini-container">
         <img
-          className="border border-dark w-25 "
-          src="https://www.imor.es/wp-content/uploads/2017/09/imagen-de-prueba-320x240-300x225.jpg"
+          className="border border-dark w-25"
+          src="https://media.revistavanityfair.es/photos/6192972ec618c0cdf0bcaeb2/16:9/w_2560%2Cc_limit/La%2520Mamona%2520Castellana_18.jpg"
           alt=""
         />
-        <div className=" p-1 w-25 border border-dark">
-          <h2 className="border border-dark">{nombre} </h2>
+        <div className=" p-3 w-25">
+          <h2 className="">{nombre} </h2>
+          <hr/>
           <span className="fs-6">❤❤❤❤❤</span>
           <p>
             {descripcion}
