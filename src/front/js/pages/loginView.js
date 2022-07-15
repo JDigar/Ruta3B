@@ -1,11 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const LoginView = () => {
+  const { store, actions } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.prevent.default();
+  };
+
   return (
     <div className="container text-center">
       <div className="mb-3 content-center">
         <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           placeholder="Email address"
           type="email"
           className="form-control"
@@ -18,6 +30,8 @@ export const LoginView = () => {
       </div>
       <div className="mb-3">
         <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           placeholder="Password"
           type="password"
           className="form-control"
@@ -34,7 +48,14 @@ export const LoginView = () => {
           Check me out
         </label>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button
+        onClick={() => {
+          actions.login(email, password);
+          navigate("/usuario");
+        }}
+        type="submit"
+        className="btn btn-primary"
+      >
         Submit
       </button>
       <br />
