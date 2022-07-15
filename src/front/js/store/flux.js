@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -149,24 +150,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-// login: (email, password) => {
-//     fetch(getStore().url + "api/login", {
-//             method: "POST",
-//             body: JSON.stringify({
-//                 email: email,
-//                 password: password,
-//             }),
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//         })
-//         .then((response) => {
-//             if (response.status === 200) {
-//                 setStore({
-//                     auth: true,
-//                 });
-//             }
-//             return response.json();
-//         })
-//         .then((data) => localStorage.setItem("token", data.access_token));
-// },
+

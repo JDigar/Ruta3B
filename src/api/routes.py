@@ -23,14 +23,29 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/user', methods=['GET'])
-def handle_user():
+
+
+@api.route('/', methods=['GET'])
+def handle_home():
 
     response_body = {
-        "message": "Hello! endpoint user"
+        "message": "Este es el get de home"
+
+
     }
 
     return jsonify(response_body), 200
+
+
+#GET de restaurantes 
+
+@api.route('/restaurantes', methods=['GET'])
+def get_restaurantes():
+    
+    restaurantes = Locales.query.all()
+    all_restaurantes = list(map(lambda x: x.serialize(), restaurantes))
+
+    return jsonify(all_restaurantes), 200
 
 
 # # Create a route to authenticate your users and return JWTs. The
@@ -83,3 +98,4 @@ def create_new_user():
 #     }
 #     access_token = create_access_token(identity=body["email"])
 #     return jsonify(access_token=access_token) 
+
