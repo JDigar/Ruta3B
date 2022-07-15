@@ -3,8 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
+
 import { Contacto } from "./pages/contacto";
 import { Single } from "./pages/single";
+
+
+import { RegistroUsuarioView } from "./pages/registroUsuarioView";
+import { RegistroParaLocales } from "./pages/registroLocalesView";
+import { Single } from "./pages/single";
+import { LoginView } from "./pages/loginView";
 
 
 import { Usuario } from "./pages/usuario";
@@ -13,6 +20,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Restaurante } from "./pages/restaurante";
 
 //create your first component
 const Layout = () => {
@@ -28,8 +36,16 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Usuario />} path="/usuario" />
+
             <Route element={<Contacto />} path="/contacto" />
+
+            <Route element={<Restaurante />} path="/restaurante" />
+            <Route element={<LoginView />} path="/login" />
+            <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
+            <Route element={<RegistroParaLocales />} path="/registro-Locales" />
+
             <Route element={<Single />} path="/single/:theid" />
+
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
