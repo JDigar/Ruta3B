@@ -1,7 +1,7 @@
-
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      restaurantes: [],
       auth: false,
       url: "https://3001-carolinaqotf-proyecto3b-9l0a97aq7qc.ws-eu54.gitpod.io/",
       message: null,
@@ -150,4 +150,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-

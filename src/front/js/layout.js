@@ -7,12 +7,9 @@ import { Home } from "./pages/home";
 import { Contacto } from "./pages/contacto";
 import { Single } from "./pages/single";
 
-
 import { RegistroUsuarioView } from "./pages/registroUsuarioView";
 import { RegistroParaLocales } from "./pages/registroLocalesView";
-import { Single } from "./pages/single";
 import { LoginView } from "./pages/loginView";
-
 
 import { Usuario } from "./pages/usuario";
 
