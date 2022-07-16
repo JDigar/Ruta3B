@@ -17,17 +17,17 @@ export const Navbar = () => {
           <div className="navbar-links">
             <ol className="mt-4 d-flex justify-content-start">
               <li className="link" >
-                <Link to="/" className="p-2 mt-2 nav-item" style={{color:"rgb(247, 230, 173)"}}>
+                <Link to="/" className="text-dark p-2 mt-2 nav-item" >
                   Inicio
                 </Link>
               </li>
               <li className="link">
-                <Link to="#" className="p-2 mt-2 nav-item" style={{color:"rgb(247, 230, 173)"}}>
+                <Link to="#" className="text-dark p-2 mt-2 nav-item">
                   Imagenes
                 </Link>
               </li>
               <li className="link">
-                <Link to="#" className="p-2 mt-2 nav-item" style={{color:"rgb(247, 230, 173)"}}>
+                <Link to="#" className="text-dark p-2 mt-2 nav-item" >
                   Recomendaciones
                 </Link>
               </li>

@@ -10,9 +10,6 @@ export const RegistroParaLocales = () => {
     <div className="container mt-3">
       <RegistroDeLocales />
       <br />
-      <Link to="/">
-        <button className="btn btn-primary mt-4">Back home</button>
-      </Link>
     </div>
   );
 };
