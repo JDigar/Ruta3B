@@ -10,6 +10,7 @@ import { Single } from "./pages/single";
 import { RegistroUsuarioView } from "./pages/registroUsuarioView";
 import { RegistroParaLocales } from "./pages/registroLocalesView";
 import { LoginView } from "./pages/loginView";
+import { SelSignup } from "./pages/selRegistro";
 
 import { Usuario } from "./pages/usuario";
 
@@ -40,6 +41,7 @@ const Layout = () => {
             <Route element={<LoginView />} path="/login" />
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
+            <Route element={<SelSignup />} path="/seleccion-registro" />
 
             <Route element={<Single />} path="/single/:theid" />
 
