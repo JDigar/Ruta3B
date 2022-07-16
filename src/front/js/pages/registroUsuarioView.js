@@ -8,7 +8,7 @@ export const RegistroUsuarioView = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container">
+    <div className="container" >
       <RegistroUsuario />
       <br />
       <Link to="/">

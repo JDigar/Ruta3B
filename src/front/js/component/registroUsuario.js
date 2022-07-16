@@ -15,7 +15,7 @@ const RegistroUsuario = () => {
     actions.RegistroUsuario(newName, newApellido, newEmail, newPassword);
   };
   return (
-    <div className="container text-center">
+    <div className="container text-center" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"150px",borderRadius:"15px"}}>
       {store.auth === true ? (
         <Navigate to="/loginView" />
       ) : (
@@ -65,13 +65,15 @@ const RegistroUsuario = () => {
               type="checkbox"
               className="form-check-input"
               id="exampleCheck1"
+              style={{marginTop:"1cm"}}
+              
             />
-            <label className="form-check-label ms-2" htmlFor="exampleCheck1">
+            <label className="form-check-label ms-2" htmlFor="exampleCheck1" style={{marginRight:"480px",marginTop:"1cm"}}>
               Check me out
             </label>
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn" style={{color:"black",backgroundColor:"white"}}>
             Registrar
           </button>
         </form>
