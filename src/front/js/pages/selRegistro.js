@@ -10,12 +10,12 @@ export const SelSignup = () => {
         Ey! <br></br> ¿Cómo quieres registarte?
       </h1>
       <Link to="/registro-usuario">
-        <span className="btn btn-primary btn-lg m-4 center" role="button">
+        <span className="btn  btn-lg m-4 center" role="button" style={{color:"black",backgroundColor:"rgb(247, 230, 173)"}}>
           Usuario
         </span>
       </Link>
       <Link to="/registro-Locales">
-        <span className="btn btn-primary btn-lg m-4" role="button">
+        <span className="btn  btn-lg m-4" role="button" style={{color:"black",backgroundColor:"rgb(247, 230, 173)"}}>
           Restaurante
         </span>
       </Link>

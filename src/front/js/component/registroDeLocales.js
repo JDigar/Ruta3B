@@ -17,7 +17,7 @@ const RegistroDeLocales = () => {
   //     actions.registration(newName, newApellido, newEmail, newPassword);
   //   };
   return (
-    <div className="container text-center">
+    <div className="container text-center" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"150px",borderRadius:"15px"}}>
       {/* {store.auth === true ? (
         <Navigate to="/loginView" />
       ) : ( */}
@@ -122,18 +122,19 @@ const RegistroDeLocales = () => {
             //   onChange={(e) => setNewName(e.target.value)}
           />
         </div>
-        <div className=" container mb-3 form-check">
+        <div className=" container mb-3 form-check"  style={{marginRight:"480px",marginTop:"1cm"}}>
           <input
             type="checkbox"
             className="form-check-input"
             id="exampleCheck1"
+            
           />
-          <label className="form-check-label ms-2" htmlFor="exampleCheck1">
+          <label className="form-check-label ms-2" htmlFor="exampleCheck1" style={{marginRight:"480px"}}>
             Check me out
           </label>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn"  style={{color:"black",backgroundColor:"white"}}>
           Registrar
         </button>
       </form>
