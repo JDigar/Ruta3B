@@ -54,7 +54,7 @@ export const Restaurante = () => {
           marginTop: "2cm",
           marginRight: "100px",
           marginLeft: "50px",
-          backgroundColor: "rgb(40, 255, 191)",
+          backgroundColor: "rgb(247, 230, 173)",
           padding: "2cm",
         }}
       >
