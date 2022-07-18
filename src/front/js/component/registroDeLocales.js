@@ -9,24 +9,26 @@ const RegistroDeLocales = () => {
   const [newTipoDeLocal, setNewTipoDeLocal] = useState("");
   const [newDescripcion, setNewDescripcion] = useState("");
   const [newPago, setNewPago] = useState("");
+
   const { store, actions } = useContext(Context);
 
     const handleSubmit = (e) => {
       e.preventDefault();
       // if (email)
-      actions.registration(newName, newApellido, newEmail, newPassword);
+      actions.RegistroLocales(newNameLocal, newEmail,newPassword,newTipoDeLocal,newDescripcion,newPago);
       {Swal.fire(
         'Good job!',
         'You clicked the button!',
         'success'
       )}
     };
+
+    
   return (
     <div className="container" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"150px",borderRadius:"15px"}}>
-      {/* {store.auth === true ? (
-        <Navigate to="/loginView" />
-      ) : ( */}
-      {/* <form onSubmit={handleSubmit2}> */}
+      {store.auth === true ? (
+        <Navigate to="/restaurante" />
+      ) : 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="p-1 " htmlFor="">Nombre</label>
@@ -35,7 +37,7 @@ const RegistroDeLocales = () => {
             className="form-control"
             id="example1"
             aria-describedby="emailHelp"
-              onChange={(e) => setNewName(e.target.value)}
+              onChange={(e) => setNewNameLocal(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -70,17 +72,23 @@ const RegistroDeLocales = () => {
         <div className="mb-3 content-center">
         <h2>Que tipo de local deseas registrar?</h2>
           <div className="m-auto w-50 p-1 text-center d-flex row input-group mb-3">
-            
+          {/* <label className="p-1" htmlFor="">descripcion local</label>
+          <input
+            type="text"
+            className="form-control"
+            id="example4"
+              onChange={(e) => setNewTipoDeLocal(e.target.value)}
+          /> */}
             <div className="p-1 form-check">
                   <input className="p-0  w-0 form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                  <label className="form-check-label" htmlFor="flexRadioDefault1">
-                    Local de Rica Comida
+                  <label className="form-check-label" htmlFor="flexRadioDefault1" onChange={(e) => setNewTipoDeLocal(e.target.value)}>
+                    Local de Comida
                   </label>
                 </div>
                 <div className="p-1 form-check">
                   <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                  <label className="form-check-label" htmlFor="flexRadioDefault2">
-                    Local de Rica Bebida
+                  <label className="form-check-label" htmlFor="flexRadioDefault2" onChange={(e) => setNewTipoDeLocal(e.target.value)}>
+                    Local de Bebida
                   </label>
                 </div>
           </div>
@@ -92,7 +100,7 @@ const RegistroDeLocales = () => {
             className="form-control"
             id="example6"
             aria-describedby="emailHelp"
-            //   onChange={(e) => setNewName(e.target.value)}
+              onChange={(e) => setNewDescripcion(e.target.value)}
           />
         </div>
         <div className="mb-3 content-center">
@@ -108,7 +116,7 @@ const RegistroDeLocales = () => {
             className="form-control"
             id="example7"
             aria-describedby="emailHelp"
-            //   onChange={(e) => setNewName(e.target.value)}
+              onChange={(e) => setNewPago(e.target.value)}
           />
         </div>
       <div className="text-center">
@@ -118,7 +126,7 @@ const RegistroDeLocales = () => {
       </div>
         
       </form>
-      
+    }
     </div>
   );
 };

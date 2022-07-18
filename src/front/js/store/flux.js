@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           title: "SECOND",
           background: "white",
           initial: "white",
-        },
+        }
       ],
       restaurantes: [],
       profiles: [],
@@ -53,6 +53,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((data) => setStore({ profiles: data }));
       },
+      getRestaurantes: async () => {
+                const store = getStore();
+
 
       getRestaurantes: async () => {
         const store = getStore();
@@ -101,6 +104,55 @@ const getState = ({ getStore, getActions, setStore }) => {
       // }
 
       //CODIGO DE CLOUDINARY SUBIDA DE FOTO
+
+
+            // REGISTRO DE USUARIO
+            registroUsuario: (nombre, apellido, email, password) => {
+                fetch(process.env.BACKEND_URL + "/api/user", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "email": email,
+                            "password": password,
+                        }),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    });
+            },
+
+            RegistroLocales : (nombre, apellido, email, password,tipo_local,descripcion) => {
+                fetch('https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales', {
+                        method: "POST",
+                        body: JSON.stringify({
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "email": email,
+                            "tipo_local":tipo_local,
+                            "password": password,
+                            "descripcion":descripcion
+                        }),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then((response) => {
+                        return response.json()
+
+                    })
+                    .then((data) => {
+                        console.log(data)
+
+                    })}
+        },
+    };
 
       uploadFile: async (uploadImages) => {
         const cloud_name = "carolinaqotf"; //"pluggedin";
@@ -174,6 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //         })
     },
   };
+
 };
 
 export default getState;

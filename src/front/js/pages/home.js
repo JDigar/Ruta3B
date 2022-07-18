@@ -11,6 +11,9 @@ export const Home = () => {
 
   console.log(store.restaurantes);
 
+  // store.restaurantes.map((item, index) => (
+  //   console.log(item.nombre)
+  // ));
 
   const id = store.restaurantes.map((item, index) => (
     <CardHome
