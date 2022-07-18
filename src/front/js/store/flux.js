@@ -5,7 +5,6 @@ const getState = ({
 }) => {
     return {
         store: {
-
             auth: false,
             url: "https://3001-jdigar-ruta3b-4j89mcrh65d.ws-eu54.gitpod.io",
             message: null,
