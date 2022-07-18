@@ -14,11 +14,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           title: "SECOND",
           background: "white",
           initial: "white",
-        }
+        },
       ],
       restaurantes: [],
       profiles: [],
-      restaurante:[],
+      restaurante: [],
     },
     actions: {
       login: (email, password) => {
@@ -66,10 +66,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((data) => setStore({ restaurante: data }));
       },
-
-     
-
-
 
       getRestaurantes: async () => {
         const store = getStore();
@@ -119,109 +115,111 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       //CODIGO DE CLOUDINARY SUBIDA DE FOTO
 
-
-            // REGISTRO DE USUARIO
-            registroUsuario: (nombre, apellido, email, password) => {
-                fetch(process.env.BACKEND_URL + "/api/user", {
-                        method: "POST",
-                        body: JSON.stringify({
-                            "nombre": nombre,
-                            "apellido": apellido,
-                            "email": email,
-                            "password": password,
-                        }),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    })
-                    .then((response) => {
-                        return response.json();
-                    })
-                    .then((data) => {
-                        console.log(data);
-                    });
-            },
-
-            RegistroLocales : (nombre, apellido, email, password,tipo_local,descripcion) => {
-                fetch('https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales', {
-                        method: "POST",
-                        body: JSON.stringify({
-                            "nombre": nombre,
-                            "apellido": apellido,
-                            "email": email,
-                            "tipo_local":tipo_local,
-                            "password": password,
-                            "descripcion":descripcion
-                        }),
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    })
-                    .then((response) => {
-                        return response.json()
-
-                    })
-                    .then((data) => {
-                        console.log(data)
-
-                    })}
-        },
-    
-
-      uploadFile: async (uploadImages) => {
-        const cloud_name = "carolinaqotf"; //"pluggedin";
-        const preset = "s5oaavqo"; //"icnpftra";
-        const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
-
-        const formData = new FormData();
-        formData.append("file", uploadImages);
-        formData.append("upload_preset", `${preset}`);
-        try {
-          const response = await fetch(
-            //process.env.BACKEND_URL + "/api/hello",
-            url_claudinari,
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
-          if (response.ok) {
-            const data = await response.json();
-            // actions.putImage(data.secure_url);
+      // REGISTRO DE USUARIO
+      registroUsuario: (nombre, apellido, email, password) => {
+        fetch(process.env.BACKEND_URL + "/api/user", {
+          method: "POST",
+          body: JSON.stringify({
+            nombre: nombre,
+            apellido: apellido,
+            email: email,
+            password: password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
             console.log(data);
-          }
-        } catch (error) {
-          console.log("message", error);
-        }
+          });
       },
 
-      
-     
+      RegistroLocales: (
+        nombre,
+        apellido,
+        email,
+        password,
+        tipo_local,
+        descripcion
+      ) => {
+        fetch(
+          "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              nombre: nombre,
+              apellido: apellido,
+              email: email,
+              tipo_local: tipo_local,
+              password: password,
+              descripcion: descripcion,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          });
+      },
+    },
 
-      // RegistroLocales : (nombre, apellido, email, password) => {
-      //     fetch(process.env.BACKEND_URL + '/api/user', {
-      //             method: "POST",
-      //             body: JSON.stringify({
-      //                 "nombre": nombre,
-      //                 "apellido": apellido,
-      //                 "email": email,
-      //                 "password": password
-      //             }),
-      //             headers: {
-      //                 "Content-Type": "application/json"
-      //             }
-      //         })
-      //         .then((response) => {
-      //             return response.json()
+    uploadFile: async (uploadImages) => {
+      const cloud_name = "carolinaqotf"; //"pluggedin";
+      const preset = "s5oaavqo"; //"icnpftra";
+      const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
-      //         })
-      //         .then((data) => {
-      //             console.log(data)
+      const formData = new FormData();
+      formData.append("file", uploadImages);
+      formData.append("upload_preset", `${preset}`);
+      try {
+        const response = await fetch(
+          //process.env.BACKEND_URL + "/api/hello",
+          url_claudinari,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          // actions.putImage(data.secure_url);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("message", error);
+      }
+    },
 
-      //         })
-  
+    // RegistroLocales : (nombre, apellido, email, password) => {
+    //     fetch(process.env.BACKEND_URL + '/api/user', {
+    //             method: "POST",
+    //             body: JSON.stringify({
+    //                 "nombre": nombre,
+    //                 "apellido": apellido,
+    //                 "email": email,
+    //                 "password": password
+    //             }),
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             }
+    //         })
+    //         .then((response) => {
+    //             return response.json()
+
+    //         })
+    //         .then((data) => {
+    //             console.log(data)
+
+    //         })
   };
-
 };
 
 export default getState;
