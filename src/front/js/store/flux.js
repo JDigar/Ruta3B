@@ -24,7 +24,7 @@ const getState = ({
         },
         actions: {
             login: (email, password) => {
-                fetch(getStore().url + "api/login", {
+                fetch("https://3001-jdigar-ruta3b-4j89mcrh65d.ws-eu54.gitpod.io/api/login", {
                         method: "POST",
                         body: JSON.stringify({
                             email: email,
@@ -48,7 +48,7 @@ const getState = ({
                 const store = getStore();
 
                 // fetching data from the backend
-                const resp = await fetch("https://3001-jdigar-ruta3b-4j89mcrh65d.ws-eu54.gitpod.io/api/restaurantes")
+                const resp = await fetch("https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/restaurantes")
                     .then((resp) => resp.json())
                     .then((data) =>
                         setStore({
@@ -121,10 +121,10 @@ const getState = ({
                 fetch(process.env.BACKEND_URL + "/api/user", {
                         method: "POST",
                         body: JSON.stringify({
-                            nombre: nombre,
-                            apellido: apellido,
-                            email: email,
-                            password: password,
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "email": email,
+                            "password": password,
                         }),
                         headers: {
                             "Content-Type": "application/json",
@@ -138,27 +138,29 @@ const getState = ({
                     });
             },
 
-            // RegistroLocales : (nombre, apellido, email, password) => {
-            //     fetch(process.env.BACKEND_URL + '/api/user', {
-            //             method: "POST",
-            //             body: JSON.stringify({
-            //                 "nombre": nombre,
-            //                 "apellido": apellido,
-            //                 "email": email,
-            //                 "password": password
-            //             }),
-            //             headers: {
-            //                 "Content-Type": "application/json"
-            //             }
-            //         })
-            //         .then((response) => {
-            //             return response.json()
+            RegistroLocales : (nombre, apellido, email, password,tipo_local,descripcion) => {
+                fetch('https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales', {
+                        method: "POST",
+                        body: JSON.stringify({
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "email": email,
+                            "tipo_local":tipo_local,
+                            "password": password,
+                            "descripcion":descripcion
+                        }),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then((response) => {
+                        return response.json()
 
-            //         })
-            //         .then((data) => {
-            //             console.log(data)
+                    })
+                    .then((data) => {
+                        console.log(data)
 
-            //         })
+                    })}
         },
     };
 };
