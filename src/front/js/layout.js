@@ -42,8 +42,9 @@ const Layout = () => {
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />
-
+            
             <Route element={<Single />} path="/single/:theid" />
+            
 
             <Route element={<h1>Not found!</h1>} />
           </Routes>
