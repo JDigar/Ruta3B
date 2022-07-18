@@ -4,12 +4,12 @@ import "../../styles/perfilRestaurante.css";
 
 export const Restaurante = () => {
   const { store, actions } = useContext(Context);
+  console.log(store.restaurantes);
   const restaurante = {
     id: 1,
     nombre: "Casa Paco",
     email: "pepito99@gmail.com",
-    descripcion:
-      "Las mejores comidas , todo casero y a tu gusto ",
+    descripcion: "Las mejores comidas , todo casero y a tu gusto ",
     tipoDeLocal: "Restaurante",
     direccion: {
       id: 1,
@@ -19,7 +19,8 @@ export const Restaurante = () => {
     },
     reseña: {
       puntuacion: <b>⭐ ⭐ ⭐ ⭐ ⭐ </b>,
-      comentario: "La comida estaba genial y con una gran atención por parte de los camareros .Volveremos!!",
+      comentario:
+        "La comida estaba genial y con una gran atención por parte de los camareros .Volveremos!!",
     },
   };
 
@@ -27,7 +28,7 @@ export const Restaurante = () => {
     <>
       <div
         className="card mb-3"
-        style={{  marginLeft: "20px", marginRight: "20px",marginTop:"30px" }}
+        style={{ marginLeft: "20px", marginRight: "20px", marginTop: "30px" }}
       >
         <div className="row g-0">
           <div className="col-md-4">
