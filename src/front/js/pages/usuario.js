@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
 import "../../styles/user.css";
 
 export const Usuario = () => {
   const { store, actions } = useContext(Context);
+  console.log(store.profiles.nombre);
+
+  // store.profiles.map((item, index) => console.log(item.nombre));
 
   return (
     <div className="container-fluid">
@@ -17,11 +20,11 @@ export const Usuario = () => {
             <p>Esta es la descripcion del usuario</p>
           </div>
           <div className="">
-            <h1>Hello, User</h1>
+            <h1>Hello, {store.profiles.nombre}</h1>
           </div>
           <div className="col-10 congrats">
             <p>
-              Enhorabuena, User.! <br></br>
+              Enhorabuena, {store.profiles.nombre}! <br></br>
               <br></br>A partir de ahora, eres miembro de la gran comunidad RUTA
               3B, donde podrás encontrar esos sitios que cumplen con nuestra
               condición 3B, que sean buenos, bonitos y baratos en esta gran

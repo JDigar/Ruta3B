@@ -99,3 +99,14 @@ def create_new_user_locales():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
 
+@api.route("/comentarios", methods=["GET"])
+@jwt_required()
+def comentarios():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    local = Locales.query.filter_by(email=current_user).first()
+    comentarios = Comentarios.query.filter_by( id_local=local.id)
+    
+    data=[comentario.serialize() for comentario in comentarios]
+    return jsonify(data), 200
+
