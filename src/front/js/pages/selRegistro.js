@@ -9,6 +9,7 @@ export const SelSignup = () => {
       <h1 className="display-4 text-center">
         Ey! <br></br> ¿Cómo quieres registarte?
       </h1>
+      <div className="text-center">
       <Link to="/registro-usuario">
         <span className="btn  btn-lg m-4 center" role="button" style={{color:"black",backgroundColor:"rgb(247, 230, 173)"}}>
           Usuario
@@ -19,6 +20,8 @@ export const SelSignup = () => {
           Restaurante
         </span>
       </Link>
+      </div>
+      
     </div>
   );
 };
