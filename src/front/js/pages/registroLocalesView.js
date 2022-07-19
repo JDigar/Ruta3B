@@ -9,7 +9,6 @@ export const RegistroParaLocales = () => {
   return (
     <div className="container mt-3">
       <RegistroDeLocales />
-      <br />
     </div>
   );
 };
