@@ -1,8 +1,13 @@
+import React, { useState, useContext,useEffect } from "react";
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
       store: {
         auth: false,
-        url: "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/",
+        url: process.env.BACKEND_URL,
         message: null,
         demo: [
           {
@@ -20,12 +25,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         profiles: [],
       },
       actions: {
+
         login: (email, password) => {
-          fetch(process.env.BACKEND_URL + "api/login", {
+          fetch(process.env.BACKEND_URL +"/api/login", {
             method: "POST",
             body: JSON.stringify({
-              email: email,
-              password: password,
+              "email": email,
+              "password": password,
             }),
             headers: {
               "Content-Type": "application/json",
@@ -36,6 +42,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                   auth: true,
                 });
+              }else{
+                console.log("errorr");
               }
               return response.json();
             })
@@ -43,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
   
         getInformationCurrentMember: () => {
-          fetch(process.env.BACKEND_URL + "/api/profile", {
+          fetch(process.env.BACKEND_URL +"/api/profile", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -59,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   
           // fetching data from the backend
           const resp = await fetch(
-            "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/restaurantes"
+            process.env.BACKEND_URL +"/api/restaurantes"
           )
             .then((resp) => resp.json())
             .then((data) =>
@@ -68,6 +76,12 @@ const getState = ({ getStore, getActions, setStore }) => {
               })
             );
         },
+        logout: () => {
+          localStorage.removeItem("token")
+          setStore({
+              auth: false
+          })
+      },
         // Use getActions to call a function within a fuction
         // exampleFunction: () => {
         // 	getActions().changeColor(0, "green");
@@ -128,6 +142,28 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("message", error);
           }
         },
+
+        // checkIfAuthIsTrue: () =>{
+        //   const store = getStore();
+        //   fetch(process.env.BACKEND_URL +"/api/gettingSubscribe", {
+        //     method: "GET",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //     },
+        //   })
+        //     .then((resp) => 
+        //     { setStore({  redirect: true
+        //      });
+        //      if (store.redirect === true) {
+        //       return <Navigate to="/usuario" />;
+        //     }
+        //     return resp.json();
+        //         })
+        //         .then(data => {
+        //             console.log(data);
+        //         });
+        // },
   
         // REGISTRO DE USUARIO
         registroUsuario: (nombre, apellido, email, password) => {
@@ -151,14 +187,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
         },
   
-        RegistroLocales : (nombre, apellido, email, password) => {
-            fetch(process.env.BACKEND_URL + '/api/user', {
+        RegistroLocales : (nombre, apellido, email, password,tipo_local,descripcion) => {
+            fetch(process.env.BACKEND_URL + '/api/locales', {
                     method: "POST",
                     body: JSON.stringify({
                         "nombre": nombre,
                         "apellido": apellido,
                         "email": email,
-                        "password": password
+                        "password": password,
+                        "descripcion":descripcion,
+                        "tipo_local":tipo_local
                     }),
                     headers: {
                         "Content-Type": "application/json"

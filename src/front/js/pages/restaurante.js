@@ -5,6 +5,7 @@ import "../../styles/perfilRestaurante.css";
 export const Restaurante = () => {
   const { store, actions } = useContext(Context);
   console.log(store.restaurantes);
+  
   const restaurante = {
     id: 1,
     nombre: "Casa Paco",

@@ -10,6 +10,8 @@ export const Usuario = () => {
   // store.profiles.map((item, index) => console.log(item.nombre));
 
   return (
+    <>
+    {store.auth === true ?
     <div className="container-fluid">
       <div className="user">
         <div className="row mx-4">
@@ -75,5 +77,7 @@ export const Usuario = () => {
         </div>
       </div>
     </div>
+    :(<h1 className="text-center">Esto es una ruta protegida</h1>)}
+    </>
   );
 };

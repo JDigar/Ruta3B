@@ -73,6 +73,14 @@ def protected():
     
     return jsonify(user.serialize()), 200
 
+
+# @api.route("/gettingSubscribe", methods=["GET"])
+# @jwt_required()
+# def protected():
+#     # Access the identity of the current user with get_jwt_identity
+#     current_user = get_jwt_identity()
+#     return jsonify(logged_in_as=current_user), 200
+
 # #NUEVO USUARIO
 @api.route('/user', methods=['POST'])   
 def create_new_user():
@@ -94,7 +102,7 @@ def create_new_user_locales():
     db.session.add(new_user_local)
     db.session.commit()
     response_body={
-        "msg": ("usuario creado", new_user_local)
+        "msg": ("usuario de local creado", new_user_local)
     }
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
@@ -109,4 +117,5 @@ def comentarios():
     
     data=[comentario.serialize() for comentario in comentarios]
     return jsonify(data), 200
+
 
