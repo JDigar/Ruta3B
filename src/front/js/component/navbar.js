@@ -14,7 +14,7 @@ export const Navbar = () => {
         {/* <img style={{width:"33%"}} className="text-center image-navbar" src={logo} alt="" /> */}
         <h1 id="title">Ruta Triple B</h1>
       </div>
-      {store.auth === true ? (
+      { store.auth ? (
         <nav className="container">
         <div className="container-navbar d-flex w-100 m-0 p-0">
           <div className="navbar-links">
@@ -124,7 +124,9 @@ export const Navbar = () => {
             </div>
           </div>
         </nav>
+       
       )}
+       <hr />
     </>
   );
 };

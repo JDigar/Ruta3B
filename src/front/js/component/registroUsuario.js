@@ -14,7 +14,9 @@ const RegistroUsuario = () => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
     actions.registroUsuario(newName, newApellido, newEmail, newPassword);
-    
+
+    navigate("/login");
+
   };
 
 
@@ -22,7 +24,9 @@ const RegistroUsuario = () => {
     <>
     
     <div className="container" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"150px",borderRadius:"15px"}}>
-      
+    {store.auth ? (
+        <Navigate to="/login" />
+      ): 
       <form onSubmit={handleSubmit2}>
         <div className="mb-3">
           <label className="p-1 " htmlFor="">Nombre</label>
@@ -75,17 +79,15 @@ const RegistroUsuario = () => {
         </div>
         
       <div className="text-center">
-      <button onSubmit={() => {
-          navigate("/usuario");
-        }} type="submit" className="w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
+      <button  type="submit" className="w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
           Registrar 
       </button>
       </div>
         
       </form>
-      
+    }
     </div>
-    
+  
     </>
   );
 };

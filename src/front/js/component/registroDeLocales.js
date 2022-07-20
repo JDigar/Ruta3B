@@ -27,7 +27,7 @@ const RegistroDeLocales = () => {
     
   return (
     <div className="container" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"150px",borderRadius:"15px"}}>
-      {store.auth === true ? (
+      {store.auth ? (
         <Navigate to="/restaurante" />
       ) : 
       <form onSubmit={handleSubmit}>

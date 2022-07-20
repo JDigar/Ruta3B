@@ -19,7 +19,7 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
         <h3>{tipo_local}</h3>
         <p>{descripcion}</p>
         <button
-          onClick={() => actions.addFavorit(nombre)}
+          onClick={() => actions.getFavorit(nombre)}
           className="btn btn-outline-danger btn-heart m-2"
         >
           ♡

@@ -7,9 +7,7 @@ import { CardHome2 } from "./cardHome2.jsx";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  console.log(store.likes);
-
-  console.log(store.restaurantes);
+  // console.log(actions.getFavorit());
 
   // store.restaurantes.map((item, index) => (
   //   console.log(item.nombre)
@@ -82,7 +80,7 @@ export const Home = () => {
       </div>
       <hr />
       {/* {store.restaurantes.length < 2} ? <p>hi</p> :  */}
-      {randm}+{randm2}
+      {randm} {randm2}
       {/* {console.log(randm())}
       {console.log(randm2)} */}
       {/* Primera carta */}
