@@ -108,9 +108,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         // fetching data from the backend
 
-        const resp = await fetch(
-          "https://3001-jdigar-ruta3b-8fi5aszhadf.ws-eu54.gitpod.io/api/restaurantes"
-        )
 
         const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
 
