@@ -28,6 +28,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 # TABLA PARA REGISTRO DE RESTAURANT
 class Locales(db.Model):
     __tablename__ = 'locales'

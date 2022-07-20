@@ -1,15 +1,22 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+
 import { Link,useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+
+import CardHome from "./../pages/cardHome.jsx";
+
+
 import "../../styles/user.css";
 import "../../styles/loginError.css";
 
-export const Usuario = () => {
-  
+
+export const Usuario = (props) => {
   const { store, actions } = useContext(Context);
-  console.log(store.profiles.nombre);
-  console.log(store.auth);
+  // console.log(store.profiles.nombre);
+  // console.log(store.likes[nombre]);
+
+
   // store.profiles.map((item, index) => console.log(item.nombre));
 
   // useEffect(()=>{
@@ -18,6 +25,7 @@ export const Usuario = () => {
 
   return (
     <>
+
     {store.auth && store.auth !="" && store.auth != undefined ?
     <div className="container-fluid">
       <div className="user">
@@ -43,45 +51,36 @@ export const Usuario = () => {
               la comunidad, además de participar en nuestro sorteo sorpresa
               mensual.
             </p>
-          </div>
-        </div>
-      </div>
 
-      <div className="favs text-center row">
-        <div className="col-6 d-flex flex-column align-items-center">
-          <h2>Tus sitios favoritos</h2>
-          <div className="card" style={{ width: 18 + "em" }}>
-            <img
-              src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
-              className="card-img-top"
-              alt="casa-paco-image"
-            />
-            <div className="card-body">
-              <h5 className="card-title">CASA PACO</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
+
+          </div>
+
+          <div className="lineSeparating"></div>
+
+          <div className="text-center d-flex mx-4">
+            <div className="col-6">
+              <h2>Mis sitios favoritos</h2>
+            </div>
+            <div className="col-6">
+              <h2>He ido</h2>
+            </div>
+          </div>
+
+          <div className="text-center d-flex container-fluid">
+            <div className="col-5 cont row mx-5 p-4">
+              {store.likes.map((item, index) => (
+                <CardHome key={index} nombre={item.nombre} id={index} />
+              ))}
+            </div>
+
+            <div className="col-5 cont row mx-5 p-4">
+              {store.went.map((item, index) => (
+                <CardHome key={index} nombre={item.nombre} id={index} />
+              ))}
             </div>
           </div>
         </div>
-        <div className="col-6 d-flex flex-column align-items-center">
-          <h2>Tus sitios visitados</h2>
-          <div className="card" style={{ width: 18 + "em" }}>
-            <img
-              src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
-              className="card-img-top"
-              alt="casa-paco-image"
-            />
-            <div className="card-body">
-              <h5 className="card-title">CASA PACO</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
     :(<div className="div-err-login text-center">
@@ -93,6 +92,44 @@ export const Usuario = () => {
                 color: "black",
               }}><Link className=" button-err" to="/">Volver al Inicio</Link></button>
     </div>)}
+
     </>
   );
 };
+
+{
+  /* <div className="col-6 d-flex flex-column align-items-center">
+<h2>Tus sitios favoritos</h2>
+<div className="card" style={{ width: 18 + "em" }}>
+  <img
+    src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
+    className="card-img-top"
+    alt="casa-paco-image"
+  />
+  <div className="card-body">
+    <h5 className="card-title">{store.likes}</h5>
+    <p className="card-text">
+      Some quick example text to build on the card title and make
+      up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+</div>
+<div className="col-6 d-flex flex-column align-items-center">
+<h2>Tus sitios visitados</h2>
+<div className="card" style={{ width: 18 + "em" }}>
+  <img
+    src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
+    className="card-img-top"
+    alt="casa-paco-image"
+  />
+  <div className="card-body">
+    <h5 className="card-title">CASA PACO</h5>
+    <p className="card-text">
+      Some quick example text to build on the card title and make
+      up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+</div> */
+}

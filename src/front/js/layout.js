@@ -18,6 +18,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Restaurante } from "./pages/restaurante";
+import { Recomendaciones } from "./pages/recomendaciones";
 
 //create your first component
 const Layout = () => {
@@ -45,6 +46,7 @@ const Layout = () => {
             <Route element={<SelSignup />} path="/seleccion-registro" />
             
             <Route element={<Single />} path="/single/:theid" />
+            <Route element={<Recomendaciones />} path="/recomendaciones" />
             
 
             <Route element={<h1>Not found!</h1>} />
