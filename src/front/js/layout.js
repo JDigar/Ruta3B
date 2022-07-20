@@ -13,7 +13,6 @@ import { LoginView } from "./pages/loginView";
 import { SelSignup } from "./pages/selRegistro";
 
 import { Usuario } from "./pages/usuario";
-
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -33,7 +32,9 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
+            
             <Route element={<Home />} path="/" />
+            
             <Route element={<Usuario />} path="/usuario" />
 
             <Route element={<Contacto />} path="/contacto" />
