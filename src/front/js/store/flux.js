@@ -23,8 +23,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       restaurantes: [],
       profiles: [],
+
+      restaurante: [],
+
       likes: [],
       went: [],
+
     },
     actions: {
       addFavorit: (nombre) => {
@@ -85,11 +89,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
+
+      getInformationCurrentRestaurant: () => {
+        fetch(process.env.BACKEND_URL + "api/restaurante", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => setStore({ restaurante: data }));
+      },
+
+
       getRestaurantes: async () => {
         const store = getStore();
 
         // fetching data from the backend
+
+        const resp = await fetch(
+          "https://3001-jdigar-ruta3b-8fi5aszhadf.ws-eu54.gitpod.io/api/restaurantes"
+        )
+
         const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
+
           .then((resp) => resp.json())
           .then((data) =>
             setStore({
@@ -136,6 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // }
 
       //CODIGO DE CLOUDINARY SUBIDA DE FOTO
+
 
       uploadFile: async (uploadImages) => {
         const cloud_name = "carolinaqotf"; //"pluggedin";
@@ -186,6 +211,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //         });
       // },
 
+
       // REGISTRO DE USUARIO
       registroUsuario: (nombre, apellido, email, password) => {
         fetch(process.env.BACKEND_URL + "/api/user", {
@@ -216,6 +242,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         tipo_local,
         descripcion
       ) => {
+
+        fetch(
+          "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              nombre: nombre,
+              apellido: apellido,
+              email: email,
+              tipo_local: tipo_local,
+              password: password,
+              descripcion: descripcion,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+
         fetch(process.env.BACKEND_URL + "/api/locales", {
           method: "POST",
           body: JSON.stringify({
@@ -230,6 +275,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         })
+
           .then((response) => {
             return response.json();
           })
@@ -238,6 +284,56 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
     },
+
+
+    uploadFile: async (uploadImages) => {
+      const cloud_name = "carolinaqotf"; //"pluggedin";
+      const preset = "s5oaavqo"; //"icnpftra";
+      const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+      const formData = new FormData();
+      formData.append("file", uploadImages);
+      formData.append("upload_preset", `${preset}`);
+      try {
+        const response = await fetch(
+          //process.env.BACKEND_URL + "/api/hello",
+          url_claudinari,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          // actions.putImage(data.secure_url);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log("message", error);
+      }
+    },
+
+    // RegistroLocales : (nombre, apellido, email, password) => {
+    //     fetch(process.env.BACKEND_URL + '/api/user', {
+    //             method: "POST",
+    //             body: JSON.stringify({
+    //                 "nombre": nombre,
+    //                 "apellido": apellido,
+    //                 "email": email,
+    //                 "password": password
+    //             }),
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             }
+    //         })
+    //         .then((response) => {
+    //             return response.json()
+
+    //         })
+    //         .then((data) => {
+    //             console.log(data)
+
+    //         })
   };
 };
 
