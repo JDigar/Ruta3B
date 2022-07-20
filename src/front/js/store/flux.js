@@ -1,8 +1,13 @@
+import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       auth: false,
-      url: "https://3001-jdigar-ruta3b-jf20uvqs7av.ws-eu54.gitpod.io/",
+      url: process.env.BACKEND_URL,
       message: null,
       demo: [
         {
@@ -18,11 +23,34 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       restaurantes: [],
       profiles: [],
+
       restaurante: [],
+
+      likes: [],
+      went: [],
+
     },
     actions: {
+      addFavorit: (nombre) => {
+        //Creamos la funcion para obtener el nombre con el Onclick
+
+        const store = getStore(); //Obtenemos Store con "getStore"
+        setStore({
+          likes: store.likes.concat(nombre),
+        }); //Actualizamos la informacion que está en like concatenando el valor de name.
+      },
+
+      addWent: (nombre) => {
+        //Creamos la funcion para obtener el nombre con el Onclick
+
+        const store = getStore(); //Obtenemos Store con "getStore"
+        setStore({
+          went: store.went.concat(nombre),
+        }); //Actualizamos la informacion que está en like concatenando el valor de name.
+      },
+
       login: (email, password) => {
-        fetch(process.env.BACKEND_URL + "api/login", {
+        fetch(process.env.BACKEND_URL + "/api/login", {
           method: "POST",
           body: JSON.stringify({
             email: email,
@@ -37,6 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               setStore({
                 auth: true,
               });
+            } else {
+              console.log("errorr");
             }
             return response.json();
           })
@@ -44,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getInformationCurrentMember: () => {
-        fetch(process.env.BACKEND_URL + "api/profile", {
+        fetch(process.env.BACKEND_URL + "/api/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -52,8 +82,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then((response) => response.json())
-          .then((data) => setStore({ profiles: data }));
+          .then((data) =>
+            setStore({
+              profiles: data,
+            })
+          );
       },
+
 
       getInformationCurrentRestaurant: () => {
         fetch(process.env.BACKEND_URL + "api/restaurante", {
@@ -67,19 +102,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ restaurante: data }));
       },
 
+
       getRestaurantes: async () => {
         const store = getStore();
 
         // fetching data from the backend
+
         const resp = await fetch(
           "https://3001-jdigar-ruta3b-8fi5aszhadf.ws-eu54.gitpod.io/api/restaurantes"
         )
+
+        const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
+
           .then((resp) => resp.json())
           .then((data) =>
             setStore({
               restaurantes: data,
             })
           );
+      },
+      logout: () => {
+        localStorage.removeItem("token");
+        setStore({
+          auth: false,
+        });
       },
       // Use getActions to call a function within a fuction
       // exampleFunction: () => {
@@ -115,6 +161,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       //CODIGO DE CLOUDINARY SUBIDA DE FOTO
 
+
+      uploadFile: async (uploadImages) => {
+        const cloud_name = "carolinaqotf"; //"pluggedin";
+        const preset = "s5oaavqo"; //"icnpftra";
+        const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+        const formData = new FormData();
+        formData.append("file", uploadImages);
+        formData.append("upload_preset", `${preset}`);
+        try {
+          const response = await fetch(
+            //process.env.BACKEND_URL + "/api/hello",
+            url_claudinari,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          if (response.ok) {
+            const data = await response.json();
+            // actions.putImage(data.secure_url);
+            console.log(data);
+          }
+        } catch (error) {
+          console.log("message", error);
+        }
+      },
+
+      // checkIfAuthIsTrue: () =>{
+      //   const store = getStore();
+      //   fetch(process.env.BACKEND_URL +"/api/gettingSubscribe", {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //     },
+      //   })
+      //     .then((resp) =>
+      //     { setStore({  redirect: true
+      //      });
+      //      if (store.redirect === true) {
+      //       return <Navigate to="/usuario" />;
+      //     }
+      //     return resp.json();
+      //         })
+      //         .then(data => {
+      //             console.log(data);
+      //         });
+      // },
+
+
       // REGISTRO DE USUARIO
       registroUsuario: (nombre, apellido, email, password) => {
         fetch(process.env.BACKEND_URL + "/api/user", {
@@ -145,6 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         tipo_local,
         descripcion
       ) => {
+
         fetch(
           "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales",
           {
@@ -162,6 +260,22 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           }
         )
+
+        fetch(process.env.BACKEND_URL + "/api/locales", {
+          method: "POST",
+          body: JSON.stringify({
+            nombre: nombre,
+            apellido: apellido,
+            email: email,
+            password: password,
+            descripcion: descripcion,
+            tipo_local: tipo_local,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+
           .then((response) => {
             return response.json();
           })
@@ -170,6 +284,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
     },
+
 
     uploadFile: async (uploadImages) => {
       const cloud_name = "carolinaqotf"; //"pluggedin";

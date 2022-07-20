@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const RegistroDeLocales = () => {
   const [newNameLocal, setNewNameLocal] = useState("");
@@ -38,6 +39,7 @@ const RegistroDeLocales = () => {
             id="example1"
             aria-describedby="emailHelp"
               onChange={(e) => setNewNameLocal(e.target.value)}
+              required
           />
         </div>
         <div className="mb-3">
@@ -48,6 +50,7 @@ const RegistroDeLocales = () => {
             id="example3"
             aria-describedby="emailHelp"
               onChange={(e) => setNewEmail(e.target.value)}
+              required
           />
         </div>
 
@@ -58,6 +61,7 @@ const RegistroDeLocales = () => {
             className="form-control"
             id="example4"
               onChange={(e) => setNewPassword(e.target.value)}
+              required
           />
         </div>
         <div className="mb-3">
@@ -67,6 +71,7 @@ const RegistroDeLocales = () => {
             className="form-control"
             id="example4"
               onChange={(e) => setNewPassword(e.target.value)}
+              required
           />
         </div>
         <div className="mb-3 content-center">
@@ -101,6 +106,7 @@ const RegistroDeLocales = () => {
             id="example6"
             aria-describedby="emailHelp"
               onChange={(e) => setNewDescripcion(e.target.value)}
+              required
           />
         </div>
         <div className="mb-3 content-center">

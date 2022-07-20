@@ -10,10 +10,6 @@ export const RegistroUsuarioView = () => {
   return (
     <div className="container" >
       <RegistroUsuario />
-      <br />
-      <Link to="/">
-        <button className="btn btn-primary">Back home</button>
-      </Link>
     </div>
   );
 };

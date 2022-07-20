@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const LoginView = () => {
@@ -10,62 +11,49 @@ export const LoginView = () => {
 
   const handleSubmit = (e) => {
     e.prevent.default();
+    actions.login(email, password);
   };
 
+  
+  
   return (
     
-    <div className="container text-center" style={{width:"700px",marginTop:"2cm",backgroundColor:"rgb(247, 230, 173)",padding:"1cm",marginBottom:"200px",borderRadius:"15px"}}>
-      <div className="mb-3 content-center">
+    <div className="container text-center" >
+      {(store.auth && store.auth !="" && store.auth != undefined) ? <Navigate to="/usuario" />  : 
+      <form style={{}} className="mt-5 h-50 w-50 m-auto" onSubmit={handleSubmit}>
+      <div className="mb-3  ">
+        <h6 className="mb-3 text-start">Introduce tu cuenta de correo electrónico</h6> 
         <input
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          placeholder="Email address"
           type="email"
           className="form-control"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
         />
-        <div id="emailHelp" className="form-text" style={{marginBottom:"40px"}}>
-          We'll never share your email with anyone else.
-        </div>
       </div>
       <div className="mb-3">
+      <h6 className="mb-3 text-start">Introduce tu contraseña</h6> 
         <input
           onChange={(e) => setPassword(e.target.value)}
           value={password}
-          placeholder="Password"
           type="password"
           className="form-control"
-          id="exampleInputPassword1"
         />
       </div>
-      <div className=" container mb-3 form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="exampleCheck1"
-        />
-        <label className="form-check-label ms-2" htmlFor="exampleCheck1" style={{marginRight:"470px"}}>
-          <p>Check me out</p>
-        </label>
-      </div>
-     
-     <div className="union d-flex" style={{marginLeft:"200px"}}>
-      <button
+     <div className=" union d-flex" >
+      <button style={{backgroundColor:"rgb(247, 230, 173)"}}
         onClick={() => {
           actions.login(email, password);
           navigate("/usuario");
         }}
         type="submit"
-        className="btn  " style={{backgroundColor:"white"}}
+        className="m-auto btn" 
       >
         Submit
       </button>
-      <br />
-      <Link to="/">
-        <button className="btn  mt-3" style={{marginLeft:"2cm",backgroundColor:"white"}}>Back home</button>
-      </Link>
       </div>
+      </form>
+     }  
     </div>
     
   );
