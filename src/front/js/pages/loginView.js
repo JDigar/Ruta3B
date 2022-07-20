@@ -9,6 +9,8 @@ export const LoginView = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  console.log(store.token);
+
   const handleSubmit = (e) => {
     e.prevent.default();
     actions.login(email, password);
@@ -53,7 +55,7 @@ export const LoginView = () => {
       </button>
       </div>
       </form>
-     }  
+      }  
     </div>
     
   );

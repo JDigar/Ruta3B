@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       actions: {
 
-        login: (email, password) => {
+        login: async(email, password) => {
           fetch(process.env.BACKEND_URL +"/api/login", {
             method: "POST",
             body: JSON.stringify({
@@ -48,9 +48,17 @@ const getState = ({ getStore, getActions, setStore }) => {
               return response.json();
             })
             .then((data) => localStorage.setItem("token", data.access_token));
+            return true;
+        },
+        
+        syncTokenFromLocalStorage:()=>{
+          const auth = localStorage.getItem("token")
+          console.log("app loaded, synching the localstorage token");
+          if(auth && auth !="" && auth != undefined)setStore({ auth: auth });
         },
   
         getInformationCurrentMember: () => {
+          const store = getStore()
           fetch(process.env.BACKEND_URL +"/api/profile", {
             method: "GET",
             headers: {
@@ -82,6 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               auth: false
           })
       },
+
         // Use getActions to call a function within a fuction
         // exampleFunction: () => {
         // 	getActions().changeColor(0, "green");
@@ -170,10 +179,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           fetch(process.env.BACKEND_URL + "/api/user", {
             method: "POST",
             body: JSON.stringify({
-              nombre: nombre,
-              apellido: apellido,
-              email: email,
-              password: password,
+              "nombre": nombre,
+              "apellido": apellido,
+              "email": email,
+              "password": password,
             }),
             headers: {
               "Content-Type": "application/json",

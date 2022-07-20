@@ -1,17 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-
+import { Link,useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "../../styles/user.css";
+import "../../styles/loginError.css";
 
 export const Usuario = () => {
+  
   const { store, actions } = useContext(Context);
   console.log(store.profiles.nombre);
-
+  console.log(store.auth);
   // store.profiles.map((item, index) => console.log(item.nombre));
+
+  // useEffect(()=>{
+  //   actions.getInformationCurrentMember()
+  // },[])
 
   return (
     <>
-    {store.auth === true ?
+    {store.auth && store.auth !="" && store.auth != undefined ?
     <div className="container-fluid">
       <div className="user">
         <div className="row mx-4">
@@ -77,7 +84,15 @@ export const Usuario = () => {
         </div>
       </div>
     </div>
-    :(<h1 className="text-center">Esto es una ruta protegida</h1>)}
+    :(<div className="div-err-login text-center">
+      <h2>Primero debería registrarse!</h2>
+      <button type="button"
+              className="btn  btn-sm h-50 m-3"
+              style={{
+                backgroundColor: "rgb(247, 230, 173)",
+                color: "black",
+              }}><Link className=" button-err" to="/">Volver al Inicio</Link></button>
+    </div>)}
     </>
   );
 };

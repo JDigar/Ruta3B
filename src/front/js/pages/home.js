@@ -82,7 +82,7 @@ export const Home = () => {
       </div>
       <hr />
       {/* {store.restaurantes.length < 2} ? <p>hi</p> :  */}
-      {randm}+{randm2}
+      {randm} {randm2}
       {/* {console.log(randm())}
       {console.log(randm2)} */}
       {/* Primera carta */}
