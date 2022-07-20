@@ -6,8 +6,9 @@ import "../../styles/user.css";
 
 export const Usuario = (props) => {
   const { store, actions } = useContext(Context);
-  // console.log(store.profiles.nombre);
-  // console.log(store.likes[nombre]);
+  useEffect(() => {
+    actions.getFavorit();
+  }, []);
 
   // store.profiles.map((item, index) => console.log(item.nombre));
 

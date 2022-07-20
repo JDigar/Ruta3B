@@ -94,6 +94,17 @@ def create_new_user():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
 
+@api.route('/favoritos', methods=['GET'])
+def get_favoritos():
+
+    favoritos = Favorites.query.all()
+    favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
+    response_body = {
+        "results": favoritosList
+    }
+
+    return jsonify(response_body), 200
+
 # #NUEVO USUARIO LOCAL
 @api.route('/locales', methods=['POST'])   
 def create_new_user_locales():

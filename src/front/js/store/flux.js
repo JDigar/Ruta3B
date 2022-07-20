@@ -23,17 +23,32 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       restaurantes: [],
       profiles: [],
-      likes: [],
+      likes: null,
       went: [],
     },
     actions: {
-      addFavorit: (nombre) => {
-        //Creamos la funcion para obtener el nombre con el Onclick
+      // addFavorit: (nombre) => {
+      //   //Creamos la funcion para obtener el nombre con el Onclick
 
-        const store = getStore(); //Obtenemos Store con "getStore"
-        setStore({
-          likes: store.likes.concat(nombre),
-        }); //Actualizamos la informacion que está en like concatenando el valor de name.
+      //   const store = getStore(); //Obtenemos Store con "getStore"
+      //   setStore({
+      //     likes: store.likes.concat(nombre),
+      //   }); //Actualizamos la informacion que está en like concatenando el valor de name.
+      // },
+
+      getFavorit: (id_user, id_local) => {
+        fetch(process.env.BACKEND_URL + "/api/favoritos", {
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => setStore({ likes: data }));
       },
 
       addWent: (nombre) => {
