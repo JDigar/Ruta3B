@@ -71,7 +71,7 @@ def login():
     if email != user.email or password != user.password:
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=user.id)
     return jsonify(access_token=access_token) 
 
 # Protect a route with jwt_required, which will kick out requests
@@ -152,9 +152,10 @@ def save_fav_local(local_id):
     id = get_jwt_identity()
     user = User.query.get(id)
     
-    local = local.query.get(local_id)
+    local = Locales.query.get(local_id)
     if local not in user.localesfav:
         user.localesfav.append(local)
+        # localfav=User(localesfav=local)
         db.session.add(local)
         db.session.commit()
         return jsonify({'response': True}),200

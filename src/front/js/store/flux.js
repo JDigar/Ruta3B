@@ -36,6 +36,32 @@ const getState = ({ getStore, getActions, setStore }) => {
       //     likes: store.likes.concat(nombre),
       //   }); //Actualizamos la informacion que está en like concatenando el valor de name.
       // },
+      addFavorite: async (id) => {
+        fetch(process.env.BACKEND_URL + "/api/favlocales/" + id, {
+          method: "POST",
+          // body: JSON.stringify({
+          //   email: email,
+          //   password: password,
+          //   type: type,
+          // }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then((response) => {
+            if (response.status === 200) {
+              setStore({
+                auth: true,
+              });
+            } else {
+              console.log("errorr");
+            }
+            return response.json();
+          })
+          .then((data) => setStore({ like: data }));
+        return true;
+      },
       getFavorit: (id_user, id_local) => {
         fetch(process.env.BACKEND_URL + "/api/favoritos", {
           method: "GET",
@@ -47,7 +73,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => {
             return response.json();
           })
-          .then((data) => setStore({ likes: data }));
+          .then((data) =>
+            setStore({
+              likes: data,
+            })
+          );
       },
       addWent: (nombre) => {
         //Creamos la funcion para obtener el nombre con el Onclick
@@ -85,7 +115,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       syncTokenFromLocalStorage: () => {
         const auth = localStorage.getItem("token");
         console.log("app loaded, synching the localstorage token");
-        if (auth && auth != "" && auth != undefined) setStore({ auth: auth });
+        if (auth && auth != "" && auth != undefined)
+          setStore({
+            auth: auth,
+          });
       },
       getInformationCurrentMember: () => {
         const store = getStore();
@@ -97,7 +130,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then((response) => response.json())
-          .then((data) => setStore({ profiles: data }));
+          .then((data) =>
+            setStore({
+              profiles: data,
+            })
+          );
       },
       getRestaurantes: async () => {
         const store = getStore();
