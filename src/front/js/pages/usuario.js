@@ -1,26 +1,22 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import CardHome from "./../pages/cardHome.jsx";
 
 import "../../styles/user.css";
 import "../../styles/loginError.css";
 
-export const Usuario = (props) => {
+export const Usuario = () => {
   const { store, actions } = useContext(Context);
-  useEffect(() => {
-    actions.getFavorit();
-  }, []);
-
-  // store.profiles.map((item, index) => console.log(item.nombre));
+  window.onload = actions.getInformationCurrentMember();
 
   useEffect(() => {
     actions.getInformationCurrentMember();
-  }, []); 
+  }, []);
 
+  console.log(store.profiles.nombre);
   return (
     <>
       {store.auth && store.auth != "" && store.auth != undefined ? (
@@ -34,7 +30,9 @@ export const Usuario = (props) => {
             <p>Esta es la descripcion del usuario</p>
           </div> */}
               <div className="">
-                <h1>Ey, {store.profiles?.nombre}</h1>
+                <h1>
+                  Ey, {store.profiles?.nombre} {store.profiles?.apellido}
+                </h1>
               </div>
               <div className="col-10 congrats">
                 <p>

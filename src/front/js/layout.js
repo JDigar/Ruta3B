@@ -18,6 +18,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Restaurante } from "./pages/restaurante";
+import { Restaurantes } from "./pages/restaurantes";
 import { Nosotros } from "./pages/sobreNosotros";
 import { Recomendaciones } from "./pages/recomendaciones";
 
@@ -40,6 +41,7 @@ const Layout = () => {
             <Route element={<Contacto />} path="/contacto" />
 
             <Route element={<Restaurante />} path="/restaurante" />
+            <Route element={<Restaurantes />} path="/restaurantes" />
             <Route element={<Nosotros />} path="/sobre-nosotros" />
             <Route element={<LoginView />} path="/login" />
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
