@@ -10,6 +10,7 @@ import "../../styles/loginError.css";
 
 export const Usuario = () => {
   const { store, actions } = useContext(Context);
+
   window.onload = actions.getInformationCurrentMember();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export const Usuario = () => {
           <div className="user">
             <div className="row mx-4">
               {/* <div className="col-2 p-3">
+>>>>>>> 441c63602d0acd388f7b35275098b793e5ccfdf6
             <div className="foto-user col-3"></div>
           </div>
           <div className="col-6 p-3 user-description">
@@ -91,7 +93,9 @@ export const Usuario = () => {
             </Link>
           </button>
         </div>
+
       )}
+
     </>
   );
 };

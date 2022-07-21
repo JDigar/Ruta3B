@@ -14,9 +14,7 @@ const RegistroUsuario = () => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
     actions.registroUsuario(newName, newApellido, newEmail, newPassword);
-
     navigate("/login");
-
   };
 
 
