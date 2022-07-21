@@ -8,18 +8,19 @@ import "../../styles/loginError.css";
 export const Usuario = () => {
   
   const { store, actions } = useContext(Context);
-  console.log(store.profiles.nombre);
-  console.log(store.auth);
-  // store.profiles.map((item, index) => console.log(item.nombre));
 
-  // useEffect(()=>{
-  //   actions.getInformationCurrentMember()
-  // },[])
+  
+  useEffect(()=>{
+    actions.getInformationCurrentMember()
+    
+  },[])
+
+  
 
   return (
     <>
     {store.auth && store.auth !="" && store.auth != undefined ?
-    <div className="container-fluid">
+    (<div className="container-fluid">
       <div className="user">
         <div className="row mx-4">
           <div className="col-2 p-3">
@@ -83,7 +84,7 @@ export const Usuario = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>)
     :(<div className="div-err-login text-center">
       <h2>Primero debería registrarse!</h2>
       <button type="button"

@@ -52,9 +52,30 @@ def get_restaurantes():
 # # create_access_token() function is used to actually generate the JWT.
 @api.route("/login", methods=["POST"])
 def login():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
+    # email = request.json.get("email", None)
+    # password = request.json.get("password", None)
+    # type = request.json.get("type", None)
+
+    email, password, type = request.json.get('email', None), request.json.get('password', None), request.json.get('type', None)
+
+    if not (email and password):
+        return jsonify({'message': 'Data not provided'}), 400
+
+    # traer de mi base de datos un usuario por su email
+    user = None
+    if type:
+        # restaurante
+        user = Shelter.query.filter_by(email=email).one_or_none()
+    else:
+        # usuario
+        user = User.query.filter_by(email=email).one_or_none()
+
+    if not user:
+        return jsonify({'message': 'Email is not valid'}), 404
+
+
     user = User.query.filter_by(email=email).first()
+
     print(user)
     if email != user.email or password != user.password:
         return jsonify({"msg": "Bad username or password"}), 401
@@ -112,13 +133,25 @@ def create_new_user_locales():
 def comentarios():
     # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
-    local = Locales.query.filter_by(email=current_user).first()
-    comentarios = Comentarios.query.filter_by( id_local=local.id)
+    favoritos = Favoritos.query.all()
+    favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
+    response_body = {
+        "results":favoritosList
+    }
     
-    data=[comentario.serialize() for comentario in comentarios]
-    return jsonify(data), 200
+    return jsonify(response_body), 200
 
 
 
+@api.route('/favoritos', methods=['GET'])
+@jwt_required()
+def get_favorites():
 
+    favorites = Favorites.query.all()
+    favoritesList = list(map(lambda obj: obj.serialize(), favorites))
+    response_body = {
+        "results": favoritesList
+    }
+
+    return jsonify(response_body), 200
 
