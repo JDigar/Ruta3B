@@ -7,9 +7,7 @@ import { CardHome2 } from "./cardHome2.jsx";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  console.log(store.likes);
-
-  console.log(store.restaurantes);
+  // console.log(actions.getFavorit());
 
   // store.restaurantes.map((item, index) => (
   //   console.log(item.nombre)

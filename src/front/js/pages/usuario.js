@@ -1,98 +1,99 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 import CardHome from "./../pages/cardHome.jsx";
 
-
 import "../../styles/user.css";
 import "../../styles/loginError.css";
 
-
 export const Usuario = (props) => {
   const { store, actions } = useContext(Context);
-  // console.log(store.profiles.nombre);
-  // console.log(store.likes[nombre]);
-
+  useEffect(() => {
+    actions.getFavorit();
+  }, []);
 
   // store.profiles.map((item, index) => console.log(item.nombre));
 
-  // useEffect(()=>{
-  //   actions.getInformationCurrentMember()
-  // },[])
+  useEffect(() => {
+    actions.getInformationCurrentMember();
+  }, []); 
 
   return (
     <>
-
-    {store.auth && store.auth !="" && store.auth != undefined ?
-    <div className="container-fluid">
-      <div className="user">
-        <div className="row mx-4">
-          <div className="col-2 p-3">
+      {store.auth && store.auth != "" && store.auth != undefined ? (
+        <div className="container-fluid">
+          <div className="user">
+            <div className="row mx-4">
+              {/* <div className="col-2 p-3">
             <div className="foto-user col-3"></div>
           </div>
           <div className="col-6 p-3 user-description">
             <p>Esta es la descripcion del usuario</p>
-          </div>
-          <div className="">
-            <h1>Hello, {store.profiles.nombre}</h1>
-          </div>
-          <div className="col-10 congrats">
-            <p>
-              Enhorabuena, {store.profiles.nombre}! <br></br>
-              <br></br>A partir de ahora, eres miembro de la gran comunidad RUTA
-              3B, donde podrás encontrar esos sitios que cumplen con nuestra
-              condición 3B, que sean buenos, bonitos y baratos en esta gran
-              ciudad. <br></br>
-              <br></br> No olvides dejar un comentario con tu experiencia y una
-              valoración, tu opinión es importante para nosotros y el resto de
-              la comunidad, además de participar en nuestro sorteo sorpresa
-              mensual.
-            </p>
+          </div> */}
+              <div className="">
+                <h1>Ey, {store.profiles?.nombre}</h1>
+              </div>
+              <div className="col-10 congrats">
+                <p>
+                  Enhorabuena, {store.profiles?.nombre}! <br></br>
+                  <br></br>A partir de ahora, eres miembro de la gran comunidad
+                  RUTA 3B, donde podrás encontrar esos sitios que cumplen con
+                  nuestra condición 3B, que sean buenos, bonitos y baratos en
+                  esta gran ciudad. <br></br>
+                  <br></br> No olvides dejar un comentario con tu experiencia y
+                  una valoración, tu opinión es importante para nosotros y el
+                  resto de la comunidad, además de participar en nuestro sorteo
+                  sorpresa mensual.
+                </p>
+              </div>
 
+              <div className="lineSeparating"></div>
 
-          </div>
+              <div className="text-center d-flex mx-4">
+                <div className="col-6">
+                  <h2>Mis sitios favoritos</h2>
+                </div>
+                <div className="col-6">
+                  <h2>He ido</h2>
+                </div>
+              </div>
 
-          <div className="lineSeparating"></div>
+              <div className="text-center d-flex container-fluid">
+                <div className="col-5 cont row mx-5 p-4">
+                  {store.likes.map((item, index) => (
+                    <CardHome key={index} id_user={item.id_user} id={index} />
+                  ))}
+                </div>
 
-          <div className="text-center d-flex mx-4">
-            <div className="col-6">
-              <h2>Mis sitios favoritos</h2>
-            </div>
-            <div className="col-6">
-              <h2>He ido</h2>
-            </div>
-          </div>
-
-          <div className="text-center d-flex container-fluid">
-            <div className="col-5 cont row mx-5 p-4">
-              {store.likes.map((item, index) => (
-                <CardHome key={index} nombre={item.nombre} id={index} />
-              ))}
-            </div>
-
-            <div className="col-5 cont row mx-5 p-4">
-              {store.went.map((item, index) => (
-                <CardHome key={index} nombre={item.nombre} id={index} />
-              ))}
+                <div className="col-5 cont row mx-5 p-4">
+                  {store.went.map((item, index) => (
+                    <CardHome key={index} nombre={item.nombre} id={index} />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-      </div>
-    </div>
-    :(<div className="div-err-login text-center">
-      <h2>Primero debería registrarse!</h2>
-      <button type="button"
-              className="btn  btn-sm h-50 m-3"
-              style={{
-                backgroundColor: "rgb(247, 230, 173)",
-                color: "black",
-              }}><Link className=" button-err" to="/">Volver al Inicio</Link></button>
-    </div>)}
-
+      ) : (
+        <div className="div-err-login text-center">
+          <h2>Primero debería registrarse!</h2>
+          <button
+            type="button"
+            className="btn  btn-sm h-50 m-3"
+            style={{
+              backgroundColor: "rgb(247, 230, 173)",
+              color: "black",
+            }}
+          >
+            <Link className=" button-err" to="/">
+              Volver al Inicio
+            </Link>
+          </button>
+        </div>
+      )}
     </>
   );
 };
