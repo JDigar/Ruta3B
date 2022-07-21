@@ -2,6 +2,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
+
+# Many to Many likes
+likes = db.Table('likes',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('locales_id', db.Integer, db.ForeignKey('locales.id'), primary_key=True)
+)
+
+
 # TABLA PARA REGISTRO DE USUARIO
 
 class User(db.Model):
@@ -12,9 +21,9 @@ class User(db.Model):
     email = db.Column(db.String(120),  nullable=False)
     foto_user = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(80), nullable = False)
-    is_active = db.Column(db.Boolean, nullable=False)
-    favoritos = db.relationship('Favoritos', backref='user', lazy=True)
-
+    # favoritos = db.relationship('Favoritos', backref='user', lazy=True)
+    localesfav = db.relationship('Locales', secondary=likes, lazy='subquery', backref=db.backref('este usuario le gustan estos locales', lazy=True))
+    
     def __repr__(self):
         return f'<User {self.id}>'
 
@@ -23,10 +32,12 @@ class User(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "apellido": self.apellido,
-            "email": self.email,
-            "foto_user": self.foto_user
+            "email":self.email,
+            "foto_user": self.foto_user,
+            "likes": [favorite.serialize() for favorite in self.localesfav]
             # do not serialize the password, its a security breach
         }
+
 
 
 # TABLA PARA REGISTRO DE RESTAURANT
@@ -38,11 +49,12 @@ class Locales(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     tipo_local = db.Column(db.String(80), unique=False, nullable=False)
     descripcion = db.Column(db.String(250), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    favoritos = db.relationship('Favoritos', backref='locales', lazy=True)
+    
+    # favoritos = db.relationship('Favoritos', backref='locales', lazy=True)
+    
 
-    def __repr__(self):
-        return f'<Locales {self.id}>'
+    # def __repr__(self):
+    #     return f'<Locales {self.id}>'
 
     def serialize(self):
         return {
@@ -50,7 +62,8 @@ class Locales(db.Model):
             "nombre": self.nombre,
             "email": self.email,
             "tipo_local": self.tipo_local,
-            "descripcion": self.descripcion
+            "descripcion": self.descripcion,
+            
             # do not serialize the password, its a security breach
         }
 
@@ -75,40 +88,40 @@ class Direccion(db.Model):
             # do not serialize the password, its a security breach
         }
 
-# TABLA DE FAVORITOS DE USUARIOS
-class Favoritos(db.Model):
-    __tablename__ = 'favoritos'
-    id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
+# # TABLA DE FAVORITOS DE USUARIOS
+# class Favoritos(db.Model):
+#     __tablename__ = 'favoritos'
+#     id = db.Column(db.Integer, primary_key=True)
+#     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
     
     
-    def __repr__(self):
-        return f'<Favoritos {self.id}>'
+#     def __repr__(self):
+#         return f'<Favoritos {self.id}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "id_user": self.id_user,
-            "id_local": self.id_restaurant,
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "id_user": self.id_user,
+#             "id_local": self.id_restaurant,
+#         }
 
 # TABLA DE COMENTARIOS
 
-class Comentarios(db.Model):
-    __tablename__ = 'comentarios'
-    id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
-    comentario = db.Column(db.String(300))
-    # ffff
-    def __repr__(self):
-        return f'<Favoritos {self.id}>'
+# class Comentarios(db.Model):
+#     __tablename__ = 'comentarios'
+#     id = db.Column(db.Integer, primary_key=True)
+#     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
+#     comentario = db.Column(db.String(300))
+#     # ffff
+#     def __repr__(self):
+#         return f'<Favoritos {self.id}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "id_user": self.id_user,
-            "id_local": self.id_local,
-            "comentario": self.comentario,
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "id_user": self.id_user,
+#             "id_local": self.id_local,
+#             "comentario": self.comentario,
+#         }

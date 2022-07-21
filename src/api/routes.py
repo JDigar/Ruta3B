@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Locales, Direccion, Favoritos, Comentarios
+from api.models import db, User, Locales, Direccion
 from api.utils import generate_sitemap, APIException
 import json
 
@@ -14,27 +14,17 @@ from flask_jwt_extended import jwt_required
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['GET'])
-def handle_hello():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+# @api.route('/', methods=['GET'])
+# def handle_home():
 
-    return jsonify(response_body), 200
+#     response_body = {
+#         "message": "Este es el get de home"
 
 
+#     }
 
-@api.route('/', methods=['GET'])
-def handle_home():
-
-    response_body = {
-        "message": "Este es el get de home"
-
-
-    }
-
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
 
 #GET de restaurantes 
@@ -65,7 +55,7 @@ def login():
     user = None
     if type:
         # restaurante
-        user = Shelter.query.filter_by(email=email).one_or_none()
+        user = Locales.query.filter_by(email=email).one_or_none()
     else:
         # usuario
         user = User.query.filter_by(email=email).one_or_none()
@@ -77,11 +67,12 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     print(user)
+
     if email != user.email or password != user.password:
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token) 
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
@@ -115,16 +106,16 @@ def create_new_user():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
 
-@api.route('/favoritos', methods=['GET'])
-def get_favoritos():
+# @api.route('/favoritos', methods=['GET'])
+# def get_favoritos():
 
-    favoritos = Favorites.query.all()
-    favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
-    response_body = {
-        "results": favoritosList
-    }
+#     favoritos = Favorites.query.all()
+#     favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
+#     response_body = {
+#         "results": favoritosList
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
 # #NUEVO USUARIO LOCAL
 @api.route('/locales', methods=['POST'])   
@@ -139,30 +130,52 @@ def create_new_user_locales():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
 
-@api.route("/comentarios", methods=["GET"])
-@jwt_required()
-def comentarios():
-    # Access the identity of the current user with get_jwt_identity
-    current_user = get_jwt_identity()
-    favoritos = Favoritos.query.all()
-    favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
-    response_body = {
-        "results":favoritosList
-    }
+# @api.route("/comentarios", methods=["GET"])
+# @jwt_required()
+# def comentarios():
+#     # Access the identity of the current user with get_jwt_identity
+#     current_user = get_jwt_identity()
+#     favoritos = Favoritos.query.all()
+#     favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
+#     response_body = {
+#         "results":favoritosList
+#     }
     
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
 
 
-@api.route('/favoritos', methods=['GET'])
+@api.route('/favlocales/<int:local_id>', methods=['POST'])
 @jwt_required()
-def get_favorites():
+def save_fav_local(local_id):
 
-    favorites = Favorites.query.all()
-    favoritesList = list(map(lambda obj: obj.serialize(), favorites))
-    response_body = {
-        "results": favoritesList
-    }
+    id = get_jwt_identity()
+    user = User.query.get(id)
+    
+    local = local.query.get(local_id)
+    if local not in user.localesfav:
+        user.localesfav.append(local)
+        db.session.add(local)
+        db.session.commit()
+        return jsonify({'response': True}),200
+    else:
+        user.localesfav.remove(local)
+        db.session.commit()
+        return jsonify({'response': False}),200
 
-    return jsonify(response_body), 200
+
+
+
+@api.route('/user/favoritos', methods=['GET'])
+@jwt_required()
+def get_fav_list():
+    email = get_jwt_identity()
+    userfavs = User.query.get(email)
+
+    if userfavs:
+        user_favorites = userfavs.localesfav
+        all_favorites = [favorite.serialize() for favorite in user_favorites] # serializame por cada favorito, en user_favorites
+        return jsonify(all_favorites), 200
+   
+    return jsonify({'error': 'No locales favoritos'}),404
 
