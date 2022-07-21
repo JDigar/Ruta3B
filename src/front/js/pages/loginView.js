@@ -16,47 +16,52 @@ export const LoginView = () => {
     actions.login(email, password);
   };
 
-  
-  
   return (
-    
-    <div className="container text-center" >
-      {(store.auth && store.auth !="" && store.auth != undefined) ? <Navigate to="/usuario" />  : 
-      <form style={{}} className="mt-5 h-50 w-50 m-auto" onSubmit={handleSubmit}>
-      <div className="mb-3  ">
-        <h6 className="mb-3 text-start">Introduce tu cuenta de correo electrónico</h6> 
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          type="email"
-          className="form-control"
-          aria-describedby="emailHelp"
-        />
-      </div>
-      <div className="mb-3">
-      <h6 className="mb-3 text-start">Introduce tu contraseña</h6> 
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          type="password"
-          className="form-control"
-        />
-      </div>
-     <div className=" union d-flex" >
-      <button style={{backgroundColor:"rgb(247, 230, 173)"}}
-        onClick={() => {
-          actions.login(email, password);
-          navigate("/usuario");
-        }}
-        type="submit"
-        className="m-auto btn" 
-      >
-        Submit
-      </button>
-      </div>
-      </form>
-      }  
+    <div className="container text-center">
+      {store.auth && store.auth != "" && store.auth != undefined ? (
+        <Navigate to="/usuario" />
+      ) : (
+        <form
+          style={{}}
+          className="mt-5 h-50 w-50 m-auto"
+          onSubmit={handleSubmit}
+        >
+          <div className="mb-3  ">
+            <h6 className="mb-3 text-start">
+              Introduce tu cuenta de correo electrónico
+            </h6>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+              className="form-control"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div className="mb-3">
+            <h6 className="mb-3 text-start">Introduce tu contraseña</h6>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              className="form-control"
+            />
+          </div>
+          <div className=" union d-flex">
+            <button
+              style={{ backgroundColor: "rgb(247, 230, 173)" }}
+              onClick={() => {
+                actions.login(email, password);
+                navigate("/usuario");
+              }}
+              type="submit"
+              className="m-auto btn"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      )}
     </div>
-    
   );
 };

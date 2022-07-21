@@ -1,4 +1,3 @@
-
 import React, { StrictMode, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
@@ -8,8 +7,7 @@ import { CardHome2 } from "./cardHome2.jsx";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-
-  console.log(store.restaurantes);
+  // console.log(actions.getFavorit());
 
   // store.restaurantes.map((item, index) => (
   //   console.log(item.nombre)
@@ -60,7 +58,7 @@ export const Home = () => {
   //   randomNumber2 = 2;
   //   console.log("+++++++++-------" + randomNumber);
   //   console.log("+++++++++" + randomNumber2);
-    
+
   // }
   return (
     <>
