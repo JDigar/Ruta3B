@@ -72,7 +72,7 @@ def login():
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token) 
+    return jsonify({"access_token":access_token,"type":type}) 
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
@@ -97,7 +97,7 @@ def protected():
 @api.route('/user', methods=['POST'])   
 def create_new_user():
     body = json.loads(request.data)
-    new_user = User(nombre=body["nombre"],apellido=body["apellido"],email=body["email"], password=body["password"], is_active=True)
+    new_user = User(nombre=body["nombre"],apellido=body["apellido"],email=body["email"], password=body["password"])
     db.session.add(new_user)
     db.session.commit()
     response_body={
@@ -121,7 +121,7 @@ def create_new_user():
 @api.route('/locales', methods=['POST'])   
 def create_new_user_locales():
     body = json.loads(request.data)
-    new_user_local = Locales(nombre=body["nombre"],email=body["email"], password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"], is_active=True)
+    new_user_local = Locales(nombre=body["nombre"],email=body["email"], password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"])
     db.session.add(new_user_local)
     db.session.commit()
     response_body={
