@@ -24,17 +24,15 @@ import { Recomendaciones } from "./pages/recomendaciones";
 
 //create your first component
 const Layout = () => {
-
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-  const [validacion, setValidacion]=useState(false);
-  useEffect( () => {
-    if(localStorage.getItem("esLocal")!=null){
-      setValidacion(JSON.parse(localStorage.getItem("esLocal")))
+  const [validacion, setValidacion] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("esLocal") != null) {
+      setValidacion(localStorage.getItem("esLocal"));
     }
-    
-  })
+  }, []);
   console.log(validacion);
   return (
     <div>
@@ -44,19 +42,17 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LoginView />} path="/login" />
-            {validacion===false ?(
+            {validacion === false ? (
               <Route element={<Usuario />} path="/usuario" />
-            ):(
+            ) : (
               <Route element={<Restaurante />} path="/usuario" />
             )}
-            
-            
+
             <Route element={<Contacto />} path="/contacto" />
 
-            
             <Route element={<Restaurantes />} path="/restaurantes" />
             <Route element={<Nosotros />} path="/sobre-nosotros" />
-            
+
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />

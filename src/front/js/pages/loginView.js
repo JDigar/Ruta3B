@@ -13,15 +13,14 @@ export const LoginView = () => {
   console.log(store.token);
 
   const handleSubmit = (e) => {
-    e.prevent.default();
-    actions.login(email, password,type);
+    e.preventDefault();
+    actions.login(email, password, type);
     //actions.login(email, password);
   };
 
   return (
     <div className="container text-center">
-      {store.auth && store.auth != "" && store.auth != undefined ? (
-       
+      {!store.auth ? (
         <form
           style={{}}
           className="mt-5 h-50 w-50 m-auto"
@@ -50,15 +49,21 @@ export const LoginView = () => {
           </div>
           <div>
             <label>¿Eres propietario de un restaurante?</label>
-            <input onChange={(e) => {setType(!type)}} defaultChecked={type} type="checkbox"/>
+            <input
+              onChange={(e) => {
+                setType(!type);
+              }}
+              defaultChecked={type}
+              type="checkbox"
+            />
           </div>
           <div className=" union d-flex">
             <button
               style={{ backgroundColor: "rgb(247, 230, 173)" }}
-             // onClick={() => {
-             //   actions.login(email, password,type);
-             //   navigate("/usuario");
-             // }}
+              // onClick={() => {
+              //   actions.login(email, password,type);
+              //   navigate("/usuario");
+              // }}
               type="submit"
               className="m-auto btn"
             >
@@ -67,7 +72,7 @@ export const LoginView = () => {
           </div>
         </form>
       ) : (
-        <Navigate to="/usuario"  />
+        <Navigate to="/usuario" />
       )}
     </div>
   );
