@@ -4,72 +4,97 @@ import { Context } from "../store/appContext";
 import { useFormspark } from "@formspark/use-formspark";
 
 export const Contacto = () => {
+  const { store, actions } = useContext(Context);
 
-	const { store, actions } = useContext(Context);
+  const [submit, submitting] = useFormspark({
+    formId: "vXF5Fe9t",
+  });
 
+  const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-	const [submit, submitting] = useFormspark({
-		formId: 'vXF5Fe9t',
-	  });
-	  
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await submit({ name, email, message });
+    Swal.fire("Buen trabajo!", "Contestaremos lo antes posible!", "success");
+  };
 
-	const [message, setMessage] = useState("");
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+  return (
+    <div
+      className="container-fluid"
+      style={{
+        backgroundColor: "rgb(247, 230, 173)",
+        padding: "6rem",
+      }}
+    >
+      {/* <!-- Wrapper container --> */}
+      <div className="w-50 container py-4">
+        <h1 className="text-center mb-5">¿En qué podemos ayudarte?</h1>
 
+        {/* <!-- Bootstrap 5 starter form --> */}
+        <form onSubmit={onSubmit} className="" id="contactForm">
+          {/* <!-- Name input --> */}
+          <div className="mb-3">
+            <label className="form-label" htmlFor="name">
+              Nombre
+            </label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+              id="name"
+              type="text"
+              required
+            />
+          </div>
 
+          {/* <!-- Email address input --> */}
+          <div className="mb-3">
+            <label className="form-label" htmlFor="emailAddress">
+              Correo Electrónico
+            </label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="emailAddress"
+              type="email"
+              required
+            />
+          </div>
 
-	  const onSubmit = async (e) => {
-		e.preventDefault();
-		await submit({ name,email,message });
-		Swal.fire(
-			'Buen trabajo!',
-			'Contestaremos lo antes posible!',
-			'success'
-		  )
-		
-	  };
-	  
+          {/* <!-- Message input --> */}
+          <div className="mb-3">
+            <label className="form-label" htmlFor="message">
+              En que podemos ayudarte?
+            </label>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="form-control"
+              id="message"
+              type="text"
+              required
+            ></textarea>
+          </div>
 
-	return (
-			<div className="container">
-							{/* <!-- Wrapper container --> */}
-				<div className="mt-5 w-50 container py-4">
-
-				{/* <!-- Bootstrap 5 starter form --> */}
-				<form onSubmit={onSubmit} className="" id="contactForm">
-
-					{/* <!-- Name input --> */}
-					<div className="mb-3">
-					<label className="form-label" htmlFor="name">Nombre</label>
-					<input value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="name" type="text" required/>
-					</div>
-
-					{/* <!-- Email address input --> */}
-					<div className="mb-3">
-					<label className="form-label" htmlFor="emailAddress">Correo Electrónico</label>
-					<input value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="emailAddress" type="email"  required/>
-					</div>
-
-					{/* <!-- Message input --> */}
-					<div className="mb-3">
-					<label className="form-label" htmlFor="message">En que podemos ayudarte?</label>
-					<textarea value={message} onChange={(e) => setMessage(e.target.value)} className="form-control" id="message" type="text"  required></textarea>
-					</div>
-
-					{/* <!-- Form submit button --> */}
-					<div className="d-grid">
-					<button className="btn btn-success btn-lg" disabled={submitting} type="submit">Enviar</button>
-					</div>
-
-				</form>
-
-				</div>
-			<br />
-			{/* <Link to="/">
+          {/* <!-- Form submit button --> */}
+          <div className="d-grid">
+            <button
+              className="btn btn-outline-dark btn-lg"
+              disabled={submitting}
+              type="submit"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+      <br />
+      {/* <Link to="/">
 				<button className="btn btn-primary">Back home</button>
 			</Link> */}
-		</div>
-		
-	);
+    </div>
+  );
 };

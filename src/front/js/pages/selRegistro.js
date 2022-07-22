@@ -7,7 +7,7 @@ export const SelSignup = () => {
   return (
     <div className="container p-4">
       <h1 className="display-4 text-center">
-        Ey! <br></br> ¿Cómo quieres registarte?
+        ¿Cómo quieres registarte?
       </h1>
       <div className="text-center">
       <Link to="/registro-usuario">
