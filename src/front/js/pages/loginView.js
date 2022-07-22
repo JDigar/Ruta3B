@@ -14,7 +14,8 @@ export const LoginView = () => {
 
   const handleSubmit = (e) => {
     e.prevent.default();
-    actions.login(email, password);
+    actions.login(email, password,type);
+    //actions.login(email, password);
   };
 
   return (
@@ -54,10 +55,10 @@ export const LoginView = () => {
           <div className=" union d-flex">
             <button
               style={{ backgroundColor: "rgb(247, 230, 173)" }}
-              onClick={() => {
-                actions.login(email, password,type);
-                navigate("/usuario");
-              }}
+             // onClick={() => {
+             //   actions.login(email, password,type);
+             //   navigate("/usuario");
+             // }}
               type="submit"
               className="m-auto btn"
             >

@@ -30,9 +30,12 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
   const [validacion, setValidacion]=useState(false);
   useEffect( () => {
-    setValidacion(JSON.parse(localStorage.getItem("esLocal")))
+    if(localStorage.getItem("esLocal")!=null){
+      setValidacion(JSON.parse(localStorage.getItem("esLocal")))
+    }
+    
   })
-  
+  console.log(validacion);
   return (
     <div>
       <BrowserRouter basename={basename}>
