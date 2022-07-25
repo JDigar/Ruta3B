@@ -79,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
             return response.json();
           })
-          .then((data) => localStorage.setItem("token", data.access_token));
+          .then((data) => {localStorage.setItem("token", data.access_token)});
         return true;
       },
       syncTokenFromLocalStorage: () => {
@@ -111,30 +111,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
-      login: async (email, password) => {
-        fetch(process.env.BACKEND_URL + "/api/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            if (response.status === 200) {
-              setStore({
-                auth: true,
-              });
-            } else {
-              console.log("errorr");
-            }
-            return response.json();
-          })
-          .then((data) => localStorage.setItem("token", data.access_token));
-        return true;
-      },
+      // login: async (email, password) => {
+      //   fetch(process.env.BACKEND_URL + "/api/login", {
+      //     method: "POST",
+      //     body: JSON.stringify({
+      //       email: email,
+      //       password: password,
+      //     }),
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   })
+      //     .then((response) => {
+      //       if (response.status === 200) {
+      //         setStore({
+      //           auth: true,
+      //         });
+      //       } else {
+      //         console.log("errorr");
+      //       }
+      //       return response.json();
+      //     })
+      //     .then((data) => localStorage.setItem("token", data.access_token));
+      //   return true;
+      // },
 
       syncTokenFromLocalStorage: () => {
         const auth = localStorage.getItem("token");
@@ -433,25 +433,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         tipo_local,
         descripcion
       ) => {
-        fetch(
-          "https://3001-jdigar-ruta3b-nxhby5urwj0.ws-eu54.gitpod.io/api/locales",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              nombre: nombre,
-              apellido: apellido,
-              email: email,
-              tipo_local: tipo_local,
-              password: password,
-              descripcion: descripcion,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        fetch(process.env.BACKEND_URL + "/api/locales", {
+          fetch(process.env.BACKEND_URL + "/api/locales", {
           method: "POST",
           body: JSON.stringify({
             nombre: nombre,
