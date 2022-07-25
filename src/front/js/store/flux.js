@@ -88,9 +88,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: async (email, password, type) => {
-        fetch(
-          "https://3001-jdigar-ruta3b-4lt9poz20r2.ws-eu54.gitpod.io/api/login",
-          {
+        try {
+          const response = await fetch(process.env.BACKEND_URL + "/api/login", {
             method: "POST",
             body: JSON.stringify({
               email: email,
@@ -100,29 +99,26 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
             },
-          }
-        )
-          .then((response) => {
-            if (response.status === 200) {
-              setStore({
-                auth: true,
-              });
-            } else {
-              console.log("errorr");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
+          });
+          console.log(response.status);
+          if (response.status === 200) {
+            setStore({
+              auth: true,
+            });
+            const data = await response.json();
             localStorage.setItem("token", data.access_token);
+            console.log(data.type);
             if (data.type) {
               localStorage.setItem("esLocal", data.type);
+              return true;
             } else {
               localStorage.setItem("esUsuario", false);
+              return false;
             }
-          });
-
-        return true;
+          }
+        } catch (err) {
+          console.log(err);
+        }
       },
       syncTokenFromLocalStorage: () => {
         const auth = localStorage.getItem("token");
@@ -278,6 +274,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         });
+        console.log(response.status);
         if (response.status == 201) {
           const data = await response.json();
           //setStore({

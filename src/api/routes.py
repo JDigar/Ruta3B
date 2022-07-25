@@ -50,40 +50,28 @@ def login():
     # email = request.json.get("email", None)
     # password = request.json.get("password", None)
     # type = request.json.get("type", None)
-
     email, password, type = request.json.get('email', None), request.json.get('password', None), request.json.get('type', None)
-
     if not (email and password):
         return jsonify({'message': 'Data not provided'}), 400
-
     # traer de mi base de datos un usuario por su email
     user = None
     if type:
         # restaurante
         user = Locales.query.filter_by(email=email).one_or_none()
-        
         if not user:
          return jsonify({'message': 'Email is not valid'}), 404
         if email != user.email or password != user.password:
             return jsonify({"msg": "Bad username or password"}), 401
-        
     else:
         # usuario
         user = User.query.filter_by(email=email).one_or_none()
-       
         if not user:
             return jsonify({'message': 'Email is not valid'}), 404
         if email != user.email or password != user.password:
             return jsonify({"msg": "Bad username or password"}), 401
-        
-
-
-    access_token = create_access_token(identity=user.id)
-    return jsonify(access_token=access_token) 
-
-
+            
     access_token = create_access_token(identity=email)
-    return jsonify({"access_token":access_token,"type":type}) 
+    return jsonify({"access_token":access_token,"type":type})
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
@@ -119,7 +107,7 @@ def create_new_user():
         "msg": ("usuario creado", new_user)
     }
     access_token = create_access_token(identity=body["email"])
-    return jsonify(access_token=access_token) 
+    return jsonify(access_token=access_token), 201 
 
 # @api.route('/favoritos', methods=['GET'])
 # def get_favoritos():

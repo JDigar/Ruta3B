@@ -28,14 +28,7 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
   const { store, actions } = useContext(Context);
-  const [validacion, setValidacion] = useState(null);
-  useEffect(() => {
-    console.log(localStorage.getItem("esLocal"));
-    //   if (localStorage.getItem("esLocal") != null) {
-    setValidacion(localStorage.getItem("esLocal"));
-    //   }
-  }, [store.auth]);
-  console.log(validacion);
+  
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -44,11 +37,11 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LoginView />} path="/login" />
-            {/* {validacion === false ? ( */}
+          
               <Route element={<Usuario />} path="/usuario" />
-            {/* ) : ( */}
+            
               <Route element={<Restaurante />} path="/restaurante" />
-            {/* )} */}
+           
 
             <Route element={<Contacto />} path="/contacto" />
 
