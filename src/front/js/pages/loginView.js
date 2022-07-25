@@ -11,7 +11,9 @@ export const LoginView = () => {
   const navigate = useNavigate();
 
   console.log(store.token);
-
+  console.log("auth" + store.auth);
+  let esLocal = localStorage.getItem("esLocal");
+  console.log("esLocal" + esLocal);
   const handleSubmit = (e) => {
     e.preventDefault();
     actions.login(email, password, type);
@@ -72,7 +74,10 @@ export const LoginView = () => {
           </div>
         </form>
       ) : (
-        <Navigate to="/usuario" />
+        
+        <Navigate
+          to={store.auth && esLocal == true ? "/restaurante" : "/usuario"}
+        />
       )}
     </div>
   );

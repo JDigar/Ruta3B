@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -21,18 +21,20 @@ import { Restaurante } from "./pages/restaurante";
 import { Restaurantes } from "./pages/restaurantes";
 import { Nosotros } from "./pages/sobreNosotros";
 import { Recomendaciones } from "./pages/recomendaciones";
-
+import { Context } from "./store/appContext";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-  const [validacion, setValidacion] = useState(false);
+  const { store, actions } = useContext(Context);
+  const [validacion, setValidacion] = useState(null);
   useEffect(() => {
-    if (localStorage.getItem("esLocal") != null) {
-      setValidacion(localStorage.getItem("esLocal"));
-    }
-  }, []);
+    console.log(localStorage.getItem("esLocal"));
+    //   if (localStorage.getItem("esLocal") != null) {
+    setValidacion(localStorage.getItem("esLocal"));
+    //   }
+  }, [store.auth]);
   console.log(validacion);
   return (
     <div>
@@ -42,11 +44,11 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LoginView />} path="/login" />
-            {validacion === false ? (
+            {/* {validacion === false ? ( */}
               <Route element={<Usuario />} path="/usuario" />
-            ) : (
-              <Route element={<Restaurante />} path="/usuario" />
-            )}
+            {/* ) : ( */}
+              <Route element={<Restaurante />} path="/restaurante" />
+            {/* )} */}
 
             <Route element={<Contacto />} path="/contacto" />
 
