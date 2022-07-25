@@ -58,29 +58,35 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: async (email, password, type) => {
-        fetch(process.env.BACKEND_URL + "/api/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            type: type,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            if (response.status === 200) {
-              setStore({
-                auth: true,
-              });
+        try {
+          const response = await fetch(process.env.BACKEND_URL + "/api/login", {
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password: password,
+              type: type,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (response.status === 200) {
+            setStore({
+              auth: true,
+            });
+            const data = await response.json();
+            localStorage.setItem("token", data.access_token);
+            if (data.type) {
+              localStorage.setItem("esLocal", data.type);
+              return true;
             } else {
-              console.log("errorr");
+              localStorage.setItem("esUsuario", false);
+              return false;
             }
-            return response.json();
-          })
-          .then((data) => {localStorage.setItem("token", data.access_token)});
-        return true;
+          }
+        } catch (err) {
+          console.log(err);
+        }
       },
       syncTokenFromLocalStorage: () => {
         const auth = localStorage.getItem("token");
@@ -111,30 +117,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
-      // login: async (email, password) => {
-      //   fetch(process.env.BACKEND_URL + "/api/login", {
-      //     method: "POST",
-      //     body: JSON.stringify({
-      //       email: email,
-      //       password: password,
-      //     }),
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   })
-      //     .then((response) => {
-      //       if (response.status === 200) {
-      //         setStore({
-      //           auth: true,
-      //         });
-      //       } else {
-      //         console.log("errorr");
-      //       }
-      //       return response.json();
-      //     })
-      //     .then((data) => localStorage.setItem("token", data.access_token));
-      //   return true;
-      // },
 
       syncTokenFromLocalStorage: () => {
         const auth = localStorage.getItem("token");
@@ -151,6 +133,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("esLocal");
+        localStorage.removeItem("esUsuario");
         setStore({
           auth: false,
         });
@@ -239,8 +223,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       //   });
       // },
 
-      registroUsuario: (nombre, apellido, email, password) => {
-        fetch(process.env.BACKEND_URL + "/api/user", {
+      registroUsuario: async (nombre, apellido, email, password) => {
+        const response = await fetch(process.env.BACKEND_URL + "/api/user", {
           method: "POST",
           body: JSON.stringify({
             nombre: nombre,
@@ -251,13 +235,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-          });
+        });
+        if (response.status == 201) {
+          const data = await response.json();
+          //setStore({
+          //    currentMember: [data.user],
+          //});
+          localStorage.setItem("token", data.access_token);
+          localStorage.setItem("esLocal", false);
+
+          localStorage.setItem("esUsuario", true);
+
+          //  setStore({
+          //      isloged: true
+          //  });
+          return true;
+        } else {
+          alert("Ya hay un usuario registrado con ese email");
+          return false;
+        }
+        //.then((response) => {
+        //  return response.json();
+        //})
+        //.then((data) => {
+        //  console.log(data);
+        //});
       },
       //   fetching data from the backend
       //   const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
@@ -331,6 +333,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         })
           .then((response) => response.json())
+
           .then((data) =>
             setStore({
               restaurante: data,
@@ -425,28 +428,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       // },
 
       // REGISTRO DE USUARIO
-      RegistroLocales: (
-        nombre,
-        apellido,
-        email,
-        password,
-        tipo_local,
-        descripcion
-      ) => {
-          fetch(process.env.BACKEND_URL + "/api/locales", {
-          method: "POST",
-          body: JSON.stringify({
-            nombre: nombre,
-            apellido: apellido,
-            email: email,
-            password: password,
-            descripcion: descripcion,
-            tipo_local: tipo_local,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+
+      RegistroLocales: (nombre, email, password, tipo_local, descripcion) => {
+        fetch(
+          "https://3001-jdigar-ruta3b-4lt9poz20r2.ws-eu54.gitpod.io/api/locales",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              nombre: nombre,
+              email: email,
+              password: password,
+              descripcion: descripcion,
+              tipo_local: tipo_local,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+
           .then((response) => {
             return response.json();
           })
