@@ -11,8 +11,6 @@ import "../../styles/loginError.css";
 export const Usuario = () => {
   const { store, actions } = useContext(Context);
 
-  // window.onload = actions.getInformationCurrentMember();
-
   // useEffect(() => {
   //   actions.getFavorite();
   // }, []);

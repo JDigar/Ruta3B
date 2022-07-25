@@ -7,20 +7,22 @@ export const LoginView = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState(false);
   const navigate = useNavigate();
 
   console.log(store.token);
-
+  console.log("auth" + store.auth);
+  let esLocal = localStorage.getItem("esLocal");
+  console.log("esLocal" + esLocal);
   const handleSubmit = (e) => {
-    e.prevent.default();
-    actions.login(email, password);
+    e.preventDefault();
+    actions.login(email, password, type);
+    //actions.login(email, password);
   };
 
   return (
     <div className="container text-center">
-      {store.auth && store.auth != "" && store.auth != undefined ? (
-        <Navigate to="/usuario" />
-      ) : (
+      {!store.auth ? (
         <form
           style={{}}
           className="mt-5 h-50 w-50 m-auto"
@@ -47,13 +49,23 @@ export const LoginView = () => {
               className="form-control"
             />
           </div>
+          <div>
+            <label>¿Eres propietario de un restaurante?</label>
+            <input
+              onChange={(e) => {
+                setType(!type);
+              }}
+              defaultChecked={type}
+              type="checkbox"
+            />
+          </div>
           <div className=" union d-flex">
             <button
               style={{ backgroundColor: "rgb(247, 230, 173)" }}
-              onClick={() => {
-                actions.login(email, password);
-                navigate("/usuario");
-              }}
+              // onClick={() => {
+              //   actions.login(email, password,type);
+              //   navigate("/usuario");
+              // }}
               type="submit"
               className="m-auto btn"
             >
@@ -61,6 +73,11 @@ export const LoginView = () => {
             </button>
           </div>
         </form>
+      ) : (
+        
+        <Navigate
+          to={store.auth && esLocal == true ? "/restaurante" : "/usuario"}
+        />
       )}
     </div>
   );

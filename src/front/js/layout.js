@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -21,13 +21,21 @@ import { Restaurante } from "./pages/restaurante";
 import { Restaurantes } from "./pages/restaurantes";
 import { Nosotros } from "./pages/sobreNosotros";
 import { Recomendaciones } from "./pages/recomendaciones";
-
+import { Context } from "./store/appContext";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-
+  const { store, actions } = useContext(Context);
+  const [validacion, setValidacion] = useState(null);
+  useEffect(() => {
+    console.log(localStorage.getItem("esLocal"));
+    //   if (localStorage.getItem("esLocal") != null) {
+    setValidacion(localStorage.getItem("esLocal"));
+    //   }
+  }, [store.auth]);
+  console.log(validacion);
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -35,15 +43,18 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-
-            <Route element={<Usuario />} path="/usuario" />
+            <Route element={<LoginView />} path="/login" />
+            {/* {validacion === false ? ( */}
+              <Route element={<Usuario />} path="/usuario" />
+            {/* ) : ( */}
+              <Route element={<Restaurante />} path="/restaurante" />
+            {/* )} */}
 
             <Route element={<Contacto />} path="/contacto" />
 
-            <Route element={<Restaurante />} path="/restaurante" />
             <Route element={<Restaurantes />} path="/restaurantes" />
             <Route element={<Nosotros />} path="/sobre-nosotros" />
-            <Route element={<LoginView />} path="/login" />
+
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />

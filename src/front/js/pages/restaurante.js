@@ -1,34 +1,47 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
 
 export const Restaurante = () => {
   const { store, actions } = useContext(Context);
+  //console.log(store.restaurantes.nombre);
+// const [restaurantes, setRestaurantes] = useState([]);
+// const { id } = useParams();
+// useEffect(
+//	() => {
+//		const getRestaurantes = async () => {
+//			const data = await fetch(`https://3001-jdigar-ruta3b-f5pchfzw1d4.ws-eu54.gitpod.io/api/restaurantes${id}`);
+//			const users = await data.json();
+//			setRestaurantes(users.result);
+//		};
+//		getRestaurantes();
+//	},
+//	[id]
+//);
+//
 
-  console.log(store.restaurante);
+  
 
-  console.log(store.restaurantes);
-
-
-  const restaurante = {
-    id: 1,
-    nombre: "Casa Paco",
-    email: "pepito99@gmail.com",
-    descripcion: "Las mejores comidas , todo casero y a tu gusto ",
-    tipoDeLocal: "Restaurante",
-    direccion: {
-      id: 1,
-      barrio: "La Mejostilla",
-      calle: "Manuel Castillo",
-      numero: 99,
-    },
-    reseña: {
-      puntuacion: <b>⭐ ⭐ ⭐ ⭐ ⭐ </b>,
-      comentario:
-        "La comida estaba genial y con una gran atención por parte de los camareros .Volveremos!!",
-    },
-  };
-
+  //const restaurante = {
+  //  id: 1,
+  //  nombre: "Casa Paco",
+  //  email: "pepito99@gmail.com",
+  //  descripcion: "Las mejores comidas , todo casero y a tu gusto ",
+  //  tipoDeLocal: "Restaurante",
+  //  direccion: {
+  //    id: 1,
+  //    barrio: "La Mejostilla",
+  //    calle: "Manuel Castillo",
+  //    numero: 99,
+  //  },
+  //  reseña: {
+  //    puntuacion: <b>⭐ ⭐ ⭐ ⭐ ⭐ </b>,
+  //    comentario:
+  //      "La comida estaba genial y con una gran atención por parte de los camareros .Volveremos!!",
+  //  },
+  //};
+//
   return (
     <>
       <div
@@ -46,9 +59,9 @@ export const Restaurante = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
-                {restaurante.nombre}-{restaurante.email}
+                {}-
               </h5>
-              <p className="card-text">{restaurante.descripcion}</p>
+              <p className="card-text"></p>
             </div>
           </div>
         </div>
@@ -65,7 +78,7 @@ export const Restaurante = () => {
         }}
       >
         <p>
-          Enhorabuena {restaurante.nombre}.!.. <br></br>A partir de ahora, eres
+          Enhorabuena {}.!.. <br></br>A partir de ahora, eres
           miembro de la gran comunidad que conforma la RUTA 3B, donde podrás
           exponer de forma simple y rapida tus servicios y promociones basadosa
           en nuestra politica 3B "Bueno, Bonito y Barato". No tengas miedo.! por
@@ -92,8 +105,8 @@ export const Restaurante = () => {
           <div className="row1 d-flex">
             <div className="col-md-4" style={{ marginLeft: "7cm" }}>
               <b>Tus reseñas :</b>
-              <p>{restaurante.reseña.comentario}</p>
-              <p>{restaurante.reseña.puntuacion}</p>
+              <p></p>
+              <p></p>
             </div>
             <div className="valoracion col-md-4 " style={{ marginLeft: "4cm" }}>
               <b>Tu valoración :</b>
