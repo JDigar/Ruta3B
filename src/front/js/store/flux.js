@@ -83,14 +83,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
+            console.log(data);
             localStorage.setItem("token", data.access_token);
-            localStorage.setItem("esLocal", data.type);
-              if (data.type == false) {
-            localStorage.setItem("esUsuario", true);
-          }
-          })
-          
-        
+            if (data.type) {
+              localStorage.setItem("esLocal", data.type);
+            } else {
+              localStorage.setItem("esUsuario", false);
+            }
+          });
+
         return true;
       },
       syncTokenFromLocalStorage: () => {
@@ -137,6 +138,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("esLocal");
+        localStorage.removeItem("esUsuario");
         setStore({
           auth: false,
         });
@@ -430,21 +433,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       // },
 
       // REGISTRO DE USUARIO
-      RegistroLocales: (
-        nombre,
-        apellido,
-        email,
-        password,
-        tipo_local,
-        descripcion
-      ) => {
+      RegistroLocales: (nombre, email, password, tipo_local, descripcion) => {
         fetch(
           "https://3001-jdigar-ruta3b-4lt9poz20r2.ws-eu54.gitpod.io/api/locales",
           {
             method: "POST",
             body: JSON.stringify({
               nombre: nombre,
-              apellido: apellido,
               email: email,
               password: password,
               descripcion: descripcion,

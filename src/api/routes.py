@@ -40,6 +40,11 @@ def get_restaurantes():
 
 # # Create a route to authenticate your users and return JWTs. The
 # # create_access_token() function is used to actually generate the JWT.
+
+
+
+
+
 @api.route("/login", methods=["POST"])
 def login():
     # email = request.json.get("email", None)
@@ -56,26 +61,30 @@ def login():
     if type:
         # restaurante
         user = Locales.query.filter_by(email=email).one_or_none()
+        
+        if not user:
+         return jsonify({'message': 'Email is not valid'}), 404
+        if email != user.email or password != user.password:
+            return jsonify({"msg": "Bad username or password"}), 401
+        
     else:
         # usuario
         user = User.query.filter_by(email=email).one_or_none()
-
-    if not user:
-        return jsonify({'message': 'Email is not valid'}), 404
-
-
-    user = User.query.filter_by(email=email).first()
-
-    print(user)
-
-    if email != user.email or password != user.password:
-        return jsonify({"msg": "Bad username or password"}), 401
+       
+        if not user:
+            return jsonify({'message': 'Email is not valid'}), 404
+        if email != user.email or password != user.password:
+            return jsonify({"msg": "Bad username or password"}), 401
+        
 
     access_token = create_access_token(identity=email)
     return jsonify({"access_token":access_token,"type":type}) 
-
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
+
+
+
+
 @api.route("/profile", methods=["GET"])
 @jwt_required()
 def protected():
