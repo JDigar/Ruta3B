@@ -21,8 +21,8 @@ export const Restaurantes = () => {
 
   return (
     <>
-      <div className="text-center d-flex container-fluid">
-        <div className="col-5 cont2 row mx-5 p-4">{rest}</div>
+      <div className="text-center d-flex container-fluid w-75">
+        <div className="col-5 cont2 row mx-5 p-5">{rest}</div>
       </div>
     </>
   );
