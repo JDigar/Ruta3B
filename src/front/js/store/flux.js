@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       profiles: [],
       likes: [],
       restaurante: [],
-      went: [],
+      went: []
     },
     actions: {
       // addFavorit: (nombre) => {
@@ -487,16 +487,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       // REGISTRO DE USUARIO
       RegistroLocales: (nombre, email, password, tipo_local, descripcion) => {
-        fetch(
-          "https://3001-jdigar-ruta3b-4lt9poz20r2.ws-eu54.gitpod.io/api/locales",
+        fetch(process.env.BACKEND_URL + "/api/locales",
           {
             method: "POST",
             body: JSON.stringify({
               nombre: nombre,
               email: email,
               password: password,
-              descripcion: descripcion,
               tipo_local: tipo_local,
+              descripcion: descripcion,
+              
             }),
             headers: {
               "Content-Type": "application/json",

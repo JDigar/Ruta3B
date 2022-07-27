@@ -124,7 +124,8 @@ def create_new_user():
 @api.route('/locales', methods=['POST'])   
 def create_new_user_locales():
     body = json.loads(request.data)
-    new_user_local = Locales(nombre=body["nombre"],email=body["email"], password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"])
+    new_user_local = Locales(nombre=body["nombre"],email=body["email"], 
+    password=body["password"], tipo_local=body["tipo_local"], descripcion=body["descripcion"])
     db.session.add(new_user_local)
     db.session.commit()
     response_body={

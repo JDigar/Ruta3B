@@ -83,7 +83,6 @@ export const Home = () => {
         </div>
       </div>
       <hr />
-      {/* {store.restaurantes.length < 2} ? <p>hi</p> :  */}
       <div className="container-fluid w-75 p-2">
         <div className="p-3">{randm}</div>
         <div className="p-3">{randm2}</div>
