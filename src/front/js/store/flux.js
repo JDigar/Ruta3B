@@ -39,31 +39,50 @@ const getState = ({ getStore, getActions, setStore }) => {
       addFavorite: async (id) => {
         fetch(process.env.BACKEND_URL + "/api/favlocales/" + id, {
           method: "POST",
-          // body: JSON.stringify({
-          //   email: email,
-          //   password: password,
-          //   type: type,
-          // }),
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
           .then((response) => {
-            if (response.status === 200) {
-              setStore({
-                auth: true,
-              });
-            } else {
-              console.log("errorr");
-            }
+            // if (response.status === 200) {
+            //   setStore({
+            //     auth: true,
+            //   });
+            // } else {
+            //   console.log("errorr");
+            // }
             return response.json();
           })
-          .then((data) => setStore({ like: data }));
+          .then((data) =>
+            // setStore({
+            //   like: data,
+            // })
+            console.log(data)
+          );
+        return true;
+      },
+
+      removeFavorite: async (id) => {
+        fetch(process.env.BACKEND_URL + "/api/favlocales/" + id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) =>
+            setStore({
+              likes: data,
+            })
+          );
         return true;
       },
       getFavorit: (id_user, id_local) => {
-        fetch(process.env.BACKEND_URL + "/api/favoritos", {
+        fetch(process.env.BACKEND_URL + "/api/user/favoritos", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

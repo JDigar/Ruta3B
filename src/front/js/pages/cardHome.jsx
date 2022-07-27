@@ -26,6 +26,12 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
           ♡
         </button>
         <button
+          onClick={() => actions.removeFavorite(id)}
+          className="btn btn-outline-danger btn-heart m-2"
+        >
+          X
+        </button>
+        <button
           onClick={() => actions.addWent(nombre)}
           className="btn btn-outline-secondary btn-heart m-2"
         >

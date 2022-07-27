@@ -11,11 +11,12 @@ import "../../styles/loginError.css";
 export const Usuario = () => {
   const { store, actions } = useContext(Context);
 
-  // useEffect(() => {
-  //   actions.getFavorite();
-  // }, []);
+  useEffect(() => {
+    actions.getFavorit();
+    // actions.getInformationCurrentMember();
+  }, []);
 
-  console.log(store.profiles.nombre);
+  console.log(store.likes);
   return (
     <>
       {store.auth && store.auth != "" && store.auth != undefined ? (
@@ -61,9 +62,15 @@ export const Usuario = () => {
 
               <div className="text-center d-flex container-fluid">
                 <div className="col-5 cont row mx-5 p-4">
-                  {store.likes.map((item, index) => (
-                    <CardHome key={index} nombre={nombre} id={item.id} />
-                  ))}
+                  {store.likes.length > 0
+                    ? store?.likes.map((item, index) => (
+                        <CardHome
+                          key={index}
+                          nombre={item.nombre}
+                          id={item.id}
+                        />
+                      ))
+                    : null}
                 </div>
 
                 <div className="col-5 cont row mx-5 p-4">

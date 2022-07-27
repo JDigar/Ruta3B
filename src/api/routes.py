@@ -148,25 +148,30 @@ def create_new_user_locales():
 
 
 
-@api.route('/favlocales/<int:local_id>', methods=['POST'])
+@api.route('/favlocales/<int:local_id>', methods=['POST', 'DELETE'])
 @jwt_required()
 def save_fav_local(local_id):
 
-    id = get_jwt_identity()
-    user = User.query.get(id)
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
     
-    local = Locales.query.get(local_id)
-    if local not in user.localesfav:
-        user.localesfav.append(local)
-        # localfav=User(localesfav=local)
-        db.session.add(local)
-        db.session.commit()
-        return jsonify({'response': True}),200
-    else:
+    if request.method=='POST':
+        local = Locales.query.get(local_id)
+        if local not in user.localesfav:
+            user.localesfav.append(local)
+            # localfav=User(localesfav=local)
+            db.session.add(local)
+            db.session.commit()
+            return jsonify({'response': "Favorit add"}),200
+
+    if request.method=="DELETE":
+        local = Locales.query.get(local_id)
         user.localesfav.remove(local)
         db.session.commit()
-        return jsonify({'response': False}),200
-
+        user = User.query.filter_by(email=email).first()
+        user_favorites = user.localesfav
+        all_favorites = [favorite.serialize() for favorite in user_favorites]
+        return jsonify(all_favorites),200
 
 
 
@@ -174,12 +179,18 @@ def save_fav_local(local_id):
 @jwt_required()
 def get_fav_list():
     email = get_jwt_identity()
-    userfavs = User.query.get(email)
+    userfavs = User.query.filter_by(email=email).first()
+    print(email)
+    print(userfavs)
 
     if userfavs:
         user_favorites = userfavs.localesfav
         all_favorites = [favorite.serialize() for favorite in user_favorites] # serializame por cada favorito, en user_favorites
+        if len(all_favorites)==0:
+            return jsonify({'error': 'No locales favoritos'}),404
         return jsonify(all_favorites), 200
+    
    
-    return jsonify({'error': 'No locales favoritos'}),404
+    
+    
 
