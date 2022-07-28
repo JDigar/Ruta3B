@@ -12,24 +12,20 @@ export const Usuario = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getFavorit();
-    // actions.getInformationCurrentMember();
+    // actions.getFavorit();
+    actions.getInformationCurrentMember();
   }, []);
 
+
+  // {localStorage.getItem("esLocal") ? navigate("/restaurante") : navigate("/usuario")}
   console.log(store.likes);
   return (
     <>
-      {store.auth && store.auth != "" && store.auth != undefined ? (
+      {store.auth && store.auth != "" && store.auth != undefined && localStorage.getItem("esUsuario") ? (
         <div className="container-fluid">
           <div className="user">
             <div className="row mx-4">
-              {/* <div className="col-2 p-3">
->>>>>>> 441c63602d0acd388f7b35275098b793e5ccfdf6
-            <div className="foto-user col-3"></div>
-          </div>
-          <div className="col-6 p-3 user-description">
-            <p>Esta es la descripcion del usuario</p>
-          </div> */}
+             
               <div className="">
                 <h1>
                   Ey, {store.profiles?.nombre} {store.profiles?.apellido}

@@ -49,8 +49,10 @@ export const LoginView = () => {
           />
         </div>
         <div>
-          <label>¿Eres propietario de un restaurante?</label>
+          <label className="p-2">¿Eres propietario de un restaurante?</label>
           <input
+          style={{width:"30px", height:"17px"}}
+            className="display-1"
             onChange={(e) => {
               setType(!type);
             }}
@@ -64,7 +66,7 @@ export const LoginView = () => {
             type="submit"
             className="m-auto btn"
           >
-            Submit
+            Entrar
           </button>
         </div>
       </form>

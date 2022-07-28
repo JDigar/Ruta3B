@@ -6,7 +6,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 export const Single = props => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
+	// const params = useParams();
 
 	return (
 		<div className="jumbotron">

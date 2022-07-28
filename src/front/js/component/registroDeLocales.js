@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect,useRef } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 const RegistroDeLocales = () => {
@@ -10,24 +10,45 @@ const RegistroDeLocales = () => {
   const [newDescripcion, setNewDescripcion] = useState("");
   const [newPago, setNewPago] = useState("");
   const [typeLocal, setTypeLocal] = useState("");
-
+  const navigate = useNavigate();
   const { store, actions } = useContext(Context);
+
+
+  /***********************Verificación de contraseña************************ */
+    const [cPassword, setCPassword] = useState('');
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [cPasswordClass, setCPasswordClass] = useState('form-control');
+    const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+
+    useEffect(() => {
+      if (isCPasswordDirty) {
+          if (newPassword === cPassword) {
+              setShowErrorMessage(false);
+              setCPasswordClass('form-control is-valid')
+          } else {
+              setShowErrorMessage(true)
+              setCPasswordClass('form-control is-invalid')
+          }
+      }
+  }, [cPassword])
+
+  const handleCPassword = (e) => {
+      setCPassword(e.target.value);
+      setIsCPasswordDirty(true);
+  }
+  /************************************************ */
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // if (email)
-    actions.RegistroLocales(
-      newNameLocal,
-      newEmail,
-      newPassword,
-      typeLocal,
-      newDescripcion,
-      
-    );
+    actions.RegistroLocales(newNameLocal,newEmail,newPassword,typeLocal,newDescripcion);
+    navigate("/login");
     {
-      Swal.fire("Good job!", "You clicked the button!", "success");
+      Swal.fire("Buen trabajo!", "Te has registrado correctamente!", "success");
     }
   };
+
+
 
   return (
     <div
@@ -82,20 +103,22 @@ const RegistroDeLocales = () => {
               id="example4"
               onChange={(e) => setNewPassword(e.target.value)}
               required
+              value={newPassword}
             />
           </div>
           <div className="mb-3">
-            <label className="p-1" htmlFor="">
+            <label className="p-1 form-label" htmlFor="">
               Repita su contraseña
             </label>
             <input
               type="password"
-              className="form-control"
+              className={cPasswordClass}
               id="example4"
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={handleCPassword}
               required
             />
           </div>
+          {showErrorMessage && isCPasswordDirty ? <div> Las contraseñas no coinciden </div> : ''}
           <div className="mb-3 content-center">
             <h2>Que tipo de local deseas registrar?</h2>
             <div className="m-auto w-50 p-1 text-center d-flex row input-group mb-3">
@@ -175,6 +198,15 @@ const RegistroDeLocales = () => {
             />
           </div>
           <div className="text-center">
+      {showErrorMessage && isCPasswordDirty == true?
+            <button
+              type="submit"
+              className="disabled w-50 text-center btn"
+              style={{ color: "black", backgroundColor: "white" }}
+            >
+              Registrar
+            </button>
+            : 
             <button
               type="submit"
               className="w-50 text-center btn"
@@ -182,6 +214,7 @@ const RegistroDeLocales = () => {
             >
               Registrar
             </button>
+      }  
           </div>
         </form>
       )}

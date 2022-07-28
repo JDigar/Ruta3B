@@ -43,7 +43,10 @@ export const Restaurante = () => {
   //};
 //
   return (
+    
     <>
+     {store.auth && store.auth != "" && store.auth != undefined  && localStorage.getItem("esLocal") ? (
+      <div>
       <div
         className="card mb-3"
         style={{ marginLeft: "20px", marginRight: "20px", marginTop: "30px" }}
@@ -138,6 +141,24 @@ export const Restaurante = () => {
           />
         </div>
       </div>
+      </div>
+      ) : (
+        <div className="div-err-login text-center">
+          <h2>Primero debería registrarse!</h2>
+          <button
+            type="button"
+            className="btn  btn-sm h-50 m-3"
+            style={{
+              backgroundColor: "rgb(247, 230, 173)",
+              color: "black",
+            }}
+          >
+            <Link className=" button-err" to="/">
+              Volver al Inicio
+            </Link>
+          </button>
+        </div>
+      )}
     </>
   );
 };

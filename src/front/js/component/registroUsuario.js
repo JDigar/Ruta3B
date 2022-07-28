@@ -11,10 +11,50 @@ const RegistroUsuario = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
+
+  /***********************Verificación de contraseña************************ */
+  const [cPassword, setCPassword] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [cPasswordClass, setCPasswordClass] = useState('form-control');
+  const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+
+  useEffect(() => {
+    if (isCPasswordDirty) {
+        if (newPassword === cPassword) {
+            setShowErrorMessage(false);
+            setCPasswordClass('form-control is-valid')
+        } else {
+            setShowErrorMessage(true)
+            setCPasswordClass('form-control is-invalid')
+        }
+    }
+}, [cPassword])
+
+const handleCPassword = (e) => {
+    setCPassword(e.target.value);
+    setIsCPasswordDirty(true);
+}
+/************************************************ */
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   // if (email)
+//   actions.RegistroLocales(newNameLocal,newEmail,newPassword,typeLocal,newDescripcion);
+//   navigate("/login");
+//   {
+//     Swal.fire("Buen trabajo!", "Te has registrado correctamente!", "success");
+//   }
+// };
+
+
+
   const handleSubmit2 = (e) => {
     e.preventDefault();
     actions.registroUsuario(newName, newApellido, newEmail, newPassword);
     navigate("/login");
+    {
+      Swal.fire("Buen trabajo!", "Te has registrado correctamente!", "success");
+    }
   };
 
 
@@ -64,22 +104,33 @@ const RegistroUsuario = () => {
             className="form-control"
               onChange={(e) => setNewPassword(e.target.value)}
               required
+              value={newPassword}
           />
         </div>
         <div className="mb-3">
-        <label className="p-1" htmlFor="">Repita su contraseña</label>
-          <input
-            type="password"
-            className="form-control"
-              onChange={(e) => setNewPassword(e.target.value)}
+            <label className=" form-label" htmlFor="">
+              Repita su contraseña
+            </label>
+            <input
+              type="password"
+              className={cPasswordClass}
+              id="example4"
+              onChange={handleCPassword}
               required
-          />
-        </div>
+            />
+          </div>
+          {showErrorMessage && isCPasswordDirty ? <div className="p-3"> Las contraseñas no coinciden </div> : ''}
         
       <div className="text-center">
+      {showErrorMessage && isCPasswordDirty == true? 
+        <button  type="submit" className="disabled w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
+          Registrar 
+      </button>
+      : 
       <button  type="submit" className="w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
           Registrar 
       </button>
+      }
       </div>
         
       </form>
