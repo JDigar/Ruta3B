@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-
+import logo3 from "../../img/logo3.png"
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   return (
@@ -11,10 +11,10 @@ export const Navbar = () => {
         style={{
           width: "33%",
         }}
-        className=" p-1  m-auto text-center items-navbar"
+        className=" p-1  m-auto text-center items-navbar " 
       >
-        {/* <img style={{width:"33%"}} className="text-center image-navbar" src={logo} alt="" /> */}{" "}
-        <h1 id="title"> Ruta Triple B </h1>{" "}
+        <img style={{width:"33%",borderRadius:"20px"}} className="text-center image-navbar" src={logo3} alt="" /> {" "}
+        {/*<h1 id="title"> Ruta Triple B </h1>*/}{" "}
       </div>{" "}
       {store.auth ? (
         <nav className="container">
