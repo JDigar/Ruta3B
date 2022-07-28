@@ -198,6 +198,15 @@ const RegistroDeLocales = () => {
             />
           </div>
           <div className="text-center">
+      {showErrorMessage && isCPasswordDirty == true?
+            <button
+              type="submit"
+              className="disabled w-50 text-center btn"
+              style={{ color: "black", backgroundColor: "white" }}
+            >
+              Registrar
+            </button>
+            : 
             <button
               type="submit"
               className="w-50 text-center btn"
@@ -205,6 +214,7 @@ const RegistroDeLocales = () => {
             >
               Registrar
             </button>
+      }  
           </div>
         </form>
       )}

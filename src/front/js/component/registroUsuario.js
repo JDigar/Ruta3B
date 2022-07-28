@@ -36,15 +36,15 @@ const handleCPassword = (e) => {
 }
 /************************************************ */
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  // if (email)
-  actions.RegistroLocales(newNameLocal,newEmail,newPassword,typeLocal,newDescripcion);
-  navigate("/login");
-  {
-    Swal.fire("Buen trabajo!", "Te has registrado correctamente!", "success");
-  }
-};
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   // if (email)
+//   actions.RegistroLocales(newNameLocal,newEmail,newPassword,typeLocal,newDescripcion);
+//   navigate("/login");
+//   {
+//     Swal.fire("Buen trabajo!", "Te has registrado correctamente!", "success");
+//   }
+// };
 
 
 
@@ -119,12 +119,18 @@ const handleSubmit = (e) => {
               required
             />
           </div>
-          {showErrorMessage && isCPasswordDirty ? <div> Las contraseñas no coinciden </div> : ''}
+          {showErrorMessage && isCPasswordDirty ? <div className="p-3"> Las contraseñas no coinciden </div> : ''}
         
       <div className="text-center">
+      {showErrorMessage && isCPasswordDirty == true? 
+        <button  type="submit" className="disabled w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
+          Registrar 
+      </button>
+      : 
       <button  type="submit" className="w-50 text-center btn"  style={{color:"black",backgroundColor:"white"}}>
           Registrar 
       </button>
+      }
       </div>
         
       </form>

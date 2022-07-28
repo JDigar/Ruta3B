@@ -12,8 +12,8 @@ export const Usuario = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getFavorit();
-    // actions.getInformationCurrentMember();
+    // actions.getFavorit();
+    actions.getInformationCurrentMember();
   }, []);
 
 

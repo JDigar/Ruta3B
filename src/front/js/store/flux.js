@@ -299,10 +299,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           //setStore({
           //    currentMember: [data.user],
           //});
-          localStorage.setItem("token", data.access_token);
-          localStorage.setItem("esLocal", false);
+          // localStorage.setItem("token", data.access_token);
+          // localStorage.setItem("esLocal", false);
 
-          localStorage.setItem("esUsuario", true);
+          // localStorage.setItem("esUsuario", true);
 
           //  setStore({
           //      isloged: true

@@ -70,7 +70,7 @@ export const Navbar = () => {
                   backgroundColor: "rgb(247, 230, 173)",
                   color: "black",
                 }}
-                onClick={() => localStorage.getItem("esLocal") == true ? navigate("/restaurante") : navigate("/usuario")}
+                onClick={() => localStorage.getItem("esLocal") && !localStorage.getItem("esUsuario") ? navigate("/restaurante") : navigate("/usuario")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
