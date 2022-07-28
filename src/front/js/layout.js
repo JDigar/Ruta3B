@@ -20,8 +20,8 @@ import { Footer } from "./component/footer";
 import { Restaurante } from "./pages/restaurante";
 import { Restaurantes } from "./pages/restaurantes";
 import { Nosotros } from "./pages/sobreNosotros";
-import { Recomendaciones } from "./pages/recomendaciones";
 import { Context } from "./store/appContext";
+import { RutaComida } from "./pages/rutaComida";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -53,7 +53,7 @@ const Layout = () => {
             <Route element={<SelSignup />} path="/seleccion-registro" />
 
             <Route element={<Single />} path="/single/:theid" />
-            <Route element={<Recomendaciones />} path="/recomendaciones" />
+            <Route element={<RutaComida />} path="/ruta-comida" />
 
             <Route element={<h1>Not found!</h1>} />
           </Routes>
