@@ -19,7 +19,7 @@ export const CardHome2 = ({ nombre, descripcion, id }) => {
         <p>{descripcion}</p>
         <button
           onClick={() => actions.addFavorit(nombre)}
-          className="btn btn-outline-danger btn-heart m-2"
+          className="btn btn-outline-success btn-heart m-2"
         >
           ♡
         </button>

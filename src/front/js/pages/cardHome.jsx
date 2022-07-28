@@ -19,9 +19,11 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
         <span className="fs-6">❤❤❤❤❤</span>
         <p>{tipo_local}</p>
         <p>{descripcion}</p>
+        
+        {/* {store.auth && store.auth != "" && store.auth != undefined ?  */}
         <button
           onClick={() => actions.addFavorite(id)}
-          className="btn btn-outline-danger btn-heart m-2"
+          className="btn btn-outline-success btn-heart m-2"
         >
           ♡
         </button>
@@ -37,6 +39,9 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
         >
           HE IDO!
         </button>
+        {/* // : "a"} */}
+        
+        
       </div>
     </div>
   );
