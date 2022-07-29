@@ -23,13 +23,13 @@ export const Contacto = () => {
   return (
     <div
       className="container-fluid"
-      style={{
-        backgroundColor: "rgb(247, 230, 173)",
-        padding: "6rem",
-      }}
+      
     >
       {/* <!-- Wrapper container --> */}
-      <div className="w-50 container py-4">
+      <div style={{
+        backgroundColor: "rgb(247, 230, 173)",
+        padding: "6rem",
+      }} className="w-50 container py-4">
         <h1 className="text-center mb-5">¿En qué podemos ayudarte?</h1>
 
         {/* <!-- Bootstrap 5 starter form --> */}

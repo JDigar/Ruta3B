@@ -52,8 +52,8 @@ const Layout = () => {
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />
 
-            <Route element={<Single />} path="/single/:theid" />
-            <Route element={<RutaComida />} path="/ruta-comida" />
+            {/* <Route element={<Restaurantes />} path="/restaurante/:theid" /> */}
+            <Route element={<RutaComida />} path="/ruta-comida/:theid" />
 
             <Route element={<h1>Not found!</h1>} />
           </Routes>
