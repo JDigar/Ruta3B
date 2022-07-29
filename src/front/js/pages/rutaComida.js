@@ -1,18 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-export const RutaComida = () => {
+
+
+export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
   const { store, actions } = useContext(Context);
+
+
+  console.log(useParams());
+	const {theid} = useParams();
+    
+	console.log(store.restaurantes);
+
 
   return (
     <>
      
       <div
-        className="central d-flex"
+        className="border border-dark central d-flex"
         style={{ marginLeft: "120px", marginTop: "2cm", marginBottom: "3cm" }}
       >
         <div
-          className="izq"
+          className="border border-dark m-auto izq"
           style={{
             borderStyle: " solid ",
             borderWidth: "3px",
@@ -26,7 +35,7 @@ export const RutaComida = () => {
           <h2>foto restaurante</h2>
         </div>
         <div
-          className="der"
+          className="border border-dark m-auto der"
           style={{
             borderStyle: " solid ",
             borderWidth: "3px",
@@ -37,12 +46,13 @@ export const RutaComida = () => {
             borderRadius:"20px"
           }}
         >
-          <div className="informacion" style={{marginLeft:"40px",marginTop:"40px"}}>
-            <h5>Nombre :</h5>
+          
+          <div className="text-center informacion" style={{marginLeft:"40px",marginTop:"40px"}}>
+            <h1><em>{store.restaurantes[theid]?.nombre}</em></h1>
             <br></br>
-            <h5>Breve descripcion :</h5>
+            <p className="fs-4 text">{store.restaurantes[theid]?.descripcion}</p>
             <br></br>
-            <h5>Ubicacion :</h5>
+            <h5>Ubicacion </h5>
           </div>
         </div>
       </div>
@@ -58,7 +68,15 @@ export const RutaComida = () => {
           borderRadius:"20px"
         }}
       >
-        <div class="fb-comments" style={{backgroundColor:"rgb(247, 230, 173)"}} data-href="https://3000-jdigar-ruta3b-huwqp0ibu9g.ws-eu54.gitpod.io/ruta-comida" data-width="750" data-numposts="2"></div>
+        <div className="text-center">
+        <Link className="" to="/restaurantes">
+				<span className="text-center btn btn-primary btn-lg" href="#" role="button">
+					Volver atrás
+				</span>
+			</Link>
+        </div>
+        
+        {/* <div className="fb-comments" style={{backgroundColor:"rgb(247, 230, 173)"}} data-href="https://3000-jdigar-ruta3b-huwqp0ibu9g.ws-eu54.gitpod.io/ruta-comida" data-width="750" data-numposts="2"></div> */}
       </div>
     </>
   );

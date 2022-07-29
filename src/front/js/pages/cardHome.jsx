@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "./../../styles/card.css";
 
-export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
+export const CardHome = ({ id,nombre, descripcion, tipo_local }) => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -21,7 +21,7 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
         <p>{descripcion}</p>
         <button
           onClick={() => actions.addFavorite(id)}
-          className="btn btn-outline-danger btn-heart m-2"
+          className="btn btn-outline-success btn-heart m-2"
         >
           ♡
         </button>
@@ -37,6 +37,7 @@ export const CardHome = ({ nombre, descripcion, id, tipo_local }) => {
         >
           HE IDO!
         </button>
+        <Link to={"/ruta-comida/"+id} className="btn btn-primary">Saber Mas</Link>
       </div>
     </div>
   );
