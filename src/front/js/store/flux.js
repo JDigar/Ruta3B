@@ -26,7 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       profiles: [],
       likes: [],
       restaurante: [],
-      went: []
+      went: [],
+      profileRestaurante:[]
     },
     actions: {
       // addFavorit: (nombre) => {
@@ -163,6 +164,23 @@ const getState = ({ getStore, getActions, setStore }) => {
             })
           );
       },
+      //  getInformationCurrentRestaurant: () => {
+      //   fetch(process.env.BACKEND_URL + "/api/profile-restaurante", {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //     },
+      //   })
+      //     .then((response) => response.json())
+
+      //     .then((data) =>
+          
+      //      setStore({
+      //        profileRestaurante: data,
+      //      })
+      //    );
+      // },
       getRestaurantes: async () => {
         const store = getStore();
         // fetching data from the backend
@@ -245,35 +263,35 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       const data = await response.json();
       //       // actions.putImage(data.secure_url);
       //       console.log(data);
-      getInformationCurrentRestaurant: () => {
-        fetch(process.env.BACKEND_URL + "api/restaurante", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) =>
-            setStore({
-              profiles: data,
-            })
-          );
-      },
+      // getInformationCurrentRestaurant: () => {
+      //   fetch(process.env.BACKEND_URL + "/api/restaurante", {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //     },
+      //   })
+      //     .then((response) => response.json())
+      //     .then((data) =>
+      //       setStore({
+      //         profiles: data,
+      //       })
+      //     );
+      // },
 
-      getRestaurantes: async () => {
-        const store = getStore();
+      //getRestaurantes: async () => {
+      //  const store = getStore();
 
-        // fetching data from the backend
-        const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
-          .then((resp) => resp.json())
-          .then((data) =>
-            setStore({
-              restaurantes: data,
-            })
-          );
-      },
-      // logout: () => {
+      //  // fetching data from the backend
+      //  const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
+      //    .then((resp) => resp.json())
+      //    .then((data) =>
+      //      setStore({
+      //        restaurantes: data,
+      //      })
+      //    );
+      //},
+       // logout: () => {
       //   localStorage.removeItem("token");
       //   setStore({
       //     auth: false,
@@ -382,22 +400,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       console.log(data);
       //     }}},
 
-      getInformationCurrentRestaurant: () => {
-        fetch(process.env.BACKEND_URL + "api/restaurante", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-          .then((response) => response.json())
-
-          .then((data) =>
-            setStore({
-              restaurante: data,
-            })
-          );
-      },
+     
       // fetching data from the backend
 
       // const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
@@ -487,22 +490,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       // REGISTRO DE USUARIO
       RegistroLocales: (nombre, email, password, tipo_local, descripcion) => {
-        fetch(process.env.BACKEND_URL + "/api/locales",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              nombre: nombre,
-              email: email,
-              password: password,
-              tipo_local: tipo_local,
-              descripcion: descripcion,
-              
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        fetch(process.env.BACKEND_URL + "/api/locales", {
+          method: "POST",
+          body: JSON.stringify({
+            nombre: nombre,
+            email: email,
+            password: password,
+            tipo_local: tipo_local,
+            descripcion: descripcion,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
           .then((response) => {
             return response.json();
           })
