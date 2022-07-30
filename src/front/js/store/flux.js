@@ -286,12 +286,6 @@ const getState = ({
                         })
                     );
             },
-            // logout: () => {
-            //   localStorage.removeItem("token");
-            //   setStore({
-            //     auth: false,
-            //   });
-            // },
 
             registroUsuario: async (nombre, apellido, email, password) => {
                 const response = await fetch(process.env.BACKEND_URL + "/api/user", {
@@ -332,6 +326,29 @@ const getState = ({
                 //  console.log(data);
                 //});
             },
+
+            añadirPrecio : async (id,precio)=>{
+                const response = await fetch(process.env.BACKEND_URL + "/api/addPrice/"+id,
+                    {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      },
+                      body: JSON.stringify({
+                        id:id,
+                        precio: precio,
+                      }),
+                    }
+                  );
+                  if (response.ok) {
+                    alert("Datos guardados");
+                  } else {
+                    alert("No se ha podido modificar el dato");
+                  }
+            },
+
             //   fetching data from the backend
             //   const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
             //     .then((resp) => resp.json())
@@ -455,17 +472,6 @@ const getState = ({
 
             //CODIGO DE CLOUDINARY SUBIDA DE FOTO
 
-            //     if (response.ok) {
-            //       const data = await response.json();
-            //       // actions.putImage(data.secure_url);
-            //       console.log(data);
-            //     }
-            //   } catch (error) {
-            //     console.log("message", error);
-            //   }
-            // },
-
-            // CODIGO DE CLOUDINARY SUBIDA DE FOTO
             //     if (response.ok) {
             //       const data = await response.json();
             //       // actions.putImage(data.secure_url);

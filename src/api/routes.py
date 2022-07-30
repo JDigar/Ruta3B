@@ -194,4 +194,38 @@ def get_fav_list():
    
     
     
+#Añadir precio desde perfil de restaurante:
 
+@api.route('/addPrice/<int:id>', methods=['PUT'])
+@jwt_required()
+def edit_precio_local(id):
+    
+    
+    local = Locales.query.get(id)
+    
+    nombre = request.json.get('nombre', None)
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    tipo_local = request.json.get('tipo_local', None)
+    descripcion = request.json.get('descripcion', None)
+    precio = request.json.get('precio', None)
+    
+
+    if  (nombre or email or password or tipo_local or descripcion or precio):
+            if nombre != None:
+                local.nombre = nombre
+            if email != None:  
+                local.email = email
+            if password != None:
+                local.password = password
+            if tipo_local != None:
+                local.tipo_local = tipo_local
+            if descripcion !=None:
+                local.descripcion = descripcion
+            if precio !=None:
+                local.precio = precio
+            
+            
+            db.session.commit()
+            
+            return jsonify({'results': local.serialize()}),201

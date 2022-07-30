@@ -17,11 +17,10 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
     <>
      
       <div
-        className="border border-dark central d-flex"
-        style={{ marginLeft: "120px", marginTop: "2cm", marginBottom: "3cm" }}
+        className="mt-2 central d-flex"
       >
         <div
-          className="border border-dark m-auto izq"
+          className=" m-auto"
           style={{
             borderStyle: " solid ",
             borderWidth: "3px",
@@ -35,7 +34,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           <h2>foto restaurante</h2>
         </div>
         <div
-          className="border border-dark m-auto der"
+          className=" m-auto"
           style={{
             borderStyle: " solid ",
             borderWidth: "3px",
@@ -56,28 +55,34 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           </div>
         </div>
       </div>
-
+      <div>
+        <div className="border border-dark w-25 m-auto">
+          <h5>Precio</h5>
+          <p></p>
+        </div>
+      </div>
       <div
         className="inferior"
-        style={{
+        // style={{
          
-          height: "700px",
-          width: "750px",
-          borderColor: "rgb(247, 230, 173)",
-          marginLeft: "280px",
-          borderRadius:"20px"
-        }}
+        //   height: "700px",
+        //   width: "750px",
+        //   borderColor: "rgb(247, 230, 173)",
+        //   marginLeft: "280px",
+        //   borderRadius:"20px"
+        // }}
       >
-        <div className="text-center">
+        
+        
+        <div className="fb-comments" style={{backgroundColor:"rgb(247, 230, 173)"}} data-href="https://3000-jdigar-ruta3b-huwqp0ibu9g.ws-eu54.gitpod.io/ruta-comida" data-width="750" data-numposts="2"></div>
+      </div>
+      <div className="w-25 m-auto text-center">
         <Link className="" to="/restaurantes">
-				<span className="text-center btn btn-primary btn-lg" href="#" role="button">
+				<span className="text-center btn  btn-lg" href="#" role="button" style={{backgroundColor:"rgb(247, 230, 173)"}}>
 					Volver atrás
 				</span>
 			</Link>
         </div>
-        
-        {/* <div className="fb-comments" style={{backgroundColor:"rgb(247, 230, 173)"}} data-href="https://3000-jdigar-ruta3b-huwqp0ibu9g.ws-eu54.gitpod.io/ruta-comida" data-width="750" data-numposts="2"></div> */}
-      </div>
     </>
   );
 };
