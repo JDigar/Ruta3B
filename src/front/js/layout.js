@@ -7,6 +7,7 @@ import { Home } from "./pages/home";
 import { Contacto } from "./pages/contacto";
 import { Single } from "./pages/single";
 
+
 import { RegistroUsuarioView } from "./pages/registroUsuarioView";
 import { RegistroParaLocales } from "./pages/registroLocalesView";
 import { LoginView } from "./pages/loginView";
@@ -52,6 +53,7 @@ const Layout = () => {
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />
 
+            
             {/* <Route element={<Restaurantes />} path="/restaurante/:theid" /> */}
             <Route element={<RutaComida />} path="/ruta-comida/:theid" />
 

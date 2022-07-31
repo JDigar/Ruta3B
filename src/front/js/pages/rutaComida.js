@@ -55,10 +55,10 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="border border-dark w-25 m-auto">
-          <h5>Precio</h5>
-          <p></p>
+      <div style={{position:"relative",bottom:"250px",}} className=" m-auto mt-2 w-25 ">
+        <div  style={{backgroundColor:"rgb(247, 230, 173)"}} className="text-center border border-dark w-25 m-auto">
+          <h5>Precio medio del ticket: </h5>
+          <strong className="fs-4">{store.restaurantes[theid]?.precio} €</strong>
         </div>
       </div>
       <div
@@ -78,7 +78,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
       </div>
       <div className="w-25 m-auto text-center">
         <Link className="" to="/restaurantes">
-				<span className="text-center btn  btn-lg" href="#" role="button" style={{backgroundColor:"rgb(247, 230, 173)"}}>
+				<span className="mt-2 text-center btn  btn-lg" href="#" role="button" style={{backgroundColor:"rgb(247, 230, 173)"}}>
 					Volver atrás
 				</span>
 			</Link>

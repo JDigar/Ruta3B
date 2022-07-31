@@ -11,6 +11,7 @@ export const Restaurantes = () => {
     <CardHome
       key={index}
       id={index}
+      descripcion={item.descripcion}
       tipo_local={item.tipo_local}
       nombre={item.nombre}
     />

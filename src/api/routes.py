@@ -36,10 +36,8 @@ def get_restaurantes():
     all_restaurantes = list(map(lambda x: x.serialize(), restaurantes))
 
     return jsonify(all_restaurantes), 200
-
-
-# # Create a route to authenticate your users and return JWTs. The
-# # create_access_token() function is used to actually generate the JWT.
+ # Create a route to authenticate your users and return JWTs. The
+ # create_access_token() function is used to actually generate the JWT.
 
 
 
@@ -87,6 +85,16 @@ def protected():
     user = User.query.filter_by(email=current_user).first()
     
     return jsonify(user.serialize()), 200
+
+
+# @api.route("/profile-restaurante", methods=["GET"])
+# @jwt_required()
+# def protected():
+#     # Access the identity of the current user with get_jwt_identity
+#     current_local = get_jwt_identity()
+#     local = Locales.query.filter_by(email=current_local).first()
+    
+#     return jsonify(local.serialize()), 200
 
 
 # @api.route("/gettingSubscribe", methods=["GET"])
@@ -222,10 +230,15 @@ def edit_precio_local(id):
                 local.tipo_local = tipo_local
             if descripcion !=None:
                 local.descripcion = descripcion
-            if precio !=None:
+            if precio != None:
                 local.precio = precio
+            
             
             
             db.session.commit()
             
             return jsonify({'results': local.serialize()}),201
+
+
+
+    

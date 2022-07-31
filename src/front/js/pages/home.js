@@ -17,6 +17,7 @@ export const Home = () => {
     <CardHome
       key={index}
       id={index}
+      tipo_local={item.tipo_local}
       descripcion={item.descripcion}
       nombre={item.nombre}
     />
@@ -25,6 +26,7 @@ export const Home = () => {
     <CardHome2
       key={index + 10}
       id={item.id}
+      tipo_local={item.tipo_local}
       descripcion={item.descripcion}
       nombre={item.nombre}
     />

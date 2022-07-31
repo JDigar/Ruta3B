@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const CargaDeFoto = () => {
+export const CargaDeFoto = () => {
   const [uploadImages, setUploadImages] = useState("");
 
   return (
@@ -26,4 +26,4 @@ const CargaDeFoto = () => {
   );
 };
 
-export default CargaDeFoto;
+
