@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Map } from "../component/map";
+import credentials from "../../../../credentials";
 
 
 export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
@@ -10,7 +12,9 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
   console.log(useParams());
 	const {theid} = useParams();
     
-	console.log(store.restaurantes);
+	// console.log(store.restaurantes);
+
+  const mapUrl=`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
 
 
   return (
@@ -48,8 +52,17 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
             <h1><em>{store.restaurantes[theid]?.nombre}</em></h1>
             
             <p className="fs-4 text">{store.restaurantes[theid]?.descripcion}</p>
+
             
-            <h5>Ubicacion </h5>
+            {/* <div>
+            <Map
+            googleMapURL = {mapUrl}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+            loadingElement={<div style={{ height: `100%` }} />}
+            />
+        </div> */}
+            
           </div>
         </div>
       </div>
@@ -81,6 +94,8 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
 				</span>
 			</Link>
         </div>
+        
+        
     </>
   );
 };
