@@ -14,6 +14,7 @@ export const Restaurantes = () => {
       descripcion={item.descripcion}
       tipo_local={item.tipo_local}
       nombre={item.nombre}
+      foto={item.foto}
     />
   ));
 

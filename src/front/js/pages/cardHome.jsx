@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "./../../styles/card.css";
 
-export const CardHome = ({ id,nombre, descripcion, tipo_local }) => {
+export const CardHome = ({ id,nombre, descripcion, tipo_local,foto }) => {
   const { store, actions } = useContext(Context);
 
   return (
     <div className="mt-3 p-5 d-flex mini-container myborder">
       <img
         className="border border-dark w-50 rounded-4"
-        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/elle-restaurantes-decoracion-bonita-instagram-raimunda-madrid-1573068471.jpg?crop=1.00xw:0.719xh;0,0.178xh&resize=1200:*"
+        src={foto}
         alt=""
       />
       <div className="p-3 w-50">
@@ -37,7 +37,7 @@ export const CardHome = ({ id,nombre, descripcion, tipo_local }) => {
         >
           HE IDO!
         </button>
-        <Link to={"/ruta-comida/"+id} className="btn btn-primary">Saber Mas</Link>
+        <Link to={"/ruta-comida/"+id} style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}} className="btn">Saber Mas</Link>
       </div>
     </div>
   );

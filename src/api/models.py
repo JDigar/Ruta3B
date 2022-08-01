@@ -50,6 +50,7 @@ class Locales(db.Model):
     tipo_local = db.Column(db.String(80), unique=False, nullable=False)
     descripcion = db.Column(db.String(250), unique=False, nullable=False)
     precio = db.Column(db.Integer, unique=False, nullable=True)
+    foto = db.Column(db.String(500), unique=False, nullable=True)
     # favoritos = db.relationship('Favoritos', backref='locales', lazy=True)
     
 
@@ -64,6 +65,7 @@ class Locales(db.Model):
             "tipo_local": self.tipo_local,
             "descripcion": self.descripcion,
             "precio": self.precio,
+            "foto": self.foto,
             # do not serialize the password, its a security breach
         }
 

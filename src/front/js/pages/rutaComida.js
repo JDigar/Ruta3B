@@ -20,18 +20,16 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
         className="mt-2 central d-flex"
       >
         <div
-          className=" m-auto"
+          className="d-flex border border-dark m-auto"
           style={{
-            borderStyle: " solid ",
-            borderWidth: "3px",
+          
             height: "300px",
             width: "500px",
-            borderColor: "rgb(247, 230, 173)",
-            borderRadius:"20px"
+            
           }}
         >
           {" "}
-          <h2>foto restaurante</h2>
+          <img className="w-100" src={store.restaurantes[theid]?.foto} alt="" />
         </div>
         <div
           className=" m-auto"
@@ -48,9 +46,9 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           
           <div className="text-center informacion" style={{marginLeft:"40px",marginTop:"40px"}}>
             <h1><em>{store.restaurantes[theid]?.nombre}</em></h1>
-            <br></br>
+            
             <p className="fs-4 text">{store.restaurantes[theid]?.descripcion}</p>
-            <br></br>
+            
             <h5>Ubicacion </h5>
           </div>
         </div>
@@ -78,7 +76,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
       </div>
       <div className="w-25 m-auto text-center">
         <Link className="" to="/restaurantes">
-				<span className="mt-2 text-center btn  btn-lg" href="#" role="button" style={{backgroundColor:"rgb(247, 230, 173)"}}>
+				<span className="mt-2 text-center btn " href="#" role="button" style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}}>
 					Volver atrás
 				</span>
 			</Link>
