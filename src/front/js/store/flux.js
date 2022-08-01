@@ -29,22 +29,24 @@ const getState = ({
                     background: "white",
                     initial: "white",
                 },
-                
 
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
+
+                {
+                    title: "SECOND",
+                    background: "white",
+                    initial: "white",
+                },
+            ],
+            restaurantes: [],
+            profiles: [],
+            likes: [],
+            restaurante: [],
+            went: [],
+            profileRestaurante: [],
+            url: [],
+            precio:[]
         },
-      ],
-      restaurantes: [],
-      profiles: [],
-      likes: [],
-      restaurante: [],
-      went: [],
-      profileRestaurante:[]
-    },
-    
+
         actions: {
             // addFavorit: (nombre) => {
             //   //Creamos la funcion para obtener el nombre con el Onclick
@@ -194,91 +196,14 @@ const getState = ({
             },
 
 
-      logout: () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("esLocal");
-        localStorage.removeItem("esUsuario");
-        setStore({
-          auth: false,
-        });
-      },
-      // Use getActions to call a function within a fuction
-      // exampleFunction: () => {
-      //    getActions().changeColor(0, "green");
-      // },
-      // getMessage: async () => {
-      //    try{
-      //        // fetching data from the backend
-      //        const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-      //        const data = await resp.json()
-      //        setStore({ message: data.message })
-      //        // don't forget to return something, that is how the async resolves
-      //        return data;
-      //    }catch(error){
-      //        console.log("Error loading message from backend", error)
-      //    }
-      // },
-      // changeColor: (index, color) => {
-      //    //get the store
-      //    const store = getStore();
-      //    //we have to loop the entire demo array to look for the respective index
-      //    //and change its color
-      //    const demo = store.demo.map((elm, i) => {
-      //        if (i === index) elm.background = color;
-      //        return elm;
-      //    });
-      //    //reset the global store
-      //    setStore({ demo: demo });
-      // }
-      //CODIGO DE CLOUDINARY SUBIDA DE FOTO
-      // uploadFile: async (uploadImages) => {
-      //   const cloud_name = "carolinaqotf"; //"pluggedin";
-      //   const preset = "s5oaavqo"; //"icnpftra";
-      //   const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
-      //   const formData = new FormData();
-      //   formData.append("file", uploadImages);
-      //   formData.append("upload_preset", `${preset}`);
-      //   try {
-      //     const response = await fetch(
-      //       //process.env.BACKEND_URL + "/api/hello",
-      //       url_claudinari,
-      //       {
-      //         method: "POST",
-      //         body: formData,
-      //       }
-      //     );
-      //     if (response.ok) {
-      //       const data = await response.json();
-      //       // actions.putImage(data.secure_url);
-      //       console.log(data);
-      // getInformationCurrentRestaurant: () => {
-      //   fetch(process.env.BACKEND_URL + "/api/restaurante", {
-      //     method: "GET",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      //     },
-      //   })
-      //     .then((response) => response.json())
-      //     .then((data) =>
-      //       setStore({
-      //         profiles: data,
-      //       })
-      //     );
-      // },
-
-      //getRestaurantes: async () => {
-      //  const store = getStore();
-
-      //  // fetching data from the backend
-      //  const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
-      //    .then((resp) => resp.json())
-      //    .then((data) =>
-      //      setStore({
-      //        restaurantes: data,
-      //      })
-      //    );
-      //},
+            logout: () => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("esLocal");
+                localStorage.removeItem("esUsuario");
+                setStore({
+                    auth: false,
+                });
+            },
             // Use getActions to call a function within a fuction
             // exampleFunction: () => {
             //    getActions().changeColor(0, "green");
@@ -328,13 +253,117 @@ const getState = ({
             //       const data = await response.json();
             //       // actions.putImage(data.secure_url);
             //       console.log(data);
-           
-            // logout: () => {
-            //   localStorage.removeItem("token");
-            //   setStore({
-            //     auth: false,
-            //   });
+            // getInformationCurrentRestaurant: () => {
+            //   fetch(process.env.BACKEND_URL + "/api/restaurante", {
+            //     method: "GET",
+            //     headers: {
+            //       "Content-Type": "application/json",
+            //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+            //     },
+            //   })
+            //     .then((response) => response.json())
+            //     .then((data) =>
+            //       setStore({
+            //         profiles: data,
+            //       })
+            //     );
             // },
+
+            //getRestaurantes: async () => {
+            //  const store = getStore();
+
+            //  // fetching data from the backend
+            //  const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
+            //    .then((resp) => resp.json())
+            //    .then((data) =>
+            //      setStore({
+            //        restaurantes: data,
+            //      })
+            //    );
+            //},
+            // Use getActions to call a function within a fuction
+            // exampleFunction: () => {
+            //    getActions().changeColor(0, "green");
+            // },
+            // getMessage: async () => {
+            //    try{
+            //        // fetching data from the backend
+            //        const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+            //        const data = await resp.json()
+            //        setStore({ message: data.message })
+            //        // don't forget to return something, that is how the async resolves
+            //        return data;
+            //    }catch(error){
+            //        console.log("Error loading message from backend", error)
+            //    }
+            // },
+            // changeColor: (index, color) => {
+            //    //get the store
+            //    const store = getStore();
+            //    //we have to loop the entire demo array to look for the respective index
+            //    //and change its color
+            //    const demo = store.demo.map((elm, i) => {
+            //        if (i === index) elm.background = color;
+            //        return elm;
+            //    });
+            //    //reset the global store
+            //    setStore({ demo: demo });
+            // }
+            //CODIGO DE CLOUDINARY SUBIDA DE FOTO
+            // uploadFile: async (uploadImages) => {
+            //   const cloud_name = "carolinaqotf"; //"pluggedin";
+            //   const preset = "s5oaavqo"; //"icnpftra";
+            //   const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+            //   const formData = new FormData();
+            //   formData.append("file", uploadImages);
+            //   formData.append("upload_preset", `${preset}`);
+            //   try {
+            //     const response = await fetch(
+            //       //process.env.BACKEND_URL + "/api/hello",
+            //       url_claudinari,
+            //       {
+            //         method: "POST",
+            //         body: formData,
+            //       }
+            //     );
+            //     if (response.ok) {
+            //       const data = await response.json();
+            //       // actions.putImage(data.secure_url);
+            //       console.log(data);
+
+            getInformationCurrentRestaurant: () => {
+                fetch(process.env.BACKEND_URL + "/api/profile-restaurante", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        },
+                    })
+                    .then((response) => response.json())
+                    .then((data) =>
+                        setStore({
+                            profileRestaurante: data,
+                            
+                        })
+                        
+                    );
+                  
+            },
+            
+            
+            getRestaurantes: async () => {
+                const store = getStore();
+
+                // fetching data from the backend
+                const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
+                    .then((resp) => resp.json())
+                    .then((data) =>
+                        setStore({
+                            restaurantes: data,
+                        })
+                    );
+            },
+
 
 
             registroUsuario: async (nombre, apellido, email, password) => {
@@ -376,6 +405,28 @@ const getState = ({
                 //  console.log(data);
                 //});
             },
+
+            añadirPrecio: async (id, precio) => {
+                const response = await fetch(process.env.BACKEND_URL + "/api/addPrice/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        precio: precio,
+
+                    }),
+                });
+                if (response.ok) {
+                    console.log("Datos guardados");
+                } else {
+                    console.log("No se ha podido modificar el dato");
+                }
+            },
+
             //   fetching data from the backend
             //   const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
             //     .then((resp) => resp.json())
@@ -452,46 +503,10 @@ const getState = ({
             // 	getActions().changeColor(0, "green");
             // },
 
-            // getMessage: async () => {
-            // 	try{
-            // 		// fetching data from the backend
-            // 		const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-            // 		const data = await resp.json()
-            // 		setStore({ message: data.message })
-            // 		// don't forget to return something, that is how the async resolves
-            // 		return data;
-            // 	}catch(error){
-            // 		console.log("Error loading message from backend", error)
-            // 	}
-            // },
-            // changeColor: (index, color) => {
-            // 	//get the store
-            // 	const store = getStore();
 
-            // 	//we have to loop the entire demo array to look for the respective index
-            // 	//and change its color
-            // 	const demo = store.demo.map((elm, i) => {
-            // 		if (i === index) elm.background = color;
-            // 		return elm;
-            // 	});
-
-            // 	//reset the global store
-            // 	setStore({ demo: demo });
-            // }
 
             //CODIGO DE CLOUDINARY SUBIDA DE FOTO
 
-            //     if (response.ok) {
-            //       const data = await response.json();
-            //       // actions.putImage(data.secure_url);
-            //       console.log(data);
-            //     }
-            //   } catch (error) {
-            //     console.log("message", error);
-            //   }
-            // },
-
-            // CODIGO DE CLOUDINARY SUBIDA DE FOTO
             //     if (response.ok) {
             //       const data = await response.json();
             //       // actions.putImage(data.secure_url);
@@ -549,52 +564,61 @@ const getState = ({
             },
 
 
-            // uploadFile: async (uploadImages) => {
-            //   const cloud_name = "carolinaqotf"; //"pluggedin";
-            //   const preset = "s5oaavqo"; //"icnpftra";
-            //   const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
-            //   const formData = new FormData();
-            //   formData.append("file", uploadImages);
-            //   formData.append("upload_preset", `${preset}`);
-            //   try {
-            //     const response = await fetch(
-            //       //process.env.BACKEND_URL + "/api/hello",
-            //       url_claudinari,
-            //       {
-            //         method: "POST",
-            //         body: formData,
-            //       }
-            //     );
-            //     if (response.ok) {
-            //       const data = await response.json();
-            //       // actions.putImage(data.secure_url);
-            //       console.log(data);
+            uploadFile: async (uploadImages) => {
+                const store = getStore();
+                const cloud_name = "dqa8txoeg"; //"pluggedin";
+                const preset = "ehajybj3"; //"icnpftra";
+                const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+                const formData = new FormData();
+                formData.append("file", uploadImages);
+                formData.append("upload_preset", `${preset}`);
+                try {
+                    const response = await fetch(
+                        //   process.env.BACKEND_URL + "/api/hello",
+                        url_claudinari, {
+                            method: "POST",
+                            body: formData,
+                        }
+                    );
+                    if (response.ok) {
+                        const data = await response.json();
+                        //   actions.putImage(data.secure_url);
+                        // console.log(data);
+                        // console.log(data.url)
+                        setStore({url:data.url})
+                        // console.log(data.url)
+                            console.log(store.url);
+                    }
+                } catch (error) {
+                    console.log("message", error);
+                };
+            },
 
-            //     }
-            //   } catch (error) {
-            //     console.log("message", error);
-            //   };
-            //   RegistroLocales : (nombre, apellido, email, password) => {
-            //       fetch(process.env.BACKEND_URL + '/api/user', {
-            //               method: "POST",
-            //               body: JSON.stringify({
-            //                   "nombre": nombre,
-            //                   "apellido": apellido,
-            //                   "email": email,
-            //                   "password": password
-            //               }),
-            //               headers: {
-            //                   "Content-Type": "application/json"
-            //               }
-            //           })
-            //           .then((response) => {
-            //               return response.json()
-            //           })
-            //           .then((data) => {
-            //               console.log(data)
-            //           })
-            //
-        },
+            añadirFoto : async (id)=>{
+                const store = getStore();
+                const response = await fetch(process.env.BACKEND_URL + "/api/addPhoto/"+id,
+                    {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      },
+                      body: JSON.stringify({
+                        id:id,
+                        foto: store.url,
+
+                      }),
+                    }
+                  );
+                  if (response.ok) {
+                    
+                    alert("Datos guardados");
+                  } else {
+                    alert("No se ha podido modificar el dato");
+                  }
+            },
+        }
     };
 };
 

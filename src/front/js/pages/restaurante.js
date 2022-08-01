@@ -2,41 +2,56 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
+import { CargaDeFoto } from "../component/cargaDeFoto";
 
 export const Restaurante = () => {
   const { store, actions } = useContext(Context);
+
+  
+  const [precio, setPrecio] = useState("");
+  const [foto, setFoto] = useState("");
+
+  const datos=store.restaurantes;
+  
+  // const nombre=datos.map(a=>a.nombre);
+  // const descripcion=datos.map(a=>a.descripcion);
+  
+  // console.log(datos);
+
+  const getPrecio=datos.map(a=>a.precio);
+  console.log(getPrecio);
+
+
+  console.log(store.profileRestaurante?.id);
+  console.log(store.profileRestaurante?.precio);
+  // const getFoto=datos.map(a=>a.foto);
+  // console.log(getFoto)
+
+  const handleSubmitPrice = (e) => {
+    e.preventDefault();
+    const id=store.profileRestaurante?.id;
+    console.log(id);
+    actions.añadirPrecio(id,precio);
+    
+  };
+  
+  // const actualizaFoto = (e) =>{
+    
+  //   const id=store.profileRestaurante?.id;
+  //   actions.añadirFoto(id);
+  //   window.location.reload()
+  // }
+
+  console.log(store.url);
   console.log(store.restaurantes);
   
 
   useEffect(() => {
     // actions.getFavorit();
-    actions.getRestaurantes();
-    
-    
+    actions.getInformationCurrentRestaurant();
   }, []);
-  const datos=store.restaurantes;
-  
-  const nombre=datos.map(a=>a.nombre);
-  const descripcion=datos.map(a=>a.descripcion);
-  //const restaurante = {
-  //  id: 1,
-  //  nombre: "Casa Paco",
-  //  email: "pepito99@gmail.com",
-  //  descripcion: "Las mejores comidas , todo casero y a tu gusto ",
-  //  tipoDeLocal: "Restaurante",
-  //  direccion: {
-  //    id: 1,
-  //    barrio: "La Mejostilla",
-  //    calle: "Manuel Castillo",
-  //    numero: 99,
-  //  },
-  //  reseña: {
-  //    puntuacion: <b>⭐ ⭐ ⭐ ⭐ ⭐ </b>,
-  //    comentario:
-  //      "La comida estaba genial y con una gran atención por parte de los camareros .Volveremos!!",
-  //  },
-  //};
-  //
+
+
   return (
     <>
       {store.auth &&
@@ -44,6 +59,7 @@ export const Restaurante = () => {
       store.auth != undefined &&
       localStorage.getItem("esLocal") ? (
         <div>
+          
           <div
             className="card mb-3"
             style={{
@@ -55,23 +71,61 @@ export const Restaurante = () => {
             <div className="row g-0">
               <div className="col-md-4">
                 <img
-                  src="https://i0.wp.com/www.diegocoquillat.com/wp-content/uploads/2021/11/Promocionar-un-restaurante-segun-Google.jpg?w=700&ssl=1"
+                  src={store.profileRestaurante?.foto}
                   className="img-fluid rounded-start"
                   alt="..."
                 />
+                <div className="d-flex">
+                <CargaDeFoto/>
+                
+                </div>
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h6 className="card-title">
-                    {nombre}--
-                    {descripcion}
-                  </h6>
-                  <p className="card-text"></p>
+                  <h2 className="card-title">
+                    {store.profileRestaurante?.nombre}
+                  </h2>
+                  <p className="card-text">{store.profileRestaurante?.descripcion}</p>
                 </div>
               </div>
             </div>
           </div>
+          <div className="m-auto w-50">
+        <div  className="text-center  m-auto w-50">
 
+        <form action="" onSubmit={handleSubmitPrice}>
+        {store.profileRestaurante?.precio > 1 ? 
+        <div>
+          <p>Ya has introducido el precio del ticket medio: {store.profileRestaurante?.precio} €</p> 
+          <p>Quieres restablecer el valor?</p>
+          <input className="" type="number" id="precio" name="precio" onChange={(e) => setPrecio(e.target.value)}/> 
+          <br />
+          <button  onClick={() => window.location.reload()} type="submit" style={{
+                  backgroundColor: "rgb(247, 230, 173)",
+                  color: "black",
+                
+                  }} className=" mt-1 btn">Añadir Precio</button>
+        </div>
+        : 
+        <div>
+        <h5>Deberías introducir el precio medio del ticket para que los usuarios lo vean!</h5>
+        
+        <label className="" htmlFor="Name">Introduce el precio medio del ticket:</label>
+        <div  className="m-auto ">
+           <div className=" ">
+           <input onChange={(e) => setPrecio(e.target.value)} className="" type="number" id="precio" name="precio" /><span className="border border-dark p-1 m-1">€</span> 
+           </div>
+           <button  onClick={() => window.location.reload()}   type="submit" style={{
+                  backgroundColor: "rgb(247, 230, 173)",
+                  color: "black",
+                
+                  }} className=" mt-1 btn">Añadir Precio</button>
+        </div>
+        </div>
+        }
+        </form>
+        </div>
+      </div>
           <div
             className="container"
             style={{
@@ -83,7 +137,8 @@ export const Restaurante = () => {
             }}
           >
             <p>
-              Enhorabuena {nombre}.!.. <br></br>A
+              Enhorabuena <strong>{store.profileRestaurante?.nombre} </strong>! <br></br>
+              A
               partir de ahora, eres miembro de la gran comunidad que conforma la
               RUTA 3B, donde podrás exponer de forma simple y rapida tus
               servicios y promociones basadosa en nuestra politica 3B "Bueno,
