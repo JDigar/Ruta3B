@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import logo3 from "../../img/logo3.png"
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();

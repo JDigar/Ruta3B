@@ -74,8 +74,12 @@
 	},
 	"dependencies": {
 		"@formspark/use-formspark": "^0.1.39",
+		"@react-google-maps/api": "^2.12.1",
 		"bootstrap": "^5.2.0-beta1",
 		"bootstrap-icons": "^1.8.3",
+		"google-map-react": "^2.2.0",
+		"google-maps": "^4.3.3",
+		"google-maps-react": "^2.0.6",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
