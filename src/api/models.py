@@ -53,9 +53,10 @@ class Locales(db.Model):
     foto = db.Column(db.String(500), unique=False, nullable=True)
     # favoritos = db.relationship('Favoritos', backref='locales', lazy=True)
     
+    #fotos = db.relationship('Fotos', backref='fotos', lazy=True)
 
     def __repr__(self):
-        return f'<Locales {self.id}>'
+        return f'<Locales> {self.id} {self.email}'
 
     def serialize(self):
         return {
@@ -66,6 +67,7 @@ class Locales(db.Model):
             "descripcion": self.descripcion,
             "precio": self.precio,
             "foto": self.foto,
+            
             # do not serialize the password, its a security breach
         }
 
@@ -89,6 +91,29 @@ class Direccion(db.Model):
             "numero": self.numero,
             # do not serialize the password, its a security breach
         }
+
+# TABLA DE FOTOS
+# class Fotos(db.Model):
+#     __tablename__ = 'fotos'
+#     id = db.Column(db.Integer, primary_key=True)
+#     url = db.Column(db.String(450), nullable=False)
+    
+    
+#     local_id = db.Column(db.String(450), db.ForeignKey('locales.id'), nullable=True)
+
+#     # def __repr__(self):
+#     #     return f'<Fotos {self.id}>'
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "url": self.url,
+#             'locales':Locales.query.get(self.local_id).serialize(),
+#             # do not serialize the password, its a security breach
+#             'fotos':list(map(lambda fotos: fotos.serialize(), self.fotos))
+#         }
+
+
 
 # # TABLA DE FAVORITOS DE USUARIOS
 # class Favoritos(db.Model):

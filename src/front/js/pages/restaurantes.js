@@ -42,6 +42,7 @@ export const Restaurantes = () => {
 
   return (
     <>
+
     <select onChange={(e)=>setSelect(e.target.value)} style={{marginLeft:"113px"}}>
      
       <option>select a restaurant</option>
@@ -69,7 +70,7 @@ export const Restaurantes = () => {
             nombre={item.nombre}
           />   </div>)):rest}
           
-       
+
       </div>
     </>
   );

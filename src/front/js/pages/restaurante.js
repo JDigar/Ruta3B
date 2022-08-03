@@ -13,19 +13,13 @@ export const Restaurante = () => {
 
   const datos=store.restaurantes;
   
-  // const nombre=datos.map(a=>a.nombre);
-  // const descripcion=datos.map(a=>a.descripcion);
   
-  // console.log(datos);
-
   const getPrecio=datos.map(a=>a.precio);
   console.log(getPrecio);
 
 
   console.log(store.profileRestaurante?.id);
-  console.log(store.profileRestaurante?.precio);
-  // const getFoto=datos.map(a=>a.foto);
-  // console.log(getFoto)
+  
 
   const handleSubmitPrice = (e) => {
     e.preventDefault();
@@ -35,15 +29,7 @@ export const Restaurante = () => {
     
   };
   
-  // const actualizaFoto = (e) =>{
-    
-  //   const id=store.profileRestaurante?.id;
-  //   actions.añadirFoto(id);
-  //   window.location.reload()
-  // }
-
-  console.log(store.url);
-  console.log(store.restaurantes);
+ 
   
 
   useEffect(() => {
@@ -58,78 +44,12 @@ export const Restaurante = () => {
       store.auth != "" &&
       store.auth != undefined &&
       localStorage.getItem("esLocal") ? (
-        <div>
-          
-          <div
-            className="card mb-3"
-            style={{
-              marginLeft: "20px",
-              marginRight: "20px",
-              marginTop: "100px",
-            }}
-          >
-            <div className="row g-0">
-              <div className="col-md-4">
-                <img
-                  src={store.profileRestaurante?.foto}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
-                <div className="d-flex">
-                <CargaDeFoto/>
-                
-                </div>
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    {store.profileRestaurante?.nombre}
-                  </h2>
-                  <p className="card-text">{store.profileRestaurante?.descripcion}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="m-auto w-50">
-        <div  className="text-center  m-auto w-50">
-
-        <form action="" onSubmit={handleSubmitPrice}>
-        {store.profileRestaurante?.precio > 1 ? 
-        <div>
-          <p>Ya has introducido el precio del ticket medio: {store.profileRestaurante?.precio} €</p> 
-          <p>Quieres restablecer el valor?</p>
-          <input className="" type="number" id="precio" name="precio" onChange={(e) => setPrecio(e.target.value)}/> 
-          <br />
-          <button  onClick={() => window.location.reload()} type="submit" style={{
-                  backgroundColor: "rgb(247, 230, 173)",
-                  color: "black",
-                
-                  }} className=" mt-1 btn">Añadir Precio</button>
-        </div>
-        : 
-        <div>
-        <h5>Deberías introducir el precio medio del ticket para que los usuarios lo vean!</h5>
         
-        <label className="" htmlFor="Name">Introduce el precio medio del ticket:</label>
-        <div  className="m-auto ">
-           <div className=" ">
-           <input onChange={(e) => setPrecio(e.target.value)} className="" type="number" id="precio" name="precio" /><span className="border border-dark p-1 m-1">€</span> 
-           </div>
-           <button  onClick={() => window.location.reload()}   type="submit" style={{
-                  backgroundColor: "rgb(247, 230, 173)",
-                  color: "black",
-                
-                  }} className=" mt-1 btn">Añadir Precio</button>
-        </div>
-        </div>
-        }
-        </form>
-        </div>
-      </div>
+        <div className="m-4 p-2">
           <div
-            className="container"
+            className="m-auto mb-4 container"
             style={{
-              marginTop: "4cm",
+
               marginRight: "100px",
               marginLeft: "50px",
               backgroundColor: "rgb(247, 230, 173)",
@@ -162,6 +82,77 @@ export const Restaurante = () => {
               Nuestra politica{" "}
             </a>
           </div>
+          <div
+            className="w-75 m-auto card mb-3"
+          >
+            <div  className="row g-0">
+              <div className="col-md-4">
+                <img
+                  src={store.profileRestaurante?.foto}
+                  className="img-fluid rounded-start"
+                  alt="..."
+                />
+                <div style={{ maxHeight:"200px"}} className="d-flex">
+                <CargaDeFoto/>
+                
+                </div>
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h2 className="mt-3 text-center card-title">
+                    {store.profileRestaurante?.nombre}
+                  </h2>
+                  <hr />
+                  <p className="card-text">{store.profileRestaurante?.descripcion}</p>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+            <Link type="button" style={{
+                  backgroundColor: "rgb(247, 230, 173)",
+                  color: "black",
+                
+                  }} className="btn  btn-sm h-50 m-3 w-25 text-center" to="/editInfo">Editar Info</Link>
+            </div>
+            
+          </div>
+          <div className="m-auto w-50">
+        <div  className="text-center  m-auto w-50">
+          
+        <form action="" onSubmit={handleSubmitPrice}>
+        {store.profileRestaurante?.precio > 1 ? 
+        <div>
+          <strong>Ya has introducido el precio del ticket medio: {store.profileRestaurante?.precio} €</strong> 
+          <p>Quieres establecer otro valor?</p>
+          <input className="" type="number" id="precio" name="precio" onChange={(e) => setPrecio(e.target.value)}/> 
+          <br />
+          <button  onClick={() => window.location.reload()} type="submit" style={{
+                  backgroundColor: "rgb(247, 230, 173)",
+                  color: "black",
+                
+                  }} className=" mt-1 btn">Añadir Precio</button>
+        </div>
+        : 
+        <div>
+        <h5>Deberías introducir el precio medio del ticket para que los usuarios lo vean!</h5>
+        
+        <label className="" htmlFor="Name">Introduce el precio medio del ticket:</label>
+        <div  className="m-auto ">
+           <div className=" ">
+           <input onChange={(e) => setPrecio(e.target.value)} className="" type="number" id="precio" name="precio" /><span className="border border-dark p-1 m-1">€</span> 
+           </div>
+           <button  onClick={() => window.location.reload()}   type="submit" style={{
+                  backgroundColor: "rgb(247, 230, 173)",
+                  color: "black",
+                
+                  }} className=" mt-1 btn">Añadir Precio</button>
+        </div>
+        </div>
+        }
+        </form>
+        </div>
+      </div>
+          
           <div className="card-group">
             <div className="card">
               <img

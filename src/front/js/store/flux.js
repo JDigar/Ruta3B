@@ -303,41 +303,106 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           if (response.ok) {
             const data = await response.json();
-            
-            setStore({
-              url: data.url,
-            });
-            
-            console.log(store.url);
-          }
-        } catch (error) {
-          console.log("message", error);
-        }
-      },
+                      
 
-      añadirFoto: async (id) => {
-        const store = getStore();
-        const response = await fetch(
-          process.env.BACKEND_URL + "/api/addPhoto/" + id,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+
+            añadirPrecio: async (id, precio) => {
+                const response = await fetch(process.env.BACKEND_URL + "/api/addPrice/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        precio: precio,
+
+                    }),
+                });
+                if (response.ok) {
+                    console.log("Datos guardados");
+                } else {
+                    console.log("No se ha podido modificar el dato");
+                }
             },
-            body: JSON.stringify({
-              id: id,
-              foto: store.url,
-            }),
-          }
-        );
-        if (response.ok) {
-          alert("Datos guardados");
-        } else {
-          alert("No se ha podido modificar el dato");
-        }
-      },
+            modificarDatos: async (id,nombre,tipo_local,descripcion) => {
+                const response = await fetch(process.env.BACKEND_URL + "/api/editInfoRestaurantes/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        nombre:nombre,
+                        tipo_local:tipo_local,
+                        descripcion:descripcion,
+                    }),
+                });
+                if (response.ok) {
+                    console.log("Datos guardados");
+                } else {
+                    console.log("No se ha podido modificar el dato");
+                }
+            },
+            
+           
+            uploadFile: async (uploadImages) => {
+                const store = getStore();
+                const cloud_name = "dqa8txoeg"; //"pluggedin";
+                const preset = "ehajybj3"; //"icnpftra";
+                const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+                const formData = new FormData();
+                formData.append("file", uploadImages);
+                formData.append("upload_preset", `${preset}`);
+                try {
+                    const response = await fetch(
+                        //   process.env.BACKEND_URL + "/api/hello",
+                        url_claudinari, {
+                            method: "POST",
+                            body: formData,
+                        }
+                    );
+                    if (response.ok) {
+                        const data = await response.json();
+                        //   actions.putImage(data.secure_url);
+                        // console.log(data);
+                        // console.log(data.url)
+                        setStore({url:data.url})
+                        // console.log(data.url)
+                            console.log(store.url);
+                    }
+                } catch (error) {
+                    console.log("message", error);
+                };
+            },
+
+            añadirFoto : async (id)=>{
+                const store = getStore();
+                const response = await fetch(process.env.BACKEND_URL + "/api/addPhoto/"+id,
+                    {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      },
+                      body: JSON.stringify({
+                        id:id,
+                        foto: store.url,
+
+                      }),
+                    }
+                  );
+                  if (response.ok) {
+                    
+                    alert("Datos guardados");
+                  } else {
+                    alert("No se ha podido modificar el dato");
+                  }
+
     },
   };
 };
