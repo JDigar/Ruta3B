@@ -12,20 +12,21 @@ export const Usuario = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    // actions.getFavorit();
+    actions.getFavorit();
     actions.getInformationCurrentMember();
   }, []);
 
-
-  // {localStorage.getItem("esLocal") ? navigate("/restaurante") : navigate("/usuario")}
+ 
   console.log(store.likes);
   return (
     <>
-      {store.auth && store.auth != "" && store.auth != undefined && localStorage.getItem("esUsuario") ? (
+      {store.auth &&
+      store.auth != "" &&
+      store.auth != undefined &&
+      localStorage.getItem("esUsuario") ? (
         <div className="container-fluid">
           <div className="user">
             <div className="row mx-4">
-             
               <div className="">
                 <h1>
                   Ey, {store.profiles?.nombre} {store.profiles?.apellido}
@@ -61,7 +62,7 @@ export const Usuario = () => {
                   {store.likes.length > 0
                     ? store?.likes.map((item, index) => (
                         <CardHome
-                          key={index}
+                          key={item.id}
                           nombre={item.nombre}
                           id={item.id}
                         />
@@ -100,38 +101,4 @@ export const Usuario = () => {
 };
 
 {
-  /* <div className="col-6 d-flex flex-column align-items-center">
-<h2>Tus sitios favoritos</h2>
-<div className="card" style={{ width: 18 + "em" }}>
-  <img
-    src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
-    className="card-img-top"
-    alt="casa-paco-image"
-  />
-  <div className="card-body">
-    <h5 className="card-title">{store.likes}</h5>
-    <p className="card-text">
-      Some quick example text to build on the card title and make
-      up the bulk of the card's content.
-    </p>
-  </div>
-</div>
-</div>
-<div className="col-6 d-flex flex-column align-items-center">
-<h2>Tus sitios visitados</h2>
-<div className="card" style={{ width: 18 + "em" }}>
-  <img
-    src="https://media-cdn.tripadvisor.com/media/photo-s/01/eb/01/91/casa-paco-madrid.jpg"
-    className="card-img-top"
-    alt="casa-paco-image"
-  />
-  <div className="card-body">
-    <h5 className="card-title">CASA PACO</h5>
-    <p className="card-text">
-      Some quick example text to build on the card title and make
-      up the bulk of the card's content.
-    </p>
-  </div>
-</div>
-</div> */
-}
+  

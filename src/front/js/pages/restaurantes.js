@@ -1,5 +1,7 @@
 
+
 import React, { useContext, useEffect, useState } from "react";
+
 
 import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
@@ -14,8 +16,8 @@ export const Restaurantes = () => {
   const rest = store.restaurantes.map((item, index) => (
     <div className="col-lg-12 mx-auto" key={item.id}>
     <CardHome
-      key={index}
-      id={index}
+      key={item.id}
+      id={item.id}
       descripcion={item.descripcion}
       tipo_local={item.tipo_local}
       nombre={item.nombre}
@@ -23,6 +25,7 @@ export const Restaurantes = () => {
     />
     </div>
   ));
+
 
 
   
@@ -34,6 +37,7 @@ export const Restaurantes = () => {
   useEffect(() => {
     actions.getRestaurantes();
   }, []);
+
 
 
   return (
@@ -57,6 +61,7 @@ export const Restaurantes = () => {
 
               {select !=="todos"?filterRestaurante.map((item, index) => (
            <div className="col-lg-12 mx-auto" key={item.id}>
+
           <CardHome
             
             id={item.id}
