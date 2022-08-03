@@ -5,7 +5,7 @@ import "./../../styles/card.css";
 
 export const CardHome = ({ id,nombre, descripcion, tipo_local,foto }) => {
   const { store, actions } = useContext(Context);
-
+console.log(id);
   return (
     <div className="mt-3 p-5 d-flex mini-container myborder">
       <img
