@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Locales, Direccion
 from api.utils import generate_sitemap, APIException
+from geopy.geocoders import Nominatim
 import json
 
 # # flask jwt paquete de instalacion
@@ -278,3 +279,25 @@ def add_foto_local(id):
             
             return jsonify({'results': local.serialize()}),201
     
+
+
+
+# @api.route('/new_route/<int:id>', methods=['POST'])
+# @jwt_required()
+# def route(id):
+#         user = get_jwt_identity()
+#         user = User.query.filter_by(email=user).first()
+#         body = json.loads(request.data)
+#         local = User.query.get(id)
+#         geo = Nominatim(user_agent="MyApp")
+#         # aditional_info = body["info"]
+#         foto_user = body["foto_user"]
+#         loc = geo.geocode(foto_user)
+#         latitud = (loc.latitude)
+#         longitud = (loc.longitude)
+#         print (latitud, longitud)
+#         # iframe = “https://maps.google.com/?ll=”+ (latitud) + “,” + (longitud) +“&z=14&t=m&output=embed”
+#         #meeting = Meeting(address=body[“address”], date=body[“date”], latitude=latitud , longitude=longitud, group_id=group.id, aditional_info=aditional_info)
+#         db.session.add(meeting)
+#         db.session.commit()
+#         return jsonify(meeting.serialize())

@@ -1,4 +1,6 @@
+
 import React, { useContext, useEffect, useState } from "react";
+
 import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
 import { Link, useParams } from "react-router-dom";
@@ -21,6 +23,7 @@ export const Restaurantes = () => {
     />
     </div>
   ));
+
 
   
     const filterRestaurante=store.restaurantes.filter((item) =>{
@@ -49,6 +52,7 @@ export const Restaurantes = () => {
       {/* <div className="text-center d-flex container-fluid w-75"> */}
       <div className="row mx-auto">
         
+
           
 
               {select !=="todos"?filterRestaurante.map((item, index) => (
