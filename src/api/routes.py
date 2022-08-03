@@ -173,6 +173,10 @@ def save_fav_local(local_id):
             db.session.add(local)
             db.session.commit()
             return jsonify({'response': "Favorit add"}),200
+        
+        else: 
+            return jsonify({"response" : "Ya tienes este local favorito"}), 208
+        
 
     if request.method=="DELETE":
         local = Locales.query.get(local_id)
