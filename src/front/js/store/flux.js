@@ -44,7 +44,8 @@ const getState = ({
             went: [],
             profileRestaurante: [],
             url: [],
-            precio:[]
+            precio:[],
+            galeriaDeFotos:[]
         },
 
         actions: {
@@ -426,7 +427,27 @@ const getState = ({
                     console.log("No se ha podido modificar el dato");
                 }
             },
-
+            modificarDatos: async (id,nombre,tipo_local,descripcion) => {
+                const response = await fetch(process.env.BACKEND_URL + "/api/editInfoRestaurantes/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        nombre:nombre,
+                        tipo_local:tipo_local,
+                        descripcion:descripcion,
+                    }),
+                });
+                if (response.ok) {
+                    console.log("Datos guardados");
+                } else {
+                    console.log("No se ha podido modificar el dato");
+                }
+            },
             //   fetching data from the backend
             //   const resp = await fetch(process.env.BACKEND_URL + "/api/restaurantes")
             //     .then((resp) => resp.json())

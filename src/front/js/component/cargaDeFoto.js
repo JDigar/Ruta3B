@@ -12,9 +12,10 @@ export const CargaDeFoto = () => {
     window.location.reload()
   }
   return (
-    <div className="border border-dark container text-center ">
+    <div className="w-50 container text-center ">
       <div 
       className="btn-foto mb-3">
+        <h5>1r Paso:</h5>
         <input
           className="form-control input-foto bg-dark text-white"
           type="file"
@@ -24,7 +25,7 @@ export const CargaDeFoto = () => {
       </div>
       <div className="m-auto d-flex">
         <div className="m-auto">
-        <h5>1r Paso:</h5>
+        <h5>2do Paso:</h5>
       <button
         style={{
         backgroundColor: "rgb(247, 230, 173)",
@@ -36,7 +37,7 @@ export const CargaDeFoto = () => {
       >
         Subir Foto
       </button>
-      <h5>2do Paso:</h5>
+      <h5>3r Paso:</h5>
       <button style={{
                   backgroundColor: "rgb(247, 230, 173)",
                   color: "black",

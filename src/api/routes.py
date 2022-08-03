@@ -301,3 +301,43 @@ def add_foto_local(id):
 #         db.session.add(meeting)
 #         db.session.commit()
 #         return jsonify(meeting.serialize())
+
+
+
+#Añadir fotos para el restaurante:
+
+@api.route('/editInfoRestaurantes/<int:id>', methods=['PUT'])
+@jwt_required()
+def edit_info_general_locales(id):
+    
+    
+    local = Locales.query.get(id)
+    
+    nombre = request.json.get('nombre', None)
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    tipo_local = request.json.get('tipo_local', None)
+    descripcion = request.json.get('descripcion', None)
+    precio = request.json.get('precio', None)
+    foto = request.json.get('foto', None)
+
+    if  (nombre or email or password or tipo_local or descripcion or precio or foto):
+            if nombre != None:
+                local.nombre = nombre
+            if email != None:  
+                local.email = email
+            if password != None:
+                local.password = password
+            if tipo_local != None:
+                local.tipo_local = tipo_local
+            if descripcion !=None:
+                local.descripcion = descripcion
+            if precio != None:
+                local.precio = precio
+            if foto != None:
+                local.foto = foto
+            
+            
+            db.session.commit()
+            
+            return jsonify({'results': local.serialize()}),201

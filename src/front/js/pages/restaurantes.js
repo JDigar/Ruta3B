@@ -34,19 +34,10 @@ export const Restaurantes = () => {
 
   return (
     <>
-    
+      
       <div className="text-center d-flex container-fluid w-75">
         <div className="col-5 cont2 row mx-5 p-5">
           {rest}
-          
-              {/* {store.restaurantes.map((item, index) => (
-          <CardHome
-            key={index}
-            id={item.id}
-            tipo_local={item.tipo_local}
-            nombre={item.nombre}
-          />))} */}
-          {/* <Link to={"/ruta-comida/"></Link> */}
         </div>
       </div>
     </>

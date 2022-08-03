@@ -38,32 +38,7 @@ export const Home = () => {
 
   let randm2 = id2[Math.floor(Math.random() * id2.length)];
 
-  // let idcheck = store.restaurantes.map((item) => item.id);
-  // let idcheck2 = store.restaurantes.map((item) => item.id);
-  // console.log(idcheck);
-  // console.log(idcheck2);
-
-  // for (let i = 0; i < idcheck.length; i++) {
-  //   const element = idcheck[i];
-  //   console.log(element);
-  // }
-  // for (let i = 0; i < idcheck2.length; i++) {
-  //   const element2 = idcheck2[i];
-  //   console.log(element2);
-  // }
-  // let randomNumber = id[Math.floor(Math.random() * idcheck.length + 1)];
-  // console.log(randomNumber);
-  // console.log("---------" + randomNumber);
-  // let randomNumber2 = id2[ Math.floor(Math.random() * idcheck2.length + 1)];
-  // console.log("---------" + randomNumber2);
-
-  // if (randomNumber === randomNumber2) {
-  //   randomNumber = 1;
-  //   randomNumber2 = 2;
-  //   console.log("+++++++++-------" + randomNumber);
-  //   console.log("+++++++++" + randomNumber2);
-
-  // }
+  
   return (
     <>
       <div className="text-center mt-0">
@@ -92,41 +67,7 @@ export const Home = () => {
         <div className="p-3">{randm2}</div>
       </div>
 
-      {/* {console.log(randm())}
-      {console.log(randm2)} */}
-      {/* Primera carta */}
-      {/* {store.restaurantes.map((item,index) => <CardHome key={index} id={item.id} descripcion={item.descripcion} nombre={item.nombre}/>)} */}
-      {/* <div className="p-1 d-flex border border-danger mini-container">
-        <img
-          className="border border-dark w-25 "
-          src="https://www.imor.es/wp-content/uploads/2017/09/imagen-de-prueba-320x240-300x225.jpg"
-          alt=""
-        />
-        <div className="p-1 w-25 border border-dark">
-          <h2 className="border border-dark">CASA PACO </h2>
-          <span className="fs-6"> ❤❤❤❤❤</span>
-          <p>
-          {descrip}
-          </p>
-        </div>
-      </div> */}
-      {/* Segunda carta */}
-      {/* <div className="mt-3 p-1 d-flex flex-row-reverse border border-danger mini-container">
-        <img
-          className="border border-dark w-25 "
-          src="https://www.imor.es/wp-content/uploads/2017/09/imagen-de-prueba-320x240-300x225.jpg"
-          alt=""
-        />
-        <div className=" p-1 w-25 border border-dark">
-          <h2 className="border border-dark">CASA PEPE </h2>
-          <span className="fs-6">❤❤❤❤❤</span>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae,
-            delectus. Deleniti, expedita distinctio blanditiis quas voluptas
-            laboriosam recusandae molestias nisi?
-          </p>
-        </div>
-      </div> */}
+      
     </>
   );
 };
