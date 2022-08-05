@@ -107,12 +107,12 @@ export const Restaurante = () => {
                 </div>
               </div>
             </div>
-            <div className="text-center">
+            <div className="w-50 m-auto text-center">
             <Link type="button" style={{
                   backgroundColor: "rgb(247, 230, 173)",
                   color: "black",
                 
-                  }} className="btn  btn-sm h-50 m-3 w-25 text-center" to="/editInfo">Editar Info</Link>
+                  }} className="btn  btn-sm m-3 " to="/editInfo">Editar Info</Link>
             </div>
             
           </div>

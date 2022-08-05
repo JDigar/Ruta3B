@@ -15,7 +15,7 @@ export const Home = () => {
 
   const id = store.restaurantes.map((item, index) => (
     <CardHome
-      key={index}
+      key={item.id}
       id={index}
       tipo_local={item.tipo_local}
       descripcion={item.descripcion}

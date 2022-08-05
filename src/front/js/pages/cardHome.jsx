@@ -5,7 +5,9 @@ import "./../../styles/card.css";
 
 export const CardHome = ({ id,nombre, descripcion, tipo_local,foto }) => {
   const { store, actions } = useContext(Context);
-console.log(id);
+// console.log(id);
+
+
   return (
     <div className="mt-3 p-5 d-flex mini-container myborder">
       <img
@@ -20,7 +22,7 @@ console.log(id);
         <p>Tipo de local: {tipo_local}</p>
         <p>{descripcion}</p>
         <button
-          onClick={() => actions.addFavorite(id)}
+          onClick={() => actions.addFavorite(id+1)}
           className="btn btn-outline-success btn-heart m-2"
         >
           ♡

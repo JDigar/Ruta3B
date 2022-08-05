@@ -41,8 +41,8 @@ export const CargaDeFoto = () => {
       <button style={{
                   backgroundColor: "rgb(247, 230, 173)",
                   color: "black",
-                
-                  }} className="btn" onClick={(e)=>{actualizaFoto()}}>Actualizar foto
+                  
+                  }} className=" btn" onClick={(e)=>{actualizaFoto()}}>Actualizar foto
       </button>
         </div>
       
