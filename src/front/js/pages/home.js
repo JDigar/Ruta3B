@@ -38,7 +38,6 @@ export const Home = () => {
 
   let randm2 = id2[Math.floor(Math.random() * id2.length)];
 
-  
   return (
     <>
       <div className="text-center mt-0">
@@ -67,7 +66,110 @@ export const Home = () => {
         <div className="p-3">{randm2}</div>
       </div>
 
-      
+      <div className="d-flex justify-content-center p-5">
+        <div
+          id="carouselExampleIndicators"
+          className="carousel slide w-50"
+          data-bs-ride="true"
+        >
+          <div className="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              className="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img
+                src="https://media-cdn.tripadvisor.com/media/photo-s/1c/1b/7b/13/area-interna.jpg"
+                className="d-block w-100 rounded"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+              <div className="bg-dark p-2 bg-opacity-50 rounded">
+                  <h5>Restaurante La Marina Alta</h5>
+                  <p>
+                    Lugar donde comer mariscos y reunirte con tus amigos y
+                    amigas.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img
+                src="https://www.laguiago.com/wp-content/uploads/2020/12/RESTAURANTE-ALMA-MATER-7-scaled-1.jpg"
+                className="d-block w-100 rounded"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <div className="bg-dark p-2 bg-opacity-50 rounded">
+                  <h5>Restaurante La Marina Alta</h5>
+                  <p>
+                    Lugar donde comer mariscos y reunirte con tus amigos y
+                    amigas.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img
+                src="https://www.hoteles-silken.com/content/imgsxml/galerias/panel_sliderheaderhotel/1/t-restaurante-etxaniz-015971.jpg"
+                className="d-block w-100 rounded"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <div className="bg-dark p-2 bg-opacity-50 rounded">
+                  <h5>Restaurante La Marina Alta</h5>
+                  <p>
+                    Lugar donde comer mariscos y reunirte con tus amigos y
+                    amigas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
     </>
   );
 };
