@@ -1,14 +1,12 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import logo3 from "../../img/logo3.png"
+
+import logo3 from "../../img/logo3.png";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
- 
 
   return (
     <>
@@ -16,9 +14,14 @@ export const Navbar = () => {
         style={{
           width: "33%",
         }}
-        className=" p-1  m-auto text-center items-navbar " 
+        className=" p-1  m-auto text-center items-navbar "
       >
-        <img style={{width:"33%",borderRadius:"20px"}} className="text-center image-navbar" src={logo3} alt="" /> {" "}
+        <img
+          style={{ width: "33%", borderRadius: "20px" }}
+          className="text-center image-navbar"
+          src={logo3}
+          alt=""
+        />{" "}
         {/*<h1 id="title"> Ruta Triple B </h1>*/}{" "}
       </div>{" "}
       {store.auth ? (
@@ -64,14 +67,18 @@ export const Navbar = () => {
                 Cerrar sesión{" "}
               </Link>{" "}
               <div
-                
                 type="button"
                 className="btn  btn-sm h-50 m-3"
                 style={{
                   backgroundColor: "rgb(247, 230, 173)",
                   color: "black",
                 }}
-                onClick={() => localStorage.getItem("esLocal") && !localStorage.getItem("esUsuario") ? navigate("/restaurante") : navigate("/usuario")}
+                onClick={() =>
+                  localStorage.getItem("esLocal") &&
+                  !localStorage.getItem("esUsuario")
+                    ? navigate("/restaurante")
+                    : navigate("/usuario")
+                }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
