@@ -9,6 +9,13 @@ likes = db.Table('likes',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('locales_id', db.Integer, db.ForeignKey('locales.id'), primary_key=True)
 )
+# Many to Many reservations
+reservations = db.Table('reservations',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('locales_id', db.Integer, db.ForeignKey('locales.id'), primary_key=True)
+)
+
+
 
 
 # TABLA PARA REGISTRO DE USUARIO
@@ -21,9 +28,11 @@ class User(db.Model):
     email = db.Column(db.String(120),  nullable=False)
     foto_user = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(80), nullable = False)
+    date = db.Column(db.Date, nullable = True)
     # favoritos = db.relationship('Favoritos', backref='user', lazy=True)
     localesfav = db.relationship('Locales', secondary=likes, lazy='subquery', backref=db.backref('este usuario le gustan estos locales', lazy=True))
-    
+    reservalocales = db.relationship('Locales', secondary=reservations, lazy='subquery', backref=db.backref('este usuario registra con estos locales', lazy=True))
+
     def __repr__(self):
         return f'<User {self.id}>'
 
@@ -34,7 +43,9 @@ class User(db.Model):
             "apellido": self.apellido,
             "email":self.email,
             "foto_user": self.foto_user,
-            "likes": [favorite.serialize() for favorite in self.localesfav]
+            "date": self.date,
+            "likes": [favorite.serialize() for favorite in self.localesfav],
+            "reservations": [reserva.serialize() for reserva in self.reservalocales]
             # do not serialize the password, its a security breach
         }
 

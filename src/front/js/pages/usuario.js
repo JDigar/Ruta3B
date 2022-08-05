@@ -14,10 +14,32 @@ export const Usuario = () => {
   useEffect(() => {
     actions.getFavorit();
     actions.getInformationCurrentMember();
+    actions.getReserva();
+    
   }, []);
-
+ store.reserva
+  // const foto=store.restaurantes.map(a=>a.foto)
+  // console.log(foto);
+    const date=store.restaurantes.map(a=>a.date)
+    console.log(date);
+  //  console.log(store.profiles?.date)
  
-  console.log(store.likes);
+   console.log(store.reserva[0]?.foto);
+
+   const verResera =() => {
+    Swal.fire({
+      title: "Tienes una reserva en "+store.reserva[0]?.nombre,
+      text: "El dia "+ store.profiles?.date,
+      imageUrl: store.reserva[0]?.foto,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      
+    })
+    
+   }
+
+
   return (
     <>
       {store.auth &&
@@ -27,10 +49,21 @@ export const Usuario = () => {
         <div className="container-fluid">
           <div className="user">
             <div className="row mx-4">
-              <div className="">
+              <div className="d-flex">
                 <h1>
                   Ey, {store.profiles?.nombre} {store.profiles?.apellido}
                 </h1>
+                <button
+                onClick={verResera}
+            type="button"
+            className=" btn  btn-sm h-50 m-3"
+            style={{
+              backgroundColor: "rgb(247, 230, 173)",
+              color: "black",
+            }}
+          >
+            Ver mis reservas
+          </button>
               </div>
               <div className="col-10 congrats">
                 <p>

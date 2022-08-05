@@ -65,7 +65,9 @@ export const Restaurantes = () => {
             key={item.id}
             id={item.id}
             tipo_local={item.tipo_local}
+            descripcion={item.descripcion}
             nombre={item.nombre}
+            foto={item.foto}
           />   </div>)):rest}
           
 
