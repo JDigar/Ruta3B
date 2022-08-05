@@ -17,11 +17,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
 
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
       ],
       restaurantes: [],
       profiles: [],
@@ -57,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           alert("Este restaurante ya lo tienes en favoritos");
         }
 
-        console.log(data);
+        // console.log(data);
         return true;
       },
 
@@ -284,29 +279,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-      uploadFile: async (uploadImages) => {
-        const store = getStore();
-        const cloud_name = "dqa8txoeg"; //"pluggedin";
-        const preset = "ehajybj3"; //"icnpftra";
-        const url_claudinari = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
-        const formData = new FormData();
-        formData.append("file", uploadImages);
-        formData.append("upload_preset", `${preset}`);
-        try {
-          const response = await fetch(
-            
-            url_claudinari,
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
-          if (response.ok) {
-            const data = await response.json();
-                      
-
-
-            añadirPrecio: async (id, precio) => {
+      
+        añadirPrecio: async (id, precio) => {
                 const response = await fetch(process.env.BACKEND_URL + "/api/addPrice/" + id, {
                     method: "PUT",
                     headers: {
@@ -379,7 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 };
             },
 
-            añadirFoto : async (id)=>{
+            añadirFoto: async (id)=>{
                 const store = getStore();
                 const response = await fetch(process.env.BACKEND_URL + "/api/addPhoto/"+id,
                     {
@@ -403,8 +377,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     alert("No se ha podido modificar el dato");
                   }
 
-    },
-  };
-};
-
+             }
+    }
+  }
+}
 export default getState;
