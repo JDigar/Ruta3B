@@ -23,7 +23,7 @@ export const LoginView = () => {
   return (
     <div className="container text-center">
       <form
-        style={{}}
+        style={{backgroundColor:"rgb(247, 230, 173)",padding:"18px",borderRadius:"10px"}}
         className="mt-5 h-50 w-50 m-auto"
         onSubmit={handleSubmit}
       >
@@ -62,7 +62,7 @@ export const LoginView = () => {
         </div>
         <div className=" union d-flex">
           <button
-            style={{ backgroundColor: "rgb(247, 230, 173)" }}
+            style={{ backgroundColor: "white" }}
             type="submit"
             className="m-auto btn"
           >
