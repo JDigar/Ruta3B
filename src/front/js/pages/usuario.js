@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 import CardHome from "./../pages/cardHome.jsx";
+import { CarruselCard } from "../component/carruserCard";
 
 import "../../styles/user.css";
 import "../../styles/loginError.css";
@@ -75,6 +76,8 @@ export const Usuario = () => {
                   ))}
                 </div> */}
               </div>
+
+              <CarruselCard />
             </div>
           </div>
         </div>
