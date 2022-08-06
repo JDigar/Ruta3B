@@ -102,7 +102,7 @@ export const Home = () => {
                 alt="..."
               />
               <div class="carousel-caption d-none d-md-block">
-              <div className="bg-dark p-2 bg-opacity-50 rounded">
+                <div className="bg-dark p-2 bg-opacity-50 rounded">
                   <h5>Restaurante La Marina Alta</h5>
                   <p>
                     Lugar donde comer mariscos y reunirte con tus amigos y

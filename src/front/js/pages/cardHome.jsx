@@ -8,7 +8,7 @@ export const CardHome = ({ id, nombre, descripcion, tipo_local, foto }) => {
   // console.log(id);
 
   return (
-    <div className="mt-3 p-5 d-flex mini-container myborder">
+    <div className="mx-auto p-5 d-flex mini-container myborder">
       <img className="border border-dark w-50 rounded-4" src={foto} alt="" />
       <div className="p-3 w-50">
         <h2 className="">{nombre}</h2>
