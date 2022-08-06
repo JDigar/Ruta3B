@@ -134,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const response = await fetch(
           process.env.BACKEND_URL + "/api/reservarlocal/" + id,
           {
-            method: "POST",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -17,9 +17,11 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
 
   useEffect(() => {
     actions.getInformationCurrentMember();
-    
+    actions.getRestaurantes();
     
   }, []);
+
+  console.log(store.restaurantes);
   return (
     <>
      
@@ -78,7 +80,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
         Hacer una reserva
       </button>
       <button
-          onClick={() => actions.reservarlocal(store.profiles?.id)}
+          onClick={() => actions.reservarlocal(store.restaurantes[theid]?.id)}
           className="btn btn m-2"
           style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}}
         >
