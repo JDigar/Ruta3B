@@ -48,33 +48,10 @@ export const Usuario = () => {
 
               <div className="lineSeparating"></div>
 
-              <div className="text-center d-flex mx-4">
-                <div className="col-10">
-                  <h2>Mis sitios favoritos</h2>
+              <div className="d-flex mx-auto">
+                <div className="col-12">
+                  <h2 className="text-center mx-auto">Mis sitios favoritos</h2>
                 </div>
-                {/* <div className="col-6">
-                  <h2>He ido</h2>
-                </div> */}
-              </div>
-
-              <div className="text-center d-flex container-fluid">
-                <div className="col-10 cont row mx-5 p-4">
-                  {store.likes.length > 0
-                    ? store?.likes.map((item, index) => (
-                        <CardHome
-                          key={item.id}
-                          nombre={item.nombre}
-                          id={item.id}
-                        />
-                      ))
-                    : null}
-                </div>
-
-                {/* <div className="col-5 cont row mx-5 p-4">
-                  {store.went.map((item, index) => (
-                    <CardHome key={index} nombre={item.nombre} id={index} />
-                  ))}
-                </div> */}
               </div>
 
               <CarruselCard />
