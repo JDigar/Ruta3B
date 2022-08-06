@@ -48,11 +48,11 @@ export const Home = () => {
           />
         </p>
         <div className="container">
-          <h1>BIENVENIDO A RUTA 3B</h1>
+          <h1>BIENVENIDO A RUTA-3Bs</h1>
           <p className="text-justify">
             Si estás aquí es porque quieres descubrir los lugares mas
             sorprendentes de tu ciudad y que mejor forma que de la mano de{" "}
-            <strong>RUTA 3B</strong>. A todos nos gusta ir de copas junto a un
+            <strong>RUTA-3Bs</strong>. A todos nos gusta ir de copas junto a un
             buen tapeo, comer bien a un precio justo y por supuesto, conocer
             locales nuevos que se esconden en los barrios y sus infinitas calles
             que conforman esta hermosa ciudad. <br />
