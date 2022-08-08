@@ -7,7 +7,6 @@ import { Home } from "./pages/home";
 import { Contacto } from "./pages/contacto";
 import { Single } from "./pages/single";
 
-
 import { RegistroUsuarioView } from "./pages/registroUsuarioView";
 import { RegistroParaLocales } from "./pages/registroLocalesView";
 import { LoginView } from "./pages/loginView";
@@ -31,7 +30,7 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
   const { store, actions } = useContext(Context);
-  
+
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -40,13 +39,11 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LoginView />} path="/login" />
-          
-              <Route element={<Usuario />} path="/usuario" />
-            
-              <Route element={<Restaurante />} path="/restaurante" />
-              <Route element={<EditInfo />} path="/editInfo" />
 
-              
+            <Route element={<Usuario />} path="/usuario" />
+
+            <Route element={<Restaurante />} path="/restaurante" />
+            <Route element={<EditInfo />} path="/editInfo" />
 
             <Route element={<Contacto />} path="/contacto" />
 
@@ -56,8 +53,7 @@ const Layout = () => {
             <Route element={<RegistroUsuarioView />} path="/registro-usuario" />
             <Route element={<RegistroParaLocales />} path="/registro-Locales" />
             <Route element={<SelSignup />} path="/seleccion-registro" />
-           
-            
+
             {/* <Route element={<Restaurantes />} path="/restaurante/:theid" /> */}
             <Route element={<RutaComida />} path="/ruta-comida/:theid" />
 

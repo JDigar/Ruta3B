@@ -17,7 +17,19 @@ export const Contacto = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await submit({ name, email, message });
-    Swal.fire("Buen trabajo!", "Contestaremos lo antes posible!", "success");
+    Swal.fire({
+      title: "¡RECIBIDO!",
+      html: "Nos pondremos en contacto contigo lo antes posible",
+      width: 600,
+      padding: "3em",
+      color: "#000000",
+      confirmButtonColor: "#ffc843",
+      icon: "success",
+      backdrop: `
+        rgba(255, 200, 67,0.3)
+        
+      `,
+    });
   };
 
   return (
