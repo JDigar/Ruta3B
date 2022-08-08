@@ -22,8 +22,10 @@ export const Restaurantes = () => {
     </div>
   ));
 
-  const id = store.restaurantes.map((a) => a.id);
-  console.log(id);
+
+   // const id=store.restaurantes.map(a=>a.id)
+  
+
 
   const filterRestaurante = store.restaurantes.filter((item) => {
     return item.tipo_local === select;
@@ -62,6 +64,7 @@ export const Restaurantes = () => {
             key={item.id}
             id={item.id}
             tipo_local={item.tipo_local}
+            descripcion={item.descripcion}
             nombre={item.nombre}
             foto={item.foto}
           />   </div>)):rest}

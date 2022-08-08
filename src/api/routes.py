@@ -118,16 +118,7 @@ def create_new_user():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token), 201 
 
-# @api.route('/favoritos', methods=['GET'])
-# def get_favoritos():
 
-#     favoritos = Favorites.query.all()
-#     favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
-#     response_body = {
-#         "results": favoritosList
-#     }
-
-#     return jsonify(response_body), 200
 
 # #NUEVO USUARIO LOCAL
 @api.route('/locales', methods=['POST'])   
@@ -205,8 +196,55 @@ def get_fav_list():
         return jsonify(all_favorites), 200
     
    
+#Coger reserva:    
     
+@api.route('/reservarlocal/<int:local_id>', methods=['PUT', 'DELETE'])
+@jwt_required()
+def make_reservation(local_id):
+
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
     
+    if request.method=='PUT':
+        local = Locales.query.get(local_id)
+        if local not in user.reservalocales:
+            user.reservalocales.append(local)
+            # localfav=User(localesfav=local)
+            db.session.add(local)
+            db.session.commit()
+            return jsonify({'response': "Reserva add"}),200
+        
+        else: 
+            return jsonify({"response" : "Ya tienes una reserva"}), 208
+        
+
+    if request.method=="DELETE":
+        local = Locales.query.get(local_id)
+        user.reservalocales.remove(local)
+        db.session.commit()
+        user = User.query.filter_by(email=email).first()
+        user_reserva = user.reservalocales
+        all_reserva = [reserva.serialize() for reserva in user_reserva]
+        return jsonify(all_reserva),200
+
+
+
+@api.route('/user/reserva', methods=['GET'])
+@jwt_required()
+def get_reservas_list():
+    email = get_jwt_identity()
+    userreserva = User.query.filter_by(email=email).first()
+    print(email)
+    print(userreserva)
+
+    if userreserva:
+        user_reserva = userreserva.reservalocales
+        all_reserva = [reserva.serialize() for reserva in user_reserva] # serializame por cada favorito, en user_favorites
+        if len(all_reserva)==0:
+            return jsonify({'error': 'No reserva favoritos'}),404
+        return jsonify(all_reserva), 200
+
+
 #Añadir precio desde perfil de restaurante:
 
 @api.route('/addPrice/<int:id>', methods=['PUT'])
@@ -243,6 +281,42 @@ def edit_precio_local(id):
             db.session.commit()
             
             return jsonify({'results': local.serialize()}),201
+
+
+@api.route('/addReserva/<int:id>', methods=['PUT'])
+@jwt_required()
+def add_reserva(id):
+    
+    
+    user = User.query.get(id)
+    
+    nombre = request.json.get('nombre', None)
+    apellido = request.json.get('apellido', None)
+    email = request.json.get('email', None)
+    foto_user = request.json.get('foto_user', None)
+    password = request.json.get('password', None)
+    date = request.json.get('date', None)
+    
+
+    if  (nombre or apellido or email or foto_user or password or date):
+            if nombre != None:
+                user.nombre = nombre
+            if apellido != None:  
+                user.apellido = apellido
+            if email != None:
+                user.email = email
+            if foto_user != None:
+                user.foto_user = foto_user
+            if password !=None:
+                user.password = password
+            if date != None:
+                user.date = date
+                     
+            
+            db.session.commit()
+            
+            return jsonify({'results': user.serialize()}),201
+
 
 
 #Añadir foto desde perfil de restaurante:
@@ -345,3 +419,13 @@ def edit_info_general_locales(id):
             db.session.commit()
             
             return jsonify({'results': local.serialize()}),201
+
+
+
+
+
+
+
+
+
+

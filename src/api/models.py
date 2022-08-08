@@ -9,6 +9,13 @@ likes = db.Table('likes',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('locales_id', db.Integer, db.ForeignKey('locales.id'), primary_key=True)
 )
+# Many to Many reservations
+reservations = db.Table('reservations',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('locales_id', db.Integer, db.ForeignKey('locales.id'), primary_key=True)
+)
+
+
 
 
 # TABLA PARA REGISTRO DE USUARIO
@@ -21,9 +28,14 @@ class User(db.Model):
     email = db.Column(db.String(120),  nullable=False)
     foto_user = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(80), nullable = False)
+    date = db.Column(db.Date, nullable = True)
     # favoritos = db.relationship('Favoritos', backref='user', lazy=True)
     localesfav = db.relationship('Locales', secondary=likes, lazy='subquery', backref=db.backref('este usuario le gustan estos locales', lazy=True))
+    reservalocales = db.relationship('Locales', secondary=reservations, lazy='subquery', backref=db.backref('este usuario registra con estos locales', lazy=True))
+
     
+
+
     def __repr__(self):
         return f'<User {self.id}>'
 
@@ -34,7 +46,9 @@ class User(db.Model):
             "apellido": self.apellido,
             "email":self.email,
             "foto_user": self.foto_user,
-            "likes": [favorite.serialize() for favorite in self.localesfav]
+            "date": self.date,
+            "likes": [favorite.serialize() for favorite in self.localesfav],
+            "reservations": [reserva.serialize() for reserva in self.reservalocales]
             # do not serialize the password, its a security breach
         }
 
@@ -53,7 +67,7 @@ class Locales(db.Model):
     foto = db.Column(db.String(500), unique=False, nullable=True)
     # favoritos = db.relationship('Favoritos', backref='locales', lazy=True)
     
-    #fotos = db.relationship('Fotos', backref='fotos', lazy=True)
+    
 
     def __repr__(self):
         return f'<Locales> {self.id} {self.email}'
@@ -92,63 +106,7 @@ class Direccion(db.Model):
             # do not serialize the password, its a security breach
         }
 
-# TABLA DE FOTOS
-# class Fotos(db.Model):
-#     __tablename__ = 'fotos'
-#     id = db.Column(db.Integer, primary_key=True)
-#     url = db.Column(db.String(450), nullable=False)
-    
-    
-#     local_id = db.Column(db.String(450), db.ForeignKey('locales.id'), nullable=True)
-
-#     # def __repr__(self):
-#     #     return f'<Fotos {self.id}>'
-
-#     def serialize(self):
-#         return {
-#             "id": self.id,
-#             "url": self.url,
-#             'locales':Locales.query.get(self.local_id).serialize(),
-#             # do not serialize the password, its a security breach
-#             'fotos':list(map(lambda fotos: fotos.serialize(), self.fotos))
-#         }
 
 
 
-# # TABLA DE FAVORITOS DE USUARIOS
-# class Favoritos(db.Model):
-#     __tablename__ = 'favoritos'
-#     id = db.Column(db.Integer, primary_key=True)
-#     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
-    
-    
-#     def __repr__(self):
-#         return f'<Favoritos {self.id}>'
-
-#     def serialize(self):
-#         return {
-#             "id": self.id,
-#             "id_user": self.id_user,
-#             "id_local": self.id_restaurant,
-#         }
-
-# TABLA DE COMENTARIOS
-
-# class Comentarios(db.Model):
-#     __tablename__ = 'comentarios'
-#     id = db.Column(db.Integer, primary_key=True)
-#     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     id_local = db.Column(db.Integer, db.ForeignKey('locales.id'))
-#     comentario = db.Column(db.String(300))
-#     # ffff
-#     def __repr__(self):
-#         return f'<Favoritos {self.id}>'
-
-#     def serialize(self):
-#         return {
-#             "id": self.id,
-#             "id_user": self.id_user,
-#             "id_local": self.id_local,
-#             "comentario": self.comentario,
-#         }
+ 

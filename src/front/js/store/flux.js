@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       restaurantes: [],
       profiles: [],
       likes: [],
+      reserva: [],
       restaurante: [],
       went: [],
       profileRestaurante: [],
@@ -30,6 +31,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
     actions: {
      
+      /**AÑADIR A FAVORITOS */
+
       addFavorite: async (id) => {
         console.log(id);
 
@@ -55,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // console.log(data);
         return true;
       },
-
+      
       removeFavorite: async (id) => {
         fetch(process.env.BACKEND_URL + "/api/favlocales/" + id, {
           method: "DELETE",
@@ -99,6 +102,87 @@ const getState = ({ getStore, getActions, setStore }) => {
         }); //Actualizamos la informacion que está en like concatenando el valor de name.
       },
 
+
+      /**Agregar reserva */
+
+      addReserva: async (id,date) => {
+        console.log(id);
+
+        const response = await fetch(
+          process.env.BACKEND_URL + "/api/addReserva/" + id,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              id: id,
+              date:date,
+          }),
+      });
+      if (response.ok) {
+          console.log("Datos guardados");
+      } else {
+          console.log("No se ha podido modificar el dato");
+      }
+
+      },
+      reservarlocal: async (id) => {
+        console.log(id);
+
+        const response = await fetch(
+          process.env.BACKEND_URL + "/api/reservarlocal/" + id,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log(data);
+          setStore({
+            auth: true,
+            
+          });
+          
+        } else if (response.status === 208) {
+          alert("Este restaurante ya lo tienes en reservas");
+        }
+
+        // console.log(data);
+        return true;
+      },
+      getReserva: (id_user, id_local) => {
+        fetch(process.env.BACKEND_URL + "/api/user/reserva", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) =>
+            setStore({
+              reserva: data,
+            })
+          );
+      },
+      addWent: (nombre) => {
+        //Creamos la funcion para obtener el nombre con el Onclick
+        const store = getStore(); //Obtenemos Store con "getStore"
+        setStore({
+          went: store.went.concat(nombre),
+        }); //Actualizamos la informacion que está en like concatenando el valor de name.
+      },
+      
+
+      /****************************************************** */
       login: async (email, password, type) => {
         try {
           const response = await fetch(process.env.BACKEND_URL + "/api/login", {
