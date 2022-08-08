@@ -1,17 +1,11 @@
 import React, { StrictMode, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
 import "../../styles/home.css";
 import { CardHome } from "./cardHome.jsx";
 import { CardHome2 } from "./cardHome2.jsx";
 
 export const Home = () => {
-  const { store, actions } = useContext(Context);
-  // console.log(actions.getFavorit());
-
-  // store.restaurantes.map((item, index) => (
-  //   console.log(item.nombre)
-  // ));
+  const { store } = useContext(Context);
 
   const id = store.restaurantes.map((item, index) => (
     <CardHome
@@ -103,12 +97,12 @@ export const Home = () => {
                 className="d-block w-100 rounded"
                 alt="..."
               />
-              <div class="carousel-caption d-none d-md-block">
+              <div className="carousel-caption d-none d-md-block">
                 <div className="bg-dark p-2 bg-opacity-50 rounded">
-                  <h5>Restaurante La Marina Alta</h5>
+                  <h5>Pez Tortilla</h5>
                   <p>
-                    Lugar donde comer mariscos y reunirte con tus amigos y
-                    amigas.
+                    Bar de tapas especializado en tortillas actuales y croquetas
+                    gourmet que ofrece más de 70 cervezas artesanas.
                   </p>
                 </div>
               </div>
@@ -119,12 +113,12 @@ export const Home = () => {
                 className="d-block w-100 rounded"
                 alt="..."
               />
-              <div class="carousel-caption d-none d-md-block">
+              <div className="carousel-caption d-none d-md-block">
                 <div className="bg-dark p-2 bg-opacity-50 rounded">
-                  <h5>Restaurante La Marina Alta</h5>
+                  <h5>Taberna gordinflón</h5>
                   <p>
-                    Lugar donde comer mariscos y reunirte con tus amigos y
-                    amigas.
+                    Platos tradicionales de nuestro restaurante situado en
+                    Bétera "Restuarante El Gordo y el Flaco".
                   </p>
                 </div>
               </div>
@@ -135,12 +129,12 @@ export const Home = () => {
                 className="d-block w-100 rounded"
                 alt="..."
               />
-              <div class="carousel-caption d-none d-md-block">
+              <div className="carousel-caption d-none d-md-block">
                 <div className="bg-dark p-2 bg-opacity-50 rounded">
-                  <h5>Restaurante La Marina Alta</h5>
+                  <h5>Asador El Pastoret</h5>
                   <p>
-                    Lugar donde comer mariscos y reunirte con tus amigos y
-                    amigas.
+                    Asador con terraza, que ofrece tapas, carnes a la brasa y
+                    sus famosos y enormes bocadillos y sándwiches.
                   </p>
                 </div>
               </div>

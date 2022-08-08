@@ -110,7 +110,14 @@ export const Usuario = () => {
               color: "black",
             }}
           >
-            <Link className=" button-err" to="/">
+            <Link
+              className=" button-err"
+              to="/"
+              style={{
+                backgroundColor: "rgb(255, 200, 67)",
+                color: "black",
+              }}
+            >
               Volver al Inicio
             </Link>
           </button>
