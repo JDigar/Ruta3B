@@ -16,40 +16,35 @@ export const Usuario = () => {
     actions.getFavorit();
     actions.getInformationCurrentMember();
     actions.getReserva();
-    
   }, []);
- 
+
   // const foto=store.restaurantes.map(a=>a.foto)
   // console.log(foto);
-    const date=store.restaurantes.map(a=>a.date)
-   // console.log(date);
+  const date = store.restaurantes.map((a) => a.date);
+  // console.log(date);
   //  console.log(store.profiles?.date)
- 
-   //console.log(store.reserva[0]?.foto);
 
-  
+  //console.log(store.reserva[0]?.foto);
+
   //console.log(store.reserva[store.reserva.length-1]);
- 
 
-  const reservasFecha=store.profiles?.date
+  const reservasFecha = store.profiles?.date;
   //console.log(reservasFecha);
 
   // reservasFecha.map(item=>console.log(item))
 
-   const verResera =() => {
+  const verResera = () => {
     Swal.fire({
-      title: "Tienes una reserva en "+store.reserva[store.reserva.length-1]?.nombre,
-      text: "El dia "+ store.profiles?.date,
+      title:
+        "Tienes una reserva en " +
+        store.reserva[store.reserva.length - 1]?.nombre,
+      text: "El dia " + store.profiles?.date,
       imageUrl: store.reserva[0]?.foto,
       imageWidth: 400,
       imageHeight: 200,
-      imageAlt: 'Custom image',
-      
-    })
-    
-   }
-
-
+      imageAlt: "Custom image",
+    });
+  };
 
   return (
     <>
@@ -64,7 +59,6 @@ export const Usuario = () => {
                 <h1>
                   Ey, {store.profiles?.nombre} {store.profiles?.apellido}
                 </h1>
-                
               </div>
 
               <div className="col-10 congrats">
@@ -79,39 +73,28 @@ export const Usuario = () => {
                   resto de la comunidad, además de participar en nuestro sorteo
                   sorpresa mensual.
                 </p>
-                
               </div>
 
               <div className="lineSeparating"></div>
 
               <div className="text-center">
-              <button
-                onClick={verResera}
-            type="button"
-            className=" btn  btn-sm h-50 m-3"
-            style={{
-              backgroundColor: "rgb(247, 230, 173)",
-              color: "black",
-            }}
-          >
-            Ver mis reservas
-          </button>
+                <button
+                  onClick={verResera}
+                  type="button"
+                  className=" btn  btn-sm h-50 m-3"
+                  style={{
+                    backgroundColor: "rgb(255, 200, 67)",
+                    color: "black",
+                  }}
+                >
+                  Ver mis reservas
+                </button>
               </div>
-              <div className="mt-5 text-center d-flex mx-4">
-                <div className="col-6">
-                  <h2>Mis sitios favoritos</h2>
-                </div>
-                <div className="col-6">
-                  <h2>He ido</h2>
-
-
               <div className="d-flex mx-auto">
                 <div className="col-12">
                   <h2 className="text-center mx-auto">Mis sitios favoritos</h2>
-
                 </div>
               </div>
-
               <CarruselCard />
             </div>
           </div>
@@ -123,7 +106,7 @@ export const Usuario = () => {
             type="button"
             className="btn  btn-sm h-50 m-3"
             style={{
-              backgroundColor: "rgb(247, 230, 173)",
+              backgroundColor: "rgb(255, 200, 67)",
               color: "black",
             }}
           >

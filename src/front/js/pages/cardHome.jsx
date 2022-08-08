@@ -5,7 +5,6 @@ import "./../../styles/card.css";
 
 export const CardHome = ({ id, nombre, descripcion, tipo_local, foto }) => {
   const { store, actions } = useContext(Context);
-  // console.log(id);
 
   return (
     <div className="mx-auto p-5 d-flex mini-container myborder">
@@ -13,7 +12,7 @@ export const CardHome = ({ id, nombre, descripcion, tipo_local, foto }) => {
       <div className="p-3 w-50">
         <h2 className="">{nombre}</h2>
         <hr />
-        {/* <span className="fs-6">❤❤❤❤❤</span> */}
+
         <p>Tipo de local: {tipo_local}</p>
         <p>{descripcion}</p>
         <button
@@ -28,15 +27,10 @@ export const CardHome = ({ id, nombre, descripcion, tipo_local, foto }) => {
         >
           X
         </button>
-        {/* <button
-          onClick={() => actions.addWent(nombre)}
-          className="btn btn-outline-secondary btn-heart m-2"
-        >
-          HE IDO!
-        </button> */}
+
         <Link
           to={"/ruta-comida/" + id}
-          style={{ backgroundColor: "rgb(247, 230, 173)", color: "black" }}
+          style={{ backgroundColor: "rgb(255, 200, 67)", color: "black" }}
           className="btn"
         >
           Saber Mas

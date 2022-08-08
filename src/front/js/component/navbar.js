@@ -17,12 +17,11 @@ export const Navbar = () => {
         className=" p-1  m-auto text-center items-navbar "
       >
         <img
-          style={{ width: "33%", borderRadius: "20px" }}
+          style={{ width: "33%", borderRadius: "30px" }}
           className="text-center image-navbar"
           src={logo3}
           alt=""
-        />{" "}
-        {/*<h1 id="title"> Ruta Triple B </h1>*/}{" "}
+        />
       </div>{" "}
       {store.auth ? (
         <nav className="container">
@@ -30,36 +29,24 @@ export const Navbar = () => {
             <div className="navbar-links">
               <ol className="mt-4 d-flex justify-content-start">
                 <li className="link">
-                  <Link to="/" className="text-dark p-2 mt-2 nav-item">
+                  <Link to="/" className="text-dark  p-2 nav-item">
                     Inicio{" "}
                   </Link>{" "}
                 </li>{" "}
-                {/* <li className="link">
-                                      <Link to="#" className="text-dark p-2 mt-2 nav-item">
-                                        Imagenes
-                                      </Link>
-                                    </li> */}{" "}
                 <li className="link">
-                  <Link
-                    to="restaurantes"
-                    className="text-dark p-2 mt-2 nav-item"
-                  >
+                  <Link to="restaurantes" className="text-dark p-2 nav-item">
                     Restaurantes{" "}
                   </Link>{" "}
                 </li>{" "}
               </ol>{" "}
             </div>{" "}
-            {/* <div style={{width:"33%"}} className=" p-1  m-auto text-center items-navbar">
-                            <img style={{width:"33%"}} className="text-center image-navbar" src={logo} alt="" /> */}{" "}
-            {/* <h1>Ruta Triple B</h1>
-                          </div > */}
             <div className="d-flex justify-content-end items-navbar items-navbar-bottom">
               <Link
                 to="/"
                 type="button"
                 className="btn  btn-sm h-50 m-3"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
                 onClick={() => actions.logout()}
@@ -70,7 +57,7 @@ export const Navbar = () => {
                 type="button"
                 className="btn  btn-sm h-50 m-3"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
                 onClick={() =>
@@ -104,11 +91,6 @@ export const Navbar = () => {
                     Inicio{" "}
                   </Link>{" "}
                 </li>{" "}
-                {/* <li className="link">
-                  <Link to="#" className="text-dark p-2 mt-2 nav-item">
-                    Imagenes{" "}
-                  </Link>{" "}
-                </li>{" "} */}
                 <li className="link">
                   <Link
                     to="/restaurantes"
@@ -119,17 +101,13 @@ export const Navbar = () => {
                 </li>{" "}
               </ol>{" "}
             </div>{" "}
-            {/* <div style={{width:"33%"}} className=" p-1  m-auto text-center items-navbar">
-                    					<img style={{width:"33%"}} className="text-center image-navbar" src={logo} alt="" /> */}{" "}
-            {/* <h1>Ruta Triple B</h1>
-                    				</div > */}
             <div className="d-flex justify-content-end items-navbar items-navbar-bottom">
               <Link
                 to="/login"
                 type="button"
                 className="btn  btn-sm h-50 m-3"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
               >
@@ -140,7 +118,7 @@ export const Navbar = () => {
                 type="button"
                 className="btn  btn-sm h-50 m-3"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
               >

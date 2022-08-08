@@ -6,26 +6,17 @@ from api.models import db, User, Locales, Direccion
 from api.utils import generate_sitemap, APIException
 # from geopy.geocoders import Nominatim
 import json
+import datetime
 
 # # flask jwt paquete de instalacion
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
+
 api = Blueprint('api', __name__)
 
 
-
-# @api.route('/', methods=['GET'])
-# def handle_home():
-
-#     response_body = {
-#         "message": "Este es el get de home"
-
-
-#     }
-
-#     return jsonify(response_body), 200
 
 
 #GET de restaurantes 
@@ -69,7 +60,10 @@ def login():
         if email != user.email or password != user.password:
             return jsonify({"msg": "Bad username or password"}), 401
             
-    access_token = create_access_token(identity=email)
+    
+    expired=datetime.timedelta(minutes=240)
+
+    access_token = create_access_token(identity=email, expires_delta=expired)
     return jsonify({"access_token":access_token,"type":type})
 
 # Protect a route with jwt_required, which will kick out requests
@@ -98,12 +92,6 @@ def profile_protected():
     return jsonify(local.serialize()), 200
 
 
-# @api.route("/gettingSubscribe", methods=["GET"])
-# @jwt_required()
-# def protected():
-#     # Access the identity of the current user with get_jwt_identity
-#     current_user = get_jwt_identity()
-#     return jsonify(logged_in_as=current_user), 200
 
 # #NUEVO USUARIO
 @api.route('/user', methods=['POST'])   
@@ -134,19 +122,6 @@ def create_new_user_locales():
     access_token = create_access_token(identity=body["email"])
     return jsonify(access_token=access_token) 
 
-# @api.route("/comentarios", methods=["GET"])
-# @jwt_required()
-# def comentarios():
-#     # Access the identity of the current user with get_jwt_identity
-#     current_user = get_jwt_identity()
-#     favoritos = Favoritos.query.all()
-#     favoritosList = list(map(lambda obj: obj.serialize(), favoritos))
-#     response_body = {
-#         "results":favoritosList
-#     }
-    
-#     return jsonify(response_body), 200
-
 
 
 @api.route('/favlocales/<int:local_id>', methods=['POST', 'DELETE'])
@@ -160,7 +135,6 @@ def save_fav_local(local_id):
         local = Locales.query.get(local_id)
         if local not in user.localesfav:
             user.localesfav.append(local)
-            # localfav=User(localesfav=local)
             db.session.add(local)
             db.session.commit()
             return jsonify({'response': "Favorit add"}),200
@@ -178,6 +152,9 @@ def save_fav_local(local_id):
         all_favorites = [favorite.serialize() for favorite in user_favorites]
         return jsonify(all_favorites),200
 
+        
+
+
 
 
 @api.route('/user/favoritos', methods=['GET'])
@@ -192,7 +169,7 @@ def get_fav_list():
         user_favorites = userfavs.localesfav
         all_favorites = [favorite.serialize() for favorite in user_favorites] # serializame por cada favorito, en user_favorites
         if len(all_favorites)==0:
-            return jsonify({'error': 'No locales favoritos'}),404
+            return jsonify(all_favorites),404
         return jsonify(all_favorites), 200
     
    
@@ -209,7 +186,6 @@ def make_reservation(local_id):
         local = Locales.query.get(local_id)
         if local not in user.reservalocales:
             user.reservalocales.append(local)
-            # localfav=User(localesfav=local)
             db.session.add(local)
             db.session.commit()
             return jsonify({'response': "Reserva add"}),200
@@ -357,29 +333,6 @@ def add_foto_local(id):
             
             return jsonify({'results': local.serialize()}),201
     
-
-
-
-# @api.route('/new_route/<int:id>', methods=['POST'])
-# @jwt_required()
-# def route(id):
-#         user = get_jwt_identity()
-#         user = User.query.filter_by(email=user).first()
-#         body = json.loads(request.data)
-#         local = User.query.get(id)
-#         geo = Nominatim(user_agent="MyApp")
-#         # aditional_info = body["info"]
-#         foto_user = body["foto_user"]
-#         loc = geo.geocode(foto_user)
-#         latitud = (loc.latitude)
-#         longitud = (loc.longitude)
-#         print (latitud, longitud)
-#         # iframe = “https://maps.google.com/?ll=”+ (latitud) + “,” + (longitud) +“&z=14&t=m&output=embed”
-#         #meeting = Meeting(address=body[“address”], date=body[“date”], latitude=latitud , longitude=longitud, group_id=group.id, aditional_info=aditional_info)
-#         db.session.add(meeting)
-#         db.session.commit()
-#         return jsonify(meeting.serialize())
-
 
 
 #Añadir fotos para el restaurante:

@@ -9,7 +9,7 @@ export const LoginView = () => {
   const [password, setPassword] = useState("");
   const [type, setType] = useState(false);
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let bool = await actions.login(email, password, type);
@@ -23,7 +23,11 @@ export const LoginView = () => {
   return (
     <div className="container text-center">
       <form
-        style={{backgroundColor:"rgb(247, 230, 173)",padding:"18px",borderRadius:"10px"}}
+        style={{
+          backgroundColor: "rgb(255, 200, 67)",
+          padding: "18px",
+          borderRadius: "10px",
+        }}
         className="mt-5 h-50 w-50 m-auto"
         onSubmit={handleSubmit}
       >
@@ -51,7 +55,7 @@ export const LoginView = () => {
         <div>
           <label className="p-2">¿Eres propietario de un restaurante?</label>
           <input
-          style={{width:"30px", height:"17px"}}
+            style={{ width: "30px", height: "17px" }}
             className="display-1"
             onChange={(e) => {
               setType(!type);
