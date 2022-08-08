@@ -22,8 +22,8 @@ export const Restaurantes = () => {
     </div>
   ));
 
-    const id=store.restaurantes.map(a=>a.id)
-  console.log(id);
+   // const id=store.restaurantes.map(a=>a.id)
+  
 
     
     const filterRestaurante =store.restaurantes.filter((item) =>{

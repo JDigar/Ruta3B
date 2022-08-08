@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Locales, Direccion, Reservas
+from api.models import db, User, Locales, Direccion
 from api.utils import generate_sitemap, APIException
 from geopy.geocoders import Nominatim
 import json
@@ -245,7 +245,6 @@ def get_reservas_list():
         return jsonify(all_reserva), 200
 
 
-
 #Añadir precio desde perfil de restaurante:
 
 @api.route('/addPrice/<int:id>', methods=['PUT'])
@@ -430,32 +429,3 @@ def edit_info_general_locales(id):
 
 
 
-
-
-
-
-@api.route('/test/<int:id>', methods=['POST'])
-@jwt_required()
-def test(id):
-    
-    
-    reservas = User.query.get(id)
-    
-    id_user = request.json.get('id_user', None)
-    id_local = request.json.get('id_local', None)
-    date = request.json.get('date', None)
-    
-
-    if  (id_user or id_local or date):
-            if id_user != None:
-                reservas.id_user = id_user
-            if id_local != None:  
-                reservas.id_local = id_local
-            if date != None:
-                reservas.date = date
-                      
-            
-            
-            db.session.commit()
-            
-            return jsonify({'results': reservas.serialize()}),201

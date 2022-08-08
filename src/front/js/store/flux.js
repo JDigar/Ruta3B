@@ -143,11 +143,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         if (response.status === 200) {
           const data = await response.json();
+          console.log(data);
           setStore({
             auth: true,
+            
           });
+          
         } else if (response.status === 208) {
-          alert("Este restaurante ya lo tienes en favoritos");
+          alert("Este restaurante ya lo tienes en reservas");
         }
 
         // console.log(data);

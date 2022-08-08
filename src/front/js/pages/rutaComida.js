@@ -21,7 +21,12 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
     
   }, []);
 
-  console.log(store.restaurantes);
+  const handleSubmit = async (e) => {
+    actions.addReserva(store.profiles?.id,date)
+    actions.reservarlocal(store.restaurantes[theid]?.id)
+  };
+
+  console.log(store.reserva);
   return (
     <>
      
@@ -71,21 +76,16 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
       store.auth != undefined &&
       localStorage.getItem("esUsuario") ? (
       <div className="mt-5 text-center m-auto w-75">
+        <form onSubmit={handleSubmit} action="">
       <input className="input text-center m-auto" onChange={(e) => setDate(e.target.value)} type="date" id="start" name="trip-start"></input>
       <button
-          onClick={() => actions.addReserva(store.profiles?.id,date)}
+          
           className="btn btn m-2"
           style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}}
         >
         Hacer una reserva
       </button>
-      <button
-          onClick={() => actions.reservarlocal(store.restaurantes[theid]?.id)}
-          className="btn btn m-2"
-          style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}}
-        >
-        aaa
-      </button>
+        </form>
       </div>
       ) : (""
       )}
