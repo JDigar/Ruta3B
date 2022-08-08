@@ -3,26 +3,21 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "./../../styles/card.css";
 
-export const CardHome = ({ id,nombre, descripcion, tipo_local,foto }) => {
+export const CardHome = ({ id, nombre, descripcion, tipo_local, foto }) => {
   const { store, actions } = useContext(Context);
-// console.log(id);
-
+  // console.log(id);
 
   return (
-    <div className="mt-3 p-5 d-flex mini-container myborder">
-      <img
-        className="border border-dark w-50 rounded-4"
-        src={foto}
-        alt=""
-      />
+    <div className="mx-auto p-5 d-flex mini-container myborder">
+      <img className="border border-dark w-50 rounded-4" src={foto} alt="" />
       <div className="p-3 w-50">
         <h2 className="">{nombre}</h2>
         <hr />
-        <span className="fs-6">❤❤❤❤❤</span>
+        {/* <span className="fs-6">❤❤❤❤❤</span> */}
         <p>Tipo de local: {tipo_local}</p>
         <p>{descripcion}</p>
         <button
-          onClick={() => actions.addFavorite(id+1)}
+          onClick={() => actions.addFavorite(id + 1)}
           className="btn btn-outline-success btn-heart m-2"
         >
           ♡
@@ -33,13 +28,19 @@ export const CardHome = ({ id,nombre, descripcion, tipo_local,foto }) => {
         >
           X
         </button>
-        <button
+        {/* <button
           onClick={() => actions.addWent(nombre)}
           className="btn btn-outline-secondary btn-heart m-2"
         >
           HE IDO!
-        </button>
-        <Link to={"/ruta-comida/"+id} style={{backgroundColor:"rgb(247, 230, 173)", color: "black",}} className="btn">Saber Mas</Link>
+        </button> */}
+        <Link
+          to={"/ruta-comida/" + id}
+          style={{ backgroundColor: "rgb(247, 230, 173)", color: "black" }}
+          className="btn"
+        >
+          Saber Mas
+        </Link>
       </div>
     </div>
   );
