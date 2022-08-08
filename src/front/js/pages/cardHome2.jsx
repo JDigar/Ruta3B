@@ -29,7 +29,7 @@ export const CardHome2 = ({ id, nombre, descripcion, tipo_local, foto }) => {
         </button>
         <Link
           to={"/ruta-comida/" + id}
-          style={{ backgroundColor: "rgb(247, 230, 173)", color: "black" }}
+          style={{ backgroundColor: "rgb(255, 200, 67)", color: "black" }}
           className="btn"
         >
           Saber Mas

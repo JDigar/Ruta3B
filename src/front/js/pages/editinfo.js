@@ -11,10 +11,9 @@ export const EditInfo = () => {
 
   const editInfo = (e) => {
     e.preventDefault();
-    const id=store.profileRestaurante?.id;
+    const id = store.profileRestaurante?.id;
     console.log(id);
-    actions.modificarDatos(id,nombre,tipo_local,descripcion);
-    
+    actions.modificarDatos(id, nombre, tipo_local, descripcion);
   };
   useEffect(() => {
     // actions.getFavorit();
@@ -28,58 +27,82 @@ export const EditInfo = () => {
       store.auth != "" &&
       store.auth != undefined &&
       localStorage.getItem("esLocal") ? (
-        <div className="text-center"> 
-        <form  action="" onSubmit={editInfo}>
-        
-        <div style={{
-        backgroundColor: "rgb(247, 230, 173)",
-        padding: "6rem",
-      }} className="w-50 container py-4 pt-2 row w-25 m-auto text-center">
-            <label htmlFor="">Nombre</label>
-          <input className="mt-2" type="text" onChange={(e) => setNombre(e.target.value)} required/> 
-          <label htmlFor=" ">Tipo de local</label>
-          <input onChange={(e) => setTipo_local(e.target.value)} className="mt-2" type="text"required/>
-          <label htmlFor="">Nueva descripción</label> 
-          <input onChange={(e) => setDescripcion(e.target.value)} className="mt-2" type="text" required /> 
-          
-        </div >
-        <div className="mt-2 text-center ">
-        <button  onClick={() => window.location.reload()} type="submit" style={{
-                  backgroundColor: "rgb(247, 230, 173)",
-                  color: "black",
-
-                  }} className="mt-1 btn">Modificar Datos</button>
-        </div>
-         </form>
-         <div className=" mt-5" >
-         <Link type="button"
-                className="btn  btn-sm h-50 m-3"
-                style={{
-                  backgroundColor: "rgb(247, 230, 173)",
-                  color: "black",
-                }} to="/restaurante">
-                Volver al Inicio
-          </Link>
-         </div>
-         
-        </div>
-        ) : (
-            <div className="div-err-login text-center">
-              <h2>Primero debería registrarse!</h2>
+        <div className="text-center">
+          <form action="" onSubmit={editInfo}>
+            <div
+              style={{
+                backgroundColor: "rgb(255, 200, 67)",
+                padding: "6rem",
+              }}
+              className="w-50 container py-4 pt-2 row w-25 m-auto text-center"
+            >
+              <label htmlFor="">Nombre</label>
+              <input
+                className="mt-2"
+                type="text"
+                onChange={(e) => setNombre(e.target.value)}
+                required
+              />
+              <label htmlFor=" ">Tipo de local</label>
+              <input
+                onChange={(e) => setTipo_local(e.target.value)}
+                className="mt-2"
+                type="text"
+                required
+              />
+              <label htmlFor="">Nueva descripción</label>
+              <input
+                onChange={(e) => setDescripcion(e.target.value)}
+                className="mt-2"
+                type="text"
+                required
+              />
+            </div>
+            <div className="mt-2 text-center ">
               <button
-                type="button"
-                className="btn  btn-sm h-50 m-3"
+                onClick={() => window.location.reload()}
+                type="submit"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
+                className="mt-1 btn"
               >
-                <Link className=" button-err" to="/">
-                  Volver al Inicio
-                </Link>
+                Modificar Datos
               </button>
             </div>
-          )}
-        </>
+          </form>
+          <div className=" mt-5">
+            <Link
+              type="button"
+              className="btn  btn-sm h-50 m-3"
+              style={{
+                backgroundColor: "rgb(255, 200, 67)",
+                color: "black",
+              }}
+              to="/restaurante"
+            >
+              Volver al Inicio
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <div className="div-err-login text-center">
+          <h2>Primero debería registrarse!</h2>
+          <button
+            type="button"
+            className="btn  btn-sm h-50 m-3"
+            style={{
+              backgroundColor: "rgb(255, 200, 67)",
+              color: "black",
+            }}
+          >
+            <Link className=" button-err" to="/">
+              Volver al Inicio
+            </Link>
+          </button>
+        </div>
+      )}
+    </>
   );
 };

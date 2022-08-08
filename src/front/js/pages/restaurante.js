@@ -41,7 +41,7 @@ export const Restaurante = () => {
             style={{
               marginRight: "100px",
               marginLeft: "50px",
-              backgroundColor: "rgb(247, 230, 173)",
+              backgroundColor: "rgb(255, 200, 67)",
               padding: "2cm",
             }}
           >
@@ -98,7 +98,7 @@ export const Restaurante = () => {
               <Link
                 type="button"
                 style={{
-                  backgroundColor: "rgb(247, 230, 173)",
+                  backgroundColor: "rgb(255, 200, 67)",
                   color: "black",
                 }}
                 className="btn  btn-sm m-3 "
@@ -130,7 +130,7 @@ export const Restaurante = () => {
                       onClick={() => window.location.reload()}
                       type="submit"
                       style={{
-                        backgroundColor: "rgb(247, 230, 173)",
+                        backgroundColor: "rgb(255, 200, 67)",
                         color: "black",
                       }}
                       className=" mt-1 btn"
@@ -163,7 +163,7 @@ export const Restaurante = () => {
                         onClick={() => window.location.reload()}
                         type="submit"
                         style={{
-                          backgroundColor: "rgb(247, 230, 173)",
+                          backgroundColor: "rgb(255, 200, 67)",
                           color: "black",
                         }}
                         className=" mt-1 btn"
@@ -286,7 +286,7 @@ export const Restaurante = () => {
             type="button"
             className="btn  btn-sm h-50 m-3"
             style={{
-              backgroundColor: "rgb(247, 230, 173)",
+              backgroundColor: "rgb(255, 200, 67)",
               color: "black",
             }}
           >

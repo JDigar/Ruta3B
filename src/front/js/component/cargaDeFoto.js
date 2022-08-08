@@ -5,16 +5,14 @@ import { Context } from "../store/appContext";
 export const CargaDeFoto = () => {
   const [uploadImages, setUploadImages] = useState("");
   const { store, actions } = useContext(Context);
-  const actualizaFoto = (e) =>{
-    
-    const id=store.profileRestaurante?.id;
+  const actualizaFoto = (e) => {
+    const id = store.profileRestaurante?.id;
     actions.añadirFoto(id);
-    window.location.reload()
-  }
+    window.location.reload();
+  };
   return (
     <div className="w-50 container text-center ">
-      <div 
-      className="btn-foto mb-3">
+      <div className="btn-foto mb-3">
         <h5>1r Paso:</h5>
         <input
           className="form-control input-foto bg-dark text-white"
@@ -25,32 +23,33 @@ export const CargaDeFoto = () => {
       </div>
       <div className="m-auto d-flex">
         <div className="m-auto">
-        <h5>2do Paso:</h5>
-      <button
-        style={{
-        backgroundColor: "rgb(247, 230, 173)",
-        color: "black",
-        }}
-        className=" btn"
-        variant="contained"
-        onClick={(e) => actions.uploadFile(uploadImages)}
-      >
-        Subir Foto
-      </button>
-      <h5>3r Paso:</h5>
-      <button style={{
-                  backgroundColor: "rgb(247, 230, 173)",
-                  color: "black",
-                  
-                  }} className=" btn" onClick={(e)=>{actualizaFoto()}}>Actualizar foto
-      </button>
+          <h5>2do Paso:</h5>
+          <button
+            style={{
+              backgroundColor: "rgb(255, 200, 67)",
+              color: "black",
+            }}
+            className=" btn"
+            variant="contained"
+            onClick={(e) => actions.uploadFile(uploadImages)}
+          >
+            Subir Foto
+          </button>
+          <h5>3r Paso:</h5>
+          <button
+            style={{
+              backgroundColor: "rgb(255, 200, 67)",
+              color: "black",
+            }}
+            className=" btn"
+            onClick={(e) => {
+              actualizaFoto();
+            }}
+          >
+            Actualizar foto
+          </button>
         </div>
-      
       </div>
-      
-      
     </div>
   );
 };
-
-
