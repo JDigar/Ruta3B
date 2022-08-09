@@ -97,20 +97,6 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
       ) : (
         ""
       )}
-      <div className="inferior">
-        <div
-          className="text-center informacion"
-          style={{ marginLeft: "40px", marginTop: "40px" }}
-        >
-          <h1>
-            <em>{store.restaurantes[theid]?.nombre}</em>
-          </h1>
-          <hr className="w-50 m-auto" />
-          <p className="mt-5 fs-4 text">
-            {store.restaurantes[theid]?.descripcion}
-          </p>
-        </div>
-      </div>
 
       <div className="inferior d-flex m-auto mt-5">
         <div
