@@ -15,7 +15,7 @@ export const CarruselCard = (args) => {
   const { store, actions } = useContext(Context);
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-
+  
   const next = () => {
     if (animating) return;
     const nextIndex =

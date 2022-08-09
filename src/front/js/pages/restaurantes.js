@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
 import { Link, useParams } from "react-router-dom";
 import { CardHome } from "./cardHome.jsx";
+import { ListInlineItem } from "reactstrap";
 
 export const Restaurantes = () => {
   const { store, actions } = useContext(Context);
@@ -13,7 +14,7 @@ export const Restaurantes = () => {
     <div className="col-lg-12 mx-auto" key={item.id}>
       <CardHome
         key={index}
-        id={index}
+        id={item.id}
         descripcion={item.descripcion}
         tipo_local={item.tipo_local}
         nombre={item.nombre}
@@ -22,7 +23,7 @@ export const Restaurantes = () => {
     </div>
   ));
 
-  // const id=store.restaurantes.map(a=>a.id)
+ 
 
   const filterRestaurante = store.restaurantes.filter((item) => {
     return item.tipo_local === select;
