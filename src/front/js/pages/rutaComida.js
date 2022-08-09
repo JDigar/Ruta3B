@@ -2,31 +2,25 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/perfilRestaurante.css";
+import { ComentarioFacebook } from "../component/comentarioFacebook";
 
 export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
   const { store, actions } = useContext(Context);
   const [date, setDate] = useState("");
 
-  // console.log(useParams());
   const { theid } = useParams();
-  // console.log(theid);
-  console.log(store.profiles);
 
   const id2 = store.restaurantes.map((a) => a.id);
-  console.log(id2);
+
+  const handleSubmit = async (e) => {
+    actions.addReserva(store.profiles?.id, date);
+    actions.reservarlocal(store.restaurantes[theid - 1]?.id);
+  };
 
   useEffect(() => {
     actions.getInformationCurrentMember();
     actions.getRestaurantes();
   }, []);
-
-  const handleSubmit = async (e) => {
-    actions.addReserva(store.profiles?.id, date);
-    actions.reservarlocal(store.restaurantes[theid]?.id);
-  };
-
-  console.log(store.reserva);
-
   return (
     <>
       <div className="mt-2 m-auto central d-flex">
@@ -39,7 +33,11 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           }}
         >
           {" "}
-          <img className="w-100" src={store.restaurantes[theid]?.foto} alt="" />
+          <img
+            className="w-100"
+            src={store.restaurantes[theid - 1]?.foto}
+            alt=""
+          />
         </div>
         <div></div>
         <div
@@ -56,7 +54,9 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
         >
           <div className="offer">
             <h5>Precio medio del ticket: </h5>
-            <strong className="">{store.restaurantes[theid]?.precio} €</strong>
+            <strong className="">
+              {store.restaurantes[theid - 1]?.precio} €
+            </strong>
           </div>
 
           <div
@@ -64,11 +64,11 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
             style={{ marginLeft: "40px", marginTop: "40px" }}
           >
             <h4>
-              <em>{store.restaurantes[theid]?.nombre}</em>
+              <em>{store.restaurantes[theid - 1]?.nombre}</em>
             </h4>
             <hr className="w-50 m-auto" />
             <p className="mt-5 fs-4 text">
-              {store.restaurantes[theid]?.descripcion}
+              {store.restaurantes[theid - 1]?.descripcion}
             </p>
           </div>
         </div>
@@ -99,14 +99,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
       )}
 
       <div className="inferior d-flex m-auto mt-5">
-        <div
-          className="fb-comments m-auto"
-          style={{ backgroundColor: "rgb(255, 200, 67)" }}
-          data-href={`https://3000-jdigar-ruta3b-9ukdtxadn6u.ws-eu59.gitpod.io/ruta-comida/${theid}`}
-          data-width=""
-          data-numposts="2"
-          data-lazy={true}
-        ></div>
+        <ComentarioFacebook theid={theid} />
       </div>
       <div className="w-25 m-auto text-center">
         <Link className="" to="/restaurantes">
