@@ -7,7 +7,7 @@ import { CardHome } from "./cardHome.jsx";
 export const Restaurantes = () => {
   const { store, actions } = useContext(Context);
   const [select, setSelect] = useState("todos");
-  const values = ["todos", "comidas", "bebidas"];
+  const values = ["todos", "comida", "bebida"];
 
   const rest = store.restaurantes.map((item, index) => (
     <div className="col-lg-12 mx-auto" key={item.id}>
