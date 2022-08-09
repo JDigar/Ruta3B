@@ -52,7 +52,9 @@ export const CarruselCard = (args) => {
       onExited={() => setAnimating(false)}
       key={item.id}
     >
-      <CardHome key={item.id} nombre={item.nombre} id={item.id} />
+      <CardHome key={item.id} nombre={item.nombre} id={item.id} tipo_local={item.tipo_local}
+      descripcion={item.descripcion}
+      foto={item.foto}/>
     </CarouselItem>
   ));
 

@@ -29,7 +29,7 @@ export const Usuario = () => {
   //console.log(store.reserva[store.reserva.length-1]);
 
   const reservasFecha = store.profiles?.date;
-  //console.log(reservasFecha);
+  console.log(reservasFecha);
 
   // reservasFecha.map(item=>console.log(item))
 
@@ -43,6 +43,10 @@ export const Usuario = () => {
       imageWidth: 400,
       imageHeight: 200,
       imageAlt: "Custom image",
+      width: 600,
+      padding: "3em",
+      color: "#000000",
+      confirmButtonColor: "#ffc843",
     });
   };
 
