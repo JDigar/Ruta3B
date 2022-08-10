@@ -16,7 +16,7 @@ export const CardHome2 = ({ id, nombre, descripcion, tipo_local, foto }) => {
         <p>Tipo de local: {tipo_local}</p>
         <p>{descripcion}</p>
         <button
-          onClick={() => actions.addFavorite(id + 1)}
+          onClick={() => actions.addFavorite(id)}
           className="btn btn-outline-success btn-heart m-2"
         >
           ♡
@@ -28,7 +28,7 @@ export const CardHome2 = ({ id, nombre, descripcion, tipo_local, foto }) => {
           X
         </button>
         <Link
-          to={"/ruta-comida/" + id}
+          to={"/ruta-comida/" + id }
           style={{ backgroundColor: "rgb(255, 200, 67)", color: "black" }}
           className="btn"
         >

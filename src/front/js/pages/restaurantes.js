@@ -51,7 +51,7 @@ export const Restaurantes = () => {
           })}
         </select>
       </div>
-      <div className="row w-50 mx-auto">
+      <div className="row w-75 mx-auto">
         {select !== "todos"
           ? filterRestaurante.map((item, index) => (
               <div className="col-lg-12 mx-auto" key={item.id}>
