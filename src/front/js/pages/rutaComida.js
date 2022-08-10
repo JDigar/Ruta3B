@@ -14,7 +14,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
 
   const handleSubmit = async (e) => {
     actions.addReserva(store.profiles?.id, date);
-    actions.reservarlocal(store.restaurantes[theid - 1]?.id);
+    actions.reservarlocal(store.restaurantes[theid-1]?.id);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           {" "}
           <img
             className="w-100"
-            src={store.restaurantes[theid - 1]?.foto}
+            src={store.restaurantes[theid-1 ]?.foto}
             alt=""
           />
         </div>
@@ -55,7 +55,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           <div className="offer">
             <h5>Precio medio del ticket: </h5>
             <strong className="">
-              {store.restaurantes[theid - 1]?.precio} €
+              {store.restaurantes[theid-1]?.precio} €
             </strong>
           </div>
 
@@ -64,11 +64,11 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
             style={{ marginLeft: "40px", marginTop: "40px" }}
           >
             <h4>
-              <em>{store.restaurantes[theid - 1]?.nombre}</em>
+              <em>{store.restaurantes[theid-1]?.nombre}</em>
             </h4>
             <hr className="w-50 m-auto" />
             <p className="mt-5 fs-4 text">
-              {store.restaurantes[theid - 1]?.descripcion}
+              {store.restaurantes[theid -1]?.descripcion}
             </p>
           </div>
         </div>
