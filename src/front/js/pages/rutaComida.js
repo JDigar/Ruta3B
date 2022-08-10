@@ -35,7 +35,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
           {" "}
           <img
             className="w-100"
-            src={store.restaurantes[theid-1 ]?.foto}
+            src={store.restaurantes[theid-1]?.foto}
             alt=""
           />
         </div>
@@ -68,7 +68,7 @@ export const RutaComida = ({ nombre, descripcion, id, tipo_local }) => {
             </h4>
             <hr className="w-50 m-auto" />
             <p className="mt-5 fs-4 text">
-              {store.restaurantes[theid -1]?.descripcion}
+              {store.restaurantes[theid-1]?.descripcion}
             </p>
           </div>
         </div>
